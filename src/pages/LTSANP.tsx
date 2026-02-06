@@ -2,7 +2,10 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
 import { Button } from '@/components/ui/button';
-import { DollarSign, Users, Target, Heart } from 'lucide-react';
+import { 
+  DollarSign, Users, Target, Heart, Coffee, Home, 
+  HeartHandshake, Building, Sparkles, Calendar, Brain
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const LTSANP = () => {
@@ -12,18 +15,33 @@ const LTSANP = () => {
       <StarField />
       
       <main className="pt-24 relative z-10">
-        {/* Hero */}
-        <section className="py-16 text-center">
-          <div className="container mx-auto px-4">
+        {/* Hero Banner */}
+        <section className="py-12 bg-gradient-to-r from-cosmic-purple/20 via-cosmic-gold/20 to-cosmic-teal/20 border-b border-cosmic-gold/30">
+          <div className="container mx-auto px-4 text-center">
             <span className="premium-badge mb-4 inline-block">Non-Profit Initiative</span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="rainbow-text">LTSANP</span>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">
+              <span className="rainbow-text">Love Transcends</span>{' '}
+              <span className="text-foreground">Sponsorship & Advertisement</span>
             </h1>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cosmic-gold">
+              Nonprofit Donations, Initiatives & Services
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Love Transcends Social Advertising Network Platform — 
-              Redistributing advertising wealth directly to citizens.
+              Redistributing advertising wealth directly to citizens through 
+              community programs, recovery services, and sustainable housing.
             </p>
             <div className="cosmic-divider w-64 mx-auto mt-8" />
+          </div>
+        </section>
+
+        {/* Donation CTA */}
+        <section className="py-8">
+          <div className="container mx-auto px-4 text-center">
+            <Button asChild size="lg" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-bold text-lg px-12 py-6">
+              <a href="https://gofundme.com" target="_blank" rel="noopener noreferrer">
+                <Heart className="w-5 h-5 mr-2" /> Donate Now
+              </a>
+            </Button>
           </div>
         </section>
 
@@ -51,6 +69,115 @@ const LTSANP = () => {
                   <Users className="w-10 h-10 text-cosmic-teal mx-auto mb-3" />
                   <p className="font-bold text-foreground">Direct Distribution</p>
                   <p className="text-sm text-muted-foreground">Via USDC cryptocurrency</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* LTSANP Initiatives */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-4 text-foreground">
+              Our Initiatives & Services
+            </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Love Transcends sponsors community programs that heal, nourish, and house those in need.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* LTCakes */}
+              <div className="glass-card rounded-2xl p-8 border border-rainbow-orange/30">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rainbow-orange to-rainbow-yellow mx-auto mb-6 flex items-center justify-center">
+                  <Coffee className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-cosmic-gold text-center mb-4">LTCakes</h3>
+                <span className="block text-center text-xs text-muted-foreground mb-4 uppercase tracking-wider">Non-Profit Culinary Experience</span>
+                
+                <div className="space-y-4">
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Sparkles className="w-5 h-5 text-rainbow-orange mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Community Café</p>
+                    <p className="text-xs text-muted-foreground">Free meals for those in need</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Sparkles className="w-5 h-5 text-rainbow-yellow mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Art Space Gallery</p>
+                    <p className="text-xs text-muted-foreground">Showcasing emerging artists</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Sparkles className="w-5 h-5 text-rainbow-red mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Live Music Venue</p>
+                    <p className="text-xs text-muted-foreground">Community performances & events</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-cosmic-gold/10 border border-cosmic-gold/30">
+                    <Sparkles className="w-5 h-5 text-cosmic-gold mb-2" />
+                    <p className="font-semibold text-foreground text-sm">One-of-a-Kind Culinary</p>
+                    <p className="text-xs text-muted-foreground">Unique dining experiences with purpose</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LTCare&Recovery */}
+              <div className="glass-card rounded-2xl p-8 border border-rainbow-violet/30">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rainbow-violet to-rainbow-blue mx-auto mb-6 flex items-center justify-center">
+                  <HeartHandshake className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-cosmic-purple text-center mb-4">LTCare & Recovery</h3>
+                <span className="block text-center text-xs text-muted-foreground mb-4 uppercase tracking-wider">Healing Through Love</span>
+                
+                <div className="space-y-4">
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Heart className="w-5 h-5 text-rainbow-violet mb-2" />
+                    <p className="font-semibold text-foreground text-sm">In-Home Recovery</p>
+                    <p className="text-xs text-muted-foreground">Personalized care in your space</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Sparkles className="w-5 h-5 text-rainbow-blue mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Drug Decontamination</p>
+                    <p className="text-xs text-muted-foreground">Safe, supervised detox programs</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Brain className="w-5 h-5 text-rainbow-green mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Human + AI Therapy</p>
+                    <p className="text-xs text-muted-foreground">24/7 mental health support</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/30">
+                    <Users className="w-5 h-5 text-cosmic-purple mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Live Support Groups</p>
+                    <p className="text-xs text-muted-foreground">On & off the LT Network</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LTHousing */}
+              <div className="glass-card rounded-2xl p-8 border border-rainbow-green/30">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rainbow-green to-rainbow-teal mx-auto mb-6 flex items-center justify-center">
+                  <Home className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-cosmic-teal text-center mb-4">LTHousing</h3>
+                <span className="block text-center text-xs text-muted-foreground mb-4 uppercase tracking-wider">Planning 2031</span>
+                
+                <div className="space-y-4">
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Building className="w-5 h-5 text-rainbow-green mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Affordable Tiny Homes</p>
+                    <p className="text-xs text-muted-foreground">Sustainable, dignified living</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Heart className="w-5 h-5 text-rainbow-teal mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Homeless Shelters</p>
+                    <p className="text-xs text-muted-foreground">Free community housing</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-cosmic-teal/10 border border-cosmic-teal/30">
+                    <Sparkles className="w-5 h-5 text-cosmic-teal mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Self-Sustaining Communities</p>
+                    <p className="text-xs text-muted-foreground">Solar, gardens, community support</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground">Target Launch: 2031</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -95,11 +222,17 @@ const LTSANP = () => {
               <p className="text-muted-foreground text-lg mb-6">
                 By 2030, LTSANP aims to capture 10-15% of the U.S. advertising market, 
                 proving that a Universal Basic Income model can work through 
-                ethical advertising redistribution.
+                ethical advertising redistribution while supporting community healing 
+                through LTCakes, LTCare, and LTHousing.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-bold">
-                  <Link to="/investors">Support Our Mission</Link>
+                  <a href="https://gofundme.com" target="_blank" rel="noopener noreferrer">
+                    <Heart className="w-5 h-5 mr-2" /> Donate to Our Mission
+                  </a>
+                </Button>
+                <Button asChild size="lg" className="bg-cosmic-purple hover:bg-cosmic-purple/90">
+                  <Link to="/investors">Support as Investor</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <Link to="/">Back to Home</Link>

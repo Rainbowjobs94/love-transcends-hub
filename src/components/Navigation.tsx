@@ -8,6 +8,7 @@ const navLinks = [
   { name: 'Story', path: '/story' },
   { name: 'Shift Coin', path: '/shift-coin' },
   { name: 'Investors', path: '/investors' },
+  { name: 'LTSUMN', path: '/ltsumn' },
   { name: 'LTSANP', path: '/ltsanp' },
   { name: 'Gallery', path: '/gallery' },
 ];

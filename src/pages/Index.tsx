@@ -7,6 +7,8 @@ import { ContactSection } from '@/components/landing/ContactSection';
 import { SubSitesSection } from '@/components/landing/SubSitesSection';
 import { ShiftCoinPreview } from '@/components/landing/ShiftCoinPreview';
 import { InvestorPreview } from '@/components/landing/InvestorPreview';
+import { MediaGalleryPreview } from '@/components/landing/MediaGalleryPreview';
+import { DonationButton } from '@/components/DonationButton';
 
 const Index = () => {
   return (
@@ -29,6 +31,9 @@ const Index = () => {
         <InvestorPreview />
         
         <div className="cosmic-divider" />
+        <MediaGalleryPreview />
+        
+        <div className="cosmic-divider" />
         <SubSitesSection />
         
         <div className="cosmic-divider" />
@@ -36,6 +41,7 @@ const Index = () => {
       </main>
       
       <Footer />
+      <DonationButton />
     </div>
   );
 };

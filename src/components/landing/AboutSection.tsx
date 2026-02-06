@@ -1,73 +1,121 @@
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Crown, Scroll, Heart, BookOpen } from 'lucide-react';
 import queenMemorialPhoto from '@/assets/about/queen-memorial-photo.jpeg';
 import dnaHeritage from '@/assets/about/dna-heritage.jpeg';
+import fatherSonPhoto from '@/assets/about/father-son-strongman.jpeg';
 
 export const AboutSection = () => {
   return (
-    <section className="py-20 relative">
+    <section id="legacy" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
+          <span className="premium-badge mb-4 inline-block">Legacy of Historic Strongmans</span>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Meet <span className="rainbow-text">Rainbow Strongman</span>
+            <span className="rainbow-text">The Strongman Dynasty</span>
           </h2>
-          <div className="cosmic-divider w-48 mx-auto" />
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            A family legacy spanning generations, from World Bank service to social revolution.
+          </p>
+          <div className="cosmic-divider w-48 mx-auto mt-6" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Profile Photo */}
-          <div className="relative">
-            <div className="relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Photo Grid */}
+          <div className="space-y-6">
+            <div className="relative group">
               <img 
-                src={queenMemorialPhoto} 
-                alt="Rainbow Strongman at Queen Elizabeth II Memorial" 
-                className="w-full max-w-md mx-auto rounded-2xl cosmic-glow"
+                src={fatherSonPhoto} 
+                alt="Rainbow Strongman with John Strongman" 
+                className="rounded-2xl w-full cosmic-glow transition-transform group-hover:scale-[1.02]"
               />
-              <p className="text-center text-sm text-muted-foreground mt-4 italic">
-                Rainbow Strongman at Queen Elizabeth II Memorial
-              </p>
+              <div className="absolute bottom-4 left-4 right-4 glass-card rounded-lg p-3">
+                <p className="text-sm font-semibold text-foreground">Rainbow & John Strongman</p>
+                <p className="text-xs text-muted-foreground">Father & Son — Building a Legacy Together</p>
+              </div>
             </div>
-            {/* Decorative glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cosmic-purple/20 to-cosmic-teal/20 rounded-2xl blur-3xl -z-10" />
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative group">
+                <img 
+                  src={queenMemorialPhoto} 
+                  alt="Rainbow Strongman at Queen Elizabeth Memorial" 
+                  className="rounded-xl w-full h-40 object-cover cosmic-glow transition-transform group-hover:scale-105"
+                />
+                <div className="absolute bottom-2 left-2 right-2 glass-card rounded-lg p-2">
+                  <p className="text-xs text-muted-foreground">Queen Elizabeth II Memorial</p>
+                </div>
+              </div>
+              <div className="relative group">
+                <img 
+                  src={dnaHeritage} 
+                  alt="23andMe DNA Heritage Results" 
+                  className="rounded-xl w-full h-40 object-cover cosmic-glow transition-transform group-hover:scale-105"
+                />
+                <div className="absolute bottom-2 left-2 right-2 glass-card rounded-lg p-2">
+                  <p className="text-xs text-muted-foreground">Royal DNA Heritage</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Bio Content */}
+          {/* Content */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-foreground">
-              JohnJasper RiverAlexander Strongman
-            </h3>
-            
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                <strong className="text-foreground">CEO, Founder, Survivor Influencer & Historian</strong> 
-                — A visionary building the future of social connection, cryptocurrency, and family-first platforms.
-              </p>
-              
-              <div className="glass-card rounded-xl p-4">
-                <h4 className="font-semibold text-foreground mb-3">The Meaning Behind the Name:</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><strong className="text-rainbow-violet">John:</strong> "God is gracious" — Divine favor and blessing</li>
-                  <li><strong className="text-rainbow-blue">Jasper:</strong> "Treasurer" — Guardian of precious things</li>
-                  <li><strong className="text-rainbow-green">River:</strong> "Flowing water" — Life, renewal, constant motion</li>
-                  <li><strong className="text-rainbow-yellow">Alexander:</strong> "Defender of the people" — Protection and leadership</li>
-                </ul>
+            <div className="glass-card rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Crown className="w-8 h-8 text-cosmic-gold" />
+                <h3 className="text-xl font-bold text-foreground">Royal Lineage</h3>
               </div>
+              <p className="text-muted-foreground mb-4">
+                DNA-verified descendant of King Richard III, Pharaoh Ramesses III, and Princess Diana's 
+                Spencer bloodline. A heritage that spans from ancient Egypt to modern-day social innovation.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-2 py-1 rounded-full bg-cosmic-gold/20 text-cosmic-gold">King Richard III</span>
+                <span className="text-xs px-2 py-1 rounded-full bg-cosmic-purple/20 text-cosmic-purple">Ramesses III</span>
+                <span className="text-xs px-2 py-1 rounded-full bg-cosmic-teal/20 text-cosmic-teal">Spencer Dynasty</span>
+              </div>
+            </div>
 
-              <p>
-                A survivor who transformed personal struggles into a mission to create platforms 
-                that protect families, empower creators, and redistribute wealth fairly.
+            <div className="glass-card rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Scroll className="w-8 h-8 text-cosmic-purple" />
+                <h3 className="text-xl font-bold text-foreground">The Name's Meaning</h3>
+              </div>
+              <p className="text-muted-foreground">
+                <strong className="text-foreground">Rainbow</strong> — Born during a storm, a rainbow appeared at the exact moment of birth.
+                <br /><br />
+                <strong className="text-foreground">Strong</strong> — Descended from generations of physical and spiritual strength.
+                <br /><br />
+                <strong className="text-foreground">Man</strong> — The duty to stand for humanity, equality, and love.
               </p>
             </div>
 
-            {/* DNA Heritage Panel */}
-            <div className="glass-card rounded-xl p-4">
-              <h4 className="font-semibold text-foreground mb-3 text-lg">Royal Lineage</h4>
-              <img 
-                src={dnaHeritage} 
-                alt="23andMe DNA Heritage Results" 
-                className="w-full rounded-lg mb-3"
-              />
-              <p className="text-xs text-muted-foreground">
-                Verified descendant of King Richard III and Pharaoh Ramesses III through 23andMe DNA analysis.
-              </p>
+            {/* Manifesto Preview */}
+            <div className="glass-card rounded-xl p-6 border border-cosmic-gold/30">
+              <div className="flex items-center gap-3 mb-4">
+                <BookOpen className="w-8 h-8 text-cosmic-gold" />
+                <h3 className="text-xl font-bold text-cosmic-gold">From the Autobiography</h3>
+              </div>
+              <blockquote className="text-muted-foreground italic border-l-4 border-cosmic-gold pl-4 mb-4">
+                "Love Transcends is a survivor-founded social enterprise transforming corporate 
+                advertising extraction into a force for universal basic income and systemic care. 
+                We are recapturing 75% of global advertising revenue and redistributing it directly 
+                to the citizens who create the value. Every view, text, and interaction is a mining event."
+              </blockquote>
+              <Button asChild className="w-full bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-bold">
+                <a href="https://gofundme.com" target="_blank" rel="noopener noreferrer">
+                  <BookOpen className="w-4 h-4 mr-2" /> Purchase Full Autobiography
+                </a>
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Button asChild variant="outline">
+                <Link to="/story">
+                  <Heart className="w-4 h-4 mr-2" /> Read Full Story
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

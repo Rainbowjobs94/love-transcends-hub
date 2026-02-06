@@ -3,16 +3,17 @@ import miracleFlag from '@/assets/logos/miracle-network-flag.jpeg';
 
 const links = {
   platforms: [
-    { name: 'LTSocial', url: 'https://www.ltsocial.com' },
+    { name: 'LTSocial', url: 'https://www.ltsocial.net' },
     { name: 'Miracle Mining', url: 'https://www.miraclemining.network' },
     { name: 'Social Universe', url: 'https://www.socialuniverse.love' },
     { name: 'Rainbow Jobs', url: 'https://www.rainbowjobs.love' },
   ],
   pages: [
     { name: 'Home', path: '/' },
-    { name: 'Full Story', path: '/story' },
+    { name: 'Legacy', path: '/#legacy' },
     { name: 'Shift Coin Protocol', path: '/shift-coin' },
     { name: 'Investors', path: '/investors' },
+    { name: 'LTSUMN', path: '/ltsumn' },
     { name: 'LTSANP', path: '/ltsanp' },
     { name: 'Media Gallery', path: '/gallery' },
   ],
