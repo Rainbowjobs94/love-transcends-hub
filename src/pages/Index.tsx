@@ -1,12 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
+import { HeroSection } from '@/components/landing/HeroSection';
+import { AboutSection } from '@/components/landing/AboutSection';
+import { JohnStrongmanTribute } from '@/components/landing/JohnStrongmanTribute';
+import { ContactSection } from '@/components/landing/ContactSection';
+import { SubSitesSection } from '@/components/landing/SubSitesSection';
+import { ShiftCoinPreview } from '@/components/landing/ShiftCoinPreview';
+import { InvestorPreview } from '@/components/landing/InvestorPreview';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen cosmic-bg">
+      <Navigation />
+      
+      <main>
+        <HeroSection />
+        
+        <div className="cosmic-divider" />
+        <AboutSection />
+        
+        <div className="cosmic-divider" />
+        <JohnStrongmanTribute />
+        
+        <div className="cosmic-divider" />
+        <ShiftCoinPreview />
+        
+        <div className="cosmic-divider" />
+        <InvestorPreview />
+        
+        <div className="cosmic-divider" />
+        <SubSitesSection />
+        
+        <div className="cosmic-divider" />
+        <ContactSection />
+      </main>
+      
+      <Footer />
     </div>
   );
 };
