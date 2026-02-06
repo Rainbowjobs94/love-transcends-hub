@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Crown, Scroll, Heart, BookOpen } from 'lucide-react';
+import { Crown, Scroll, Heart, BookOpen, Sparkles } from 'lucide-react';
 import queenMemorialPhoto from '@/assets/about/queen-memorial-photo.jpeg';
 import dnaHeritage from '@/assets/about/dna-heritage.jpeg';
-import fatherSonPhoto from '@/assets/about/father-son-strongman.jpeg';
+import rainbowStrongmanPortrait from '@/assets/about/rainbow-strongman-portrait.jpeg';
 
 export const AboutSection = () => {
+  const coreValues = [
+    'Compassion', 'Equity', 'Community', 'Justice', 'Love', 
+    'Honesty', 'Transparency', 'Empathy', 'Remorse', 
+    'Inclusivity', 'Uniqueness', 'Honor'
+  ];
+
   return (
     <section id="legacy" className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -15,23 +21,24 @@ export const AboutSection = () => {
             <span className="rainbow-text">The Strongman Dynasty</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A family legacy spanning generations, from World Bank service to social revolution.
+            From adversity to advocacy — a story of resilience and transformative love.
           </p>
           <div className="cosmic-divider w-48 mx-auto mt-6" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
           {/* Photo Grid */}
           <div className="space-y-6">
+            {/* Rainbow Strongman Portrait */}
             <div className="relative group">
               <img 
-                src={fatherSonPhoto} 
-                alt="Rainbow Strongman with John Strongman" 
-                className="rounded-2xl w-full cosmic-glow transition-transform group-hover:scale-[1.02]"
+                src={rainbowStrongmanPortrait} 
+                alt="Rainbow Strongman - Founder" 
+                className="rounded-2xl w-full max-w-md mx-auto cosmic-glow transition-transform group-hover:scale-[1.02]"
               />
-              <div className="absolute bottom-4 left-4 right-4 glass-card rounded-lg p-3">
-                <p className="text-sm font-semibold text-foreground">Rainbow & John Strongman</p>
-                <p className="text-xs text-muted-foreground">Father & Son — Building a Legacy Together</p>
+              <div className="absolute bottom-4 left-4 right-4 glass-card rounded-lg p-3 max-w-md mx-auto">
+                <p className="text-sm font-semibold text-foreground">Rainbow Strongman</p>
+                <p className="text-xs text-muted-foreground">Founder & CEO — Love Transcends Reality</p>
               </div>
             </div>
             
@@ -57,10 +64,59 @@ export const AboutSection = () => {
                 </div>
               </div>
             </div>
+
+            {/* Core Values */}
+            <div className="glass-card rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Sparkles className="w-6 h-6 text-cosmic-teal" />
+                <h3 className="text-lg font-bold text-foreground">Core Values</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {coreValues.map((value) => (
+                  <span 
+                    key={value}
+                    className="text-xs px-3 py-1 rounded-full bg-cosmic-purple/20 text-cosmic-purple border border-cosmic-purple/30"
+                  >
+                    {value}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Content */}
           <div className="space-y-6">
+            {/* Biography */}
+            <div className="glass-card rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Heart className="w-8 h-8 text-cosmic-gold" />
+                <h3 className="text-xl font-bold text-foreground">About Rainbow Strongman</h3>
+              </div>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  <strong className="text-foreground">Survivor. Advocate. Visionary.</strong> A survivor of trafficking 
+                  and institutional abuse, now a leading advocate for systemic change.
+                </p>
+                <p>
+                  Founded <strong className="text-cosmic-gold">Love Transcends</strong> in 2013 with a mission to transform 
+                  corporate advertising extraction into a force for universal basic income and systemic care.
+                </p>
+                <p>
+                  <strong className="text-foreground">Education:</strong> Attended San Bernardino College and Crafton Hills 
+                  College for Psychology, Arts, Theatre, and Business.
+                </p>
+                <p>
+                  <strong className="text-foreground">Advocacy:</strong> HIV/AIDS awareness, mental health reform advocate, 
+                  and Smart Recovery Lifestyle practitioner since 2013.
+                </p>
+              </div>
+              <div className="mt-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
+                <p className="text-sm italic text-foreground text-center">
+                  "Love Transcends Adversity"
+                </p>
+              </div>
+            </div>
+
             <div className="glass-card rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
                 <Crown className="w-8 h-8 text-cosmic-gold" />

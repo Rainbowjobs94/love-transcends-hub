@@ -1,17 +1,46 @@
 import { StarField } from '../StarField';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import miracleLogo from '@/assets/logos/miracle-network-logo.jpeg';
 import cosmicBackground from '@/assets/hero/cosmic-lt-social.png';
 
+const heroVideos = [
+  '/videos/hero-video-1.mp4',
+  '/videos/hero-video-2.mp4',
+  '/videos/hero-video-3.mp4',
+  '/videos/hero-video-4.mp4',
+];
+
 export const HeroSection = () => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prev) => (prev + 1) % heroVideos.length);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center cosmic-bg overflow-hidden">
+      {/* Video Background */}
+      <video
+        key={currentVideoIndex}
+        autoPlay
+        muted
+        playsInline
+        onEnded={handleVideoEnd}
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={heroVideos[currentVideoIndex]} type="video/mp4" />
+      </video>
+      
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-background/70" />
+      
       <StarField />
       
       {/* Cosmic Background Overlay */}
       <div 
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `url(${cosmicBackground})`,
           backgroundSize: 'cover',
@@ -20,7 +49,7 @@ export const HeroSection = () => {
       />
 
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-5xl mx-auto">

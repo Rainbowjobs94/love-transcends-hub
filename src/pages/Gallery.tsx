@@ -14,24 +14,28 @@ import loveTranscendsGuardian from '@/assets/gallery/love-transcends-guardian.jp
 import foundersPhoto from '@/assets/gallery/founders-photo.jpeg';
 import rainbowStrongmanCeo from '@/assets/gallery/rainbow-strongman-ceo.jpeg';
 import ltrealityNetwork from '@/assets/gallery/ltreality-network.jpeg';
+import rainbowGuardianRangers from '@/assets/gallery/rainbow-guardian-rangers.png';
+import loveTranscendsMultilingual from '@/assets/gallery/love-transcends-multilingual.png';
 import { DonationButton } from '@/components/DonationButton';
 
 const Gallery = () => {
   const galleryItems = [
     // Cosmic Spirituality
     { id: 1, title: 'Cosmic Transcendence', description: 'Rainbow wings ascension artwork', image: cosmicTranscendence, tier: 'free', category: 'Spirituality' },
+    { id: 2, title: 'Rainbow Guardian Rangers', description: 'Cosmic protectors of the universe', image: rainbowGuardianRangers, tier: 'free', category: 'Spirituality' },
+    { id: 3, title: 'Love Transcends Multilingual', description: 'Global unity in all languages', image: loveTranscendsMultilingual, tier: 'free', category: 'Spirituality' },
     // LT Reality Branding
-    { id: 2, title: 'Social Universe Badge', description: 'Miracle Network Hub emblem', image: socialUniverseBadge, tier: 'free', category: 'Branding' },
-    { id: 3, title: 'Dimensions Miracle', description: 'Powered by Miracle Network', image: dimensionsMiracle, tier: 'free', category: 'Branding' },
-    { id: 4, title: 'Love Transcends Hero', description: 'OneCode multilingual vision', image: loveTranscendsHero, tier: 'free', category: 'Branding' },
-    { id: 5, title: 'Love Transcends Guardian', description: 'Behind These Walls - The protector', image: loveTranscendsGuardian, tier: 'premium', category: 'Spirituality' },
+    { id: 4, title: 'Social Universe Badge', description: 'Miracle Network Hub emblem', image: socialUniverseBadge, tier: 'free', category: 'Branding' },
+    { id: 5, title: 'Dimensions Miracle', description: 'Powered by Miracle Network', image: dimensionsMiracle, tier: 'free', category: 'Branding' },
+    { id: 6, title: 'Love Transcends Hero', description: 'OneCode multilingual vision', image: loveTranscendsHero, tier: 'free', category: 'Branding' },
+    { id: 7, title: 'Love Transcends Guardian', description: 'Behind These Walls - The protector', image: loveTranscendsGuardian, tier: 'premium', category: 'Spirituality' },
     // Reality Coin & Crypto
-    { id: 6, title: 'Founders Photo', description: 'Building the vision together', image: foundersPhoto, tier: 'free', category: 'Personal' },
-    { id: 7, title: 'Rainbow Strongman CEO', description: 'Launching LTReality Social Mining', image: rainbowStrongmanCeo, tier: 'premium', category: 'Branding' },
-    { id: 8, title: 'LTReality Network', description: 'LTClarkson Social Universe vision', image: ltrealityNetwork, tier: 'premium', category: 'Branding' },
+    { id: 8, title: 'Founders Photo', description: 'Building the vision together', image: foundersPhoto, tier: 'free', category: 'Personal' },
+    { id: 9, title: 'Rainbow Strongman CEO', description: 'Launching LTReality Social Mining', image: rainbowStrongmanCeo, tier: 'premium', category: 'Branding' },
+    { id: 10, title: 'LTReality Network', description: 'LTClarkson Social Universe vision', image: ltrealityNetwork, tier: 'premium', category: 'Branding' },
     // Original artwork
-    { id: 9, title: 'The Original World Flag', description: 'Love Transcends Reality - 2021', image: worldFlagArtwork, tier: 'free', category: 'Artwork' },
-    { id: 10, title: 'Personal Journey Collage', description: '#PADHIV - Positive Affirmation Day', image: personalCollage, tier: 'premium', category: 'Personal', message: 'Others Before Ourselves, Illuminate The Darkness' },
+    { id: 11, title: 'The Original World Flag', description: 'Love Transcends Reality - 2021', image: worldFlagArtwork, tier: 'free', category: 'Artwork' },
+    { id: 12, title: 'Personal Journey Collage', description: '#PADHIV - Positive Affirmation Day', image: personalCollage, tier: 'premium', category: 'Personal', message: 'Others Before Ourselves, Illuminate The Darkness' },
   ];
 
   const categories = ['All', 'Spirituality', 'Branding', 'Personal', 'Artwork'];

@@ -1,3 +1,4 @@
+import johnStrongmanPortrait from '@/assets/about/john-strongman-portrait.png';
 import whitehouseLetter from '@/assets/about/whitehouse-letter-collage.jpeg';
 import { useState } from 'react';
 
@@ -11,11 +12,20 @@ export const JohnStrongmanTribute = () => {
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             <span className="text-cosmic-gold">John Strongman</span>
           </h2>
-          <p className="text-xl text-muted-foreground">Co-founder, Inspiration, Role Model, Former World Leader</p>
+          <p className="text-xl text-muted-foreground">Co-founder, Inspiration, Role Model, World Bank Mining Expert</p>
           <div className="cosmic-divider w-48 mx-auto mt-6" />
         </div>
 
         <div className="max-w-4xl mx-auto">
+          {/* John Strongman Portrait */}
+          <div className="flex justify-center mb-8">
+            <img 
+              src={johnStrongmanPortrait} 
+              alt="John Strongman - World Bank Mining Expert" 
+              className="w-64 h-64 md:w-80 md:h-80 rounded-2xl gold-glow object-cover"
+            />
+          </div>
+          
           {/* White House Letter */}
           <div className="relative mb-8">
             <img 
