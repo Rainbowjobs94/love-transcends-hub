@@ -77,8 +77,8 @@ const LTSocial = () => {
           <div className="container mx-auto px-4 text-center">
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="cosmic-button text-white font-semibold">
-                <a href="https://www.ltsocial.com" target="_blank" rel="noopener noreferrer">
-                  Visit LTSocial.com
+                <a href="https://www.ltsocial.net" target="_blank" rel="noopener noreferrer">
+                  Visit LTSocial.net
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg">

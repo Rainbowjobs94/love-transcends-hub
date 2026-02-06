@@ -11,6 +11,7 @@ import LTSANP from "./pages/LTSANP";
 import LTSocial from "./pages/LTSocial";
 import MiracleMining from "./pages/MiracleMining";
 import SocialUniverse from "./pages/SocialUniverse";
+import LTSUMN from "./pages/LTSUMN";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/ltsocial" element={<LTSocial />} />
           <Route path="/miraclemining" element={<MiracleMining />} />
           <Route path="/socialuniverse" element={<SocialUniverse />} />
+          <Route path="/ltsumn" element={<LTSUMN />} />
           <Route path="/gallery" element={<Gallery />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

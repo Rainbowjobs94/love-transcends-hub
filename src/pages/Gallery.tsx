@@ -2,44 +2,39 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
 import { Button } from '@/components/ui/button';
-import { Lock, Eye } from 'lucide-react';
+import { Lock, Eye, Play, Music, Podcast, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import worldFlagArtwork from '@/assets/gallery/world-flag-artwork.jpeg';
 import personalCollage from '@/assets/gallery/personal-collage.jpeg';
+import cosmicTranscendence from '@/assets/gallery/cosmic-transcendence.jpeg';
+import socialUniverseBadge from '@/assets/gallery/social-universe-badge.png';
+import dimensionsMiracle from '@/assets/gallery/dimensions-miracle.png';
+import loveTranscendsHero from '@/assets/gallery/love-transcends-hero.png';
+import loveTranscendsGuardian from '@/assets/gallery/love-transcends-guardian.jpeg';
+import foundersPhoto from '@/assets/gallery/founders-photo.jpeg';
+import rainbowStrongmanCeo from '@/assets/gallery/rainbow-strongman-ceo.jpeg';
+import ltrealityNetwork from '@/assets/gallery/ltreality-network.jpeg';
+import { DonationButton } from '@/components/DonationButton';
 
 const Gallery = () => {
   const galleryItems = [
-    {
-      id: 1,
-      title: 'The Original World Flag',
-      description: 'Love Transcends Reality',
-      image: worldFlagArtwork,
-      tier: 'free',
-      year: '2021',
-    },
-    {
-      id: 2,
-      title: 'Personal Journey Collage',
-      description: '#PADHIV - Positive Affirmation Day',
-      image: personalCollage,
-      tier: 'premium',
-      message: 'Others Before Ourselves, Illuminate The Darkness, Vigilante of Peace and Love',
-    },
-    {
-      id: 3,
-      title: 'Coming Soon',
-      description: 'Exclusive content dropping soon',
-      image: null,
-      tier: 'premium',
-    },
-    {
-      id: 4,
-      title: 'Coming Soon',
-      description: 'Premium members only',
-      image: null,
-      tier: 'premium',
-    },
+    // Cosmic Spirituality
+    { id: 1, title: 'Cosmic Transcendence', description: 'Rainbow wings ascension artwork', image: cosmicTranscendence, tier: 'free', category: 'Spirituality' },
+    // LT Reality Branding
+    { id: 2, title: 'Social Universe Badge', description: 'Miracle Network Hub emblem', image: socialUniverseBadge, tier: 'free', category: 'Branding' },
+    { id: 3, title: 'Dimensions Miracle', description: 'Powered by Miracle Network', image: dimensionsMiracle, tier: 'free', category: 'Branding' },
+    { id: 4, title: 'Love Transcends Hero', description: 'OneCode multilingual vision', image: loveTranscendsHero, tier: 'free', category: 'Branding' },
+    { id: 5, title: 'Love Transcends Guardian', description: 'Behind These Walls - The protector', image: loveTranscendsGuardian, tier: 'premium', category: 'Spirituality' },
+    // Reality Coin & Crypto
+    { id: 6, title: 'Founders Photo', description: 'Building the vision together', image: foundersPhoto, tier: 'free', category: 'Personal' },
+    { id: 7, title: 'Rainbow Strongman CEO', description: 'Launching LTReality Social Mining', image: rainbowStrongmanCeo, tier: 'premium', category: 'Branding' },
+    { id: 8, title: 'LTReality Network', description: 'LTClarkson Social Universe vision', image: ltrealityNetwork, tier: 'premium', category: 'Branding' },
+    // Original artwork
+    { id: 9, title: 'The Original World Flag', description: 'Love Transcends Reality - 2021', image: worldFlagArtwork, tier: 'free', category: 'Artwork' },
+    { id: 10, title: 'Personal Journey Collage', description: '#PADHIV - Positive Affirmation Day', image: personalCollage, tier: 'premium', category: 'Personal', message: 'Others Before Ourselves, Illuminate The Darkness' },
   ];
+
+  const categories = ['All', 'Spirituality', 'Branding', 'Personal', 'Artwork'];
 
   return (
     <div className="min-h-screen cosmic-bg">
@@ -48,20 +43,59 @@ const Gallery = () => {
       
       <main className="pt-24 relative z-10">
         {/* Hero */}
-        <section className="py-16 text-center">
+        <section className="py-12 text-center">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="rainbow-text">Media Gallery</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Exclusive artwork, documentation, and personal journey content.
+              Music, videos, podcasts, artwork, and exclusive content from the Love Transcends universe.
             </p>
             <div className="cosmic-divider w-64 mx-auto mt-8" />
           </div>
         </section>
 
-        {/* Pricing Tiers */}
+        {/* Media Hub Section */}
         <section className="py-8">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold text-center mb-8 text-foreground">Music & Video Hub</h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+              {/* YouTube */}
+              <div className="glass-card rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <Youtube className="w-8 h-8 text-rainbow-red" />
+                  <h3 className="font-bold text-foreground text-lg">YouTube Channel</h3>
+                  <span className="text-xs px-2 py-1 rounded-full bg-cosmic-teal/20 text-cosmic-teal ml-auto">Auto-Updates</span>
+                </div>
+                <div className="aspect-video bg-background/50 rounded-lg flex items-center justify-center border border-border/50">
+                  <div className="text-center">
+                    <Play className="w-16 h-16 text-muted-foreground mx-auto mb-2" />
+                    <p className="text-sm text-muted-foreground">YouTube channel feed coming soon</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Podcast */}
+              <div className="glass-card rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <Podcast className="w-8 h-8 text-cosmic-purple" />
+                  <h3 className="font-bold text-foreground text-lg">Podcast Feed</h3>
+                  <span className="text-xs px-2 py-1 rounded-full bg-cosmic-teal/20 text-cosmic-teal ml-auto">Auto-Updates</span>
+                </div>
+                <div className="aspect-video bg-background/50 rounded-lg flex items-center justify-center border border-border/50">
+                  <div className="text-center">
+                    <Music className="w-16 h-16 text-muted-foreground mx-auto mb-2" />
+                    <p className="text-sm text-muted-foreground">Podcast episodes coming soon</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Tiers */}
+        <section className="py-4">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2">
@@ -70,8 +104,20 @@ const Gallery = () => {
               </div>
               <div className="glass-card px-4 py-2 rounded-full flex items-center gap-2 border border-cosmic-gold/30">
                 <Lock className="w-4 h-4 text-cosmic-gold" />
-                <span className="text-sm text-muted-foreground">Premium Content - Contact for Access</span>
+                <span className="text-sm text-muted-foreground">Premium Content</span>
               </div>
+            </div>
+
+            {/* Category Filters */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  className="px-4 py-2 rounded-full text-sm glass-card hover:bg-cosmic-purple/20 transition-colors"
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
           </div>
         </section>
@@ -79,50 +125,41 @@ const Gallery = () => {
         {/* Gallery Grid */}
         <section className="py-8">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
               {galleryItems.map((item) => (
-                <div key={item.id} className="glass-card rounded-2xl overflow-hidden group">
+                <div key={item.id} className="glass-card rounded-xl overflow-hidden group">
                   <div className="relative aspect-square">
-                    {item.image ? (
-                      <>
-                        <img 
-                          src={item.image} 
-                          alt={item.title}
-                          className={`w-full h-full object-cover ${item.tier === 'premium' ? 'blur-sm group-hover:blur-none transition-all duration-300' : ''}`}
-                        />
-                        {item.tier === 'premium' && (
-                          <div className="absolute inset-0 bg-background/60 flex items-center justify-center group-hover:opacity-0 transition-opacity">
-                            <div className="text-center">
-                              <Lock className="w-12 h-12 text-cosmic-gold mx-auto mb-2" />
-                              <span className="premium-badge">Premium</span>
-                            </div>
-                          </div>
-                        )}
-                        {item.tier === 'free' && (
-                          <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 rounded-full bg-cosmic-teal/80 text-white text-xs font-bold">
-                              FREE
-                            </span>
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-cosmic-purple/30 to-cosmic-blue/30 flex items-center justify-center">
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className={`w-full h-full object-cover ${item.tier === 'premium' ? 'blur-sm group-hover:blur-none transition-all duration-300' : ''}`}
+                    />
+                    {item.tier === 'premium' && (
+                      <div className="absolute inset-0 bg-background/60 flex items-center justify-center group-hover:opacity-0 transition-opacity">
                         <div className="text-center">
-                          <Lock className="w-12 h-12 text-cosmic-gold mx-auto mb-2" />
-                          <span className="premium-badge">Coming Soon</span>
+                          <Lock className="w-8 h-8 text-cosmic-gold mx-auto mb-2" />
+                          <span className="premium-badge">Premium</span>
                         </div>
                       </div>
                     )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-bold text-foreground text-xl mb-1">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-2">{item.description}</p>
-                    {item.message && (
-                      <p className="text-xs text-cosmic-teal italic">"{item.message}"</p>
+                    {item.tier === 'free' && (
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2 py-1 rounded-full bg-cosmic-teal/80 text-white text-xs font-bold">
+                          FREE
+                        </span>
+                      </div>
                     )}
-                    {item.year && (
-                      <p className="text-xs text-muted-foreground mt-2">© {item.year}</p>
+                    <div className="absolute top-3 right-3">
+                      <span className="px-2 py-1 rounded-full bg-background/80 text-xs text-muted-foreground">
+                        {item.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-bold text-foreground text-sm mb-1">{item.title}</h3>
+                    <p className="text-muted-foreground text-xs">{item.description}</p>
+                    {item.message && (
+                      <p className="text-xs text-cosmic-teal italic mt-2">"{item.message}"</p>
                     )}
                   </div>
                 </div>
@@ -137,7 +174,7 @@ const Gallery = () => {
             <div className="glass-card max-w-2xl mx-auto p-8 rounded-2xl border border-cosmic-gold/30">
               <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Access Premium Content</h2>
               <p className="text-muted-foreground mb-6">
-                Contact us to purchase premium access or become a supporter.
+                Support the mission and unlock all premium artwork, music, and exclusive content.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-bold">
@@ -155,6 +192,7 @@ const Gallery = () => {
       </main>
       
       <Footer />
+      <DonationButton />
     </div>
   );
 };
