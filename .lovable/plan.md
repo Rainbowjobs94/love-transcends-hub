@@ -1,400 +1,182 @@
 
-Love Transcends Reality - UPDATED Website Plan
-Now Including: Shift Coin Protocol Economics + Extensive Investor Section
 
-NEW: Shift Coin Protocol Economics Section
+# Fix LTSUMN, Update Photos & Add Video Background
 
-Shift Coin Protocol Overview
-
-"Shift is NOT a cryptocurrency - it's a revolutionary mining protocol"
-
-How It Works: Encrypted device fingerprinting technology that collects and encrypts device data (IP, VPN, IMEI, MAC, GPS, Bluetooth, WiFi, DNS), then uses mathematical algorithms to mine Reality Coins
-Key Innovation: Automatically selects the fastest, cheapest blockchain network with ZERO or minimal gas fees
-First-of-its-kind: World's First Shift Mining Protocol
-Reality Coin (RC)
-
-Always $1 Stable Value inside LTReality network
-Supply Cap: 365 Trillion
-Becomes volatile only when converted OUT to external networks
-4-Year Crypto Lock for platform stability
-Miracle Coin (MC)
-
-Premium conversion target: $1 Million per coin
-Supply Cap: 777 Trillion
-Conversion: Accumulate 1 Million RC = 1 MC, OR spend $2 Million in transactions = 1 MC
-RC recirculates after conversion
-Mining Tiers (Shift Coin Protocol)
-
-Tier	Platform Revenue	Creator Share	Viewer Share
-Bronze	$0.20/event	$0.80	-
-Silver	$0.50/event	$0.80	$0.70
-Gold	$0.50/event	$3.25	$1.25
-Earning Methods
-
-Daily platform activities
-Content creation
-Live streaming ($0.35 per paying viewer)
-LTMMM Protocol engagement rewards
-50% rate on investments
-NEW: Extensive Investor Section
-
-Financial Architecture Overview
-
-The Hybrid Engine - Four Distinct Revenue Systems:
-
-Engine A - LTSocial (Family-First, Non-Crypto)
-
-Creator baseline: 75% creator / 25% platform
-Direct USD payouts, no wallet required
-Revenue: paid ads, boosts, tiered subscriptions, marketplace fees
-Engine B - Miracle Network (For-Profit Growth)
-
-Paid advertisements and boosting options
-Subscriptions: Fanship, 4Family Plan ($30/month), Self-Celebrity ($100/two months)
-NFT support and transaction fees
-Engine C - LTSANP (Non-Profit Redistribution)
-
-Mission: Capture 75% of U.S. advertising spend ($1.5 trillion/year)
-Redistribute directly to citizens via USDC
-Goal: Up to $1 million in financial aid to every qualified citizen over time
-Engine D - LTReality Mining (Proof-Backed Rewards)
-
-Reality Coin at 1:1 USD in UI/UX
-Late Ledger Hash blockchain verification
-Transparent allocation via Shift Coin Protocol
-Break-Even Analysis
-
-Target: 100,000 Monthly Active Users
-
-Operating Expense	Annual Cost
-Product/Engineering	$1,200,000
-Trust & Safety	$500,000
-Targeted Marketing	$600,000
-Operations/Legal	$200,000
-Total OpEx	$2,300,000-$2,500,000
-Three-Year Financial Projections
-
-BASE CASE (Conservative):
-
-Year	MAU	Payer Rate	ARPU	Net Revenue
-Year 1	100,000	8%	$28	$2.45M
-Year 2	400,000	8%	$32	$11.2M
-Year 3	1,200,000	8%	$38	$38.5M
-UPSIDE CASE (Celebrity Partnership Activated):
-
-Year	MAU	Payer Rate	ARPU	Net Revenue
-Year 1	250,000	12%	$35	$19.46M
-Year 2	1,200,000	11%	$38	$98.8M
-Year 3	3,500,000	12%	$42	$312.4M
-Path to $3B valuation by Year 5-10
-
-Subscription Tiers & Revenue
-
-Tier	Price	Revenue Split	Features
-Fanship	$100 / 10,000 MC	Standard	Up to 3 connections, basic content, paywalls for 3 feeds
-4Family	$100 / 10,000 MC	Standard	Family-focused, parental controls, multi-user, safe filtering
-4Family Plus	Coming Soon	Premium	Weekly family therapy, AI Guardian sessions, licensed therapist access
-SelfCelebrity	$500 / 50,000 MC	30%/30%	Unlimited connections, enhanced creator tools, priority support
-Pearl	$5,000 / 500,000 MC	25%/50%	Premium features, VIP support
-Miner	$5,000 / 500,000 MC	25%/50%	Enhanced mining capabilities, priority blockchain selection
-Jasper	Unlimited	20%/40%	All features, white-glove service, custom development, direct platform input
-Investment Pathways & Equity Offers
-
-PATHWAY A: Strategic Big-Tech Partnership
-
-Investment Range: $50M - $500M
-Equity: 7% - 49%
-Partners: Amazon, Google, Microsoft-tier companies
-Focus: Infrastructure, scale, distribution
-PATHWAY B: Celebrity-Led Partnership (Recommended)
-
-Investment Range: $50M - $500M
-Equity: 7% - 49% (via SPV structure)
-Target Partners: Kelly Clarkson, mission-aligned celebrities
-Structure:
-Option A: Create SPV (LT Media & Culinary Studios) - up to 49% of that division
-Option B: Staged unlocks (10-20% start, milestone unlocks)
-Option C: Revenue-share overlay with smaller equity stake
-PATHWAY C: Institutional/Open Investment
-
-Investment Range: $10M - $100M
-Equity: 5% - 25%
-Focus: Growth capital, expansion
-PATHWAY D: Bootstrap Development
-
-Self-funded with GoFundMe support
-Full founder control
-Slower growth trajectory
-Equity Tier Structure
-
-Investment Amount	Equity Offered	Board Seat	Control
-$10M - $25M	5% - 10%	Observer	Limited
-$25M - $50M	10% - 15%	1 Seat	Advisory
-$50M - $100M	15% - 25%	1-2 Seats	Collaborative
-$100M - $250M	25% - 35%	2 Seats	Shared governance
-$250M - $500M	35% - 49%	2-3 Seats	Strategic partnership
-Founder Protection: 7-year control over product development regardless of equity structure
-
-Milestone-Based Valuation
-
-Milestone	Valuation
-100K MAU Achieved	$25M
-$10M Annual Revenue Run-Rate	$50M
-Celebrity Flagship Programming Launched	$75M
-Reality Coin RC Live (Compliant)	$100M
-1M MAU Achieved	$150M
-$100M Annual Revenue Run-Rate	$200M
-North Star Target	$3B (Year 5-10)
-Market Opportunity
-
-$1.27 Trillion Advertising Market Capture:
-
-U.S. advertising spend: $1.5+ trillion/year
-LTSANP goal: Capture 75% and redistribute to citizens
-Creator economy: Return 75% to creators vs industry standard 30-50%
-Competitive Advantages:
-
-Feature	LTReality	Minds	Steemit	Mastodon
-Shift Coin Protocol	✓ First Ever	✗	✗	✗
-$1 Stable Cryptocurrency	✓ Reality Coin	✗	✗ Volatile	✗
-Live Video Streaming	✓ With RC Rewards	✗	✗	✗
-AI Guardian Protection	✓ Gemini AI	✗	✗	✗
-Mental Health Services	✓ AI + Human	✗	✗	✗
-Three-Tier Connections	✓ Unique Model	✗	✗	✗
-Zero Gas Fees	✓ Auto-selection	✗	Limited	N/A
-Roadmap
-
-2026: The Foundation
-
-Q2: DNS/VPN Cloud Mining expansion
-Q2: Paid Memberships & Replies
-Q2: User-Controlled Moderation
-Q3: Custom-Branded Apps (iOS/Android)
-Q3: Analytics Dashboard
-Q3: Blogging Platform
-Q4: DPoS Governance
-Open-Source Platform release
-2027-2028: The Expansion
-
-DApps Ecosystem
-Federated Structure
-Self-Hosting capabilities
-Web2/Web3 Interoperability
-2030: The Legacy
-
-LTSANP captures 10-15% of ad market
-Universal Basic Income model proven
-Risk Posture & Compliance
-
-Compliance Sequencing (Staged):
-
-Non-crypto USD credit system (Current)
-USDC settlement under standard KYC/AML
-RC token launch on Solana with utility-first design
-Future bridging and advanced token mechanics
-Safety Investments:
-
-Trust & Safety budgeted as essential OpEx ($500K/year at 100K MAU)
-IARainbowGuardian AI moderation
-Fraud detection embedded at protocol level
-Capped earnings and daily ad impression limits
-Updated Site Structure
-
-New Pages/Sections Added:
-
-Shift Coin Protocol Page (/shift-coin)
-
-Full explanation of the mining protocol
-Reality Coin & Miracle Coin details
-Interactive mining tier calculator
-Visual diagram of the 5-step mining process
-Investor Hub Page (/investors)
-
-Executive summary with key metrics
-Financial projections with interactive charts
-Investment pathways comparison
-Equity tier breakdown
-Downloadable investor deck (PDF)
-Contact form for investor inquiries
-Milestone roadmap visualization
-LTSANP Economics Section
-
-The $1.5 trillion opportunity
-How redistribution works
-Calculator: "Your potential earnings"
-John Strongman Tribute Section (Updated)
-
-His 46-year World Bank legacy
-How he saved African women and children
-The inspiration behind Love Transcends
-His current role as Co-founder
-Emotional narrative about his impact during financial hardship
-Design Elements for Investor Section
-
-Professional data visualizations (charts, graphs)
-Dark cosmic theme with gold/premium accents for investor credibility
-Clean typography for financial tables
-Interactive calculators for ROI projections
-Downloadable materials section
-Clear CTA buttons for investor contact
-Complete Page List
-
-Home/Landing Page (/) - Cosmic hero with all sections
-Full Story Page (/story) - Complete autobiography
-Shift Coin Protocol (/shift-coin) - Technical economics
-Investor Hub (/investors) - Extensive financial blueprint
-LTSANP (/ltsanp) - Redistribution economics
-LTSocial (/ltsocial) - Platform details
-LTMiracleMining (/miraclemining) - Mining network
-LTSocialUniverse (/socialuniverse) - Ecosystem overview
-Media Gallery (/gallery) - Paid content
-Journal Archive (/journal) - Day One entries
-
-# Love Transcends Reality - UPDATED Media Integration Plan
-
-## Media Assets to Embed on Website
-
-### 1. Hero Section & Header
-**Primary Logo**: `IMG_4256.jpeg` - Miracle Network logo with rainbow "LT"
-- Used as main site logo in navigation
-- Floating animation in hero section
-
-**Cosmic Background**: `77FEF6E1-C1D4-4EDF-973D-7802BAFD5B82.png` - LT Sociall with stars
-- Hero section background overlay
-- Sets the cosmic celestial theme
-
-### 2. About/Story Section
-**Personal Portrait**: `IMG_2313.jpeg` - Queen Elizabeth memorial photo
-- Featured as main profile image
-- Shows connection to royalty/heritage
-- Caption: "Rainbow Strongman at Queen Elizabeth II Memorial"
-
-**Heritage Proof**: `IMG_2871.jpeg` - 23andMe DNA results
-- Display in "Royal Lineage" subsection
-- Highlights: King Richard III descendant, Pharaoh Ramesses III lineage
-- Validates Strongman bloodline claims
-
-### 3. John Strongman Tribute Section
-**White House Letter**: `8F556E6B-DB62-4DE9-B94A-F012DDDED289-COLLAGE.jpeg`
-- Prominently displayed with zoom-on-click feature
-- Key credibility piece showing government recognition
-- Include Miracle Network logo from same collage
-
-### 4. Media Gallery (Paid Content Preview)
-**Personal Collage**: `A201F9E6-0549-40A4-97FD-600E9054CD2A_Original.jpeg`
-- Featured in gallery with partial blur (pay to unlock full)
-- Tags: #PADHIV, Positive Affirmation Day
-- Message: "Others Before Ourselves, Illuminate The Darkness, Vigilante of Peace and Love"
-
-### 5. Brand Assets Section
-**LTR World Flag**: `2021-11-30_Copy.jpeg`
-- Your original artwork
-- Featured in "Origins" section
-- Caption: "The Original World Flag - Love Transcends Reality"
-
-**Miracle Network Logo Clean**: `IMG_0001.jpeg`
-- Footer branding
-- Sub-site navigation cards
-- American flag integration
-
-### 6. LTSocialUniverse Page
-**Cosmic Earth Logo**: `13D488C0-8D28-4DC6-B1CC-A9E0E205780E.png`
-- Hero image for /socialuniverse page
-- Shows the three pillars: Social, Mining, Universe
+## Overview
+This plan addresses multiple updates to align the site content with miraclemining.network, update profile photos for both John and Rainbow Strongman, and add autoplay video backgrounds.
 
 ---
 
-## Updated Site Sections with Media
+## 1. Update Profile Photos
 
-### Hero Section
-```
-Background: Cosmic starfield with twinkling animation
-Floating: LT rainbow logo (IMG_4256) with gentle rotation
-Overlay: Cosmic LT Social globe (77FEF6E1)
-```
+### John Strongman Photo
+- **New image**: `IMG_4760.png` - World Bank Mining Expert illustration
+- **Location**: Copy to `src/assets/about/john-strongman-portrait.png`
+- **Usage**: Replace current photo in `JohnStrongmanTribute.tsx` and `AboutSection.tsx`
 
-### About Rainbow Strongman
-```
-Left: Profile photo at Queen's memorial (IMG_2313)
-Right: Story summary with name meanings
-Below: DNA heritage panel (IMG_2871) showing royal lineage
-```
-
-### John Strongman Tribute
-```
-Header: White House letter collage (8F556E6B)
-Content: His 46-year World Bank legacy
-Emotion: "The inspiration behind Love Transcends - now facing financial hardship after giving everything"
-```
-
-### Media Gallery Grid
-```
-Item 1: World Flag artwork (2021-11-30) - FREE
-Item 2: Personal journey collage (A201F9E6) - PREMIUM
-Item 3: [Placeholder for your content] - PREMIUM
-Item 4: [Placeholder for your content] - PREMIUM
-```
-
-### Footer / Branding Bar
-```
-Logo: Miracle Network (IMG_0001) with American flag
-Links: All websites
-Copyright: Since 2013
-```
+### Rainbow Strongman Photo  
+- **New image**: `IMG_4317-2.jpeg` - Personal photo
+- **Location**: Copy to `src/assets/about/rainbow-strongman-portrait.jpeg`
+- **Usage**: Use in `AboutSection.tsx` as the founder portrait
 
 ---
 
-## Technical Implementation
+## 2. Video Background at Site Launch
 
-### File Structure
-```
-src/assets/
-  logos/
-    miracle-network-logo.jpeg     (IMG_4256)
-    miracle-network-flag.jpeg     (IMG_0001)
-  hero/
-    cosmic-lt-social.png          (77FEF6E1)
-    social-universe-globe.png     (13D488C0)
-  gallery/
-    world-flag-artwork.jpeg       (2021-11-30)
-    personal-collage.jpeg         (A201F9E6)
-  about/
-    queen-memorial-photo.jpeg     (IMG_2313)
-    dna-heritage.jpeg             (IMG_2871)
-    whitehouse-letter-collage.jpeg (8F556E6B)
-```
+### Assets to Add
+Copy 4 uploaded videos to `public/videos/`:
+- `8fa7838534ef4fa987e0e5f5e81585b6.mp4` → `hero-video-1.mp4`
+- `b0b1c8c4-a6be-47ef-a4e7-8da3deaf6f25-custom_video.mp4` → `hero-video-2.mp4`
+- `83134f98-e3ef-4a5c-8c24-b7f8190b21b3-custom_video.mp4` → `hero-video-3.mp4`
+- `b30bc9af-0e4f-482b-a69f-a1d1e948cf47-custom_video.mp4` → `hero-video-4.mp4`
 
-### Image Components
-- LazyLoad for performance
-- Lightbox for zoom on gallery images
-- Parallax effect on hero images
-- Hover glow effects matching cosmic theme
+### Implementation in HeroSection.tsx
+- Add `<video>` element with autoplay, muted, loop, playsInline
+- Position as absolute background layer behind stars
+- Add dark overlay gradient for text readability
+- Video will autoplay on site load
 
 ---
 
-## Complete Page List (Updated)
+## 3. Fix LTSUMN Page Content
 
-1. **Home/Landing** (`/`) - All sections with uploaded media
-2. **Full Story** (`/story`) - Autobiography with timeline photos
-3. **Shift Coin Protocol** (`/shift-coin`) - Technical economics
-4. **Investor Hub** (`/investors`) - Financial blueprint
-5. **LTSANP** (`/ltsanp`) - Redistribution economics
-6. **LTSocial** (`/ltsocial`) - Platform with cosmic branding
-7. **LTMiracleMining** (`/miraclemining`) - Mining network
-8. **LTSocialUniverse** (`/socialuniverse`) - Globe cosmic image featured
-9. **Media Gallery** (`/gallery`) - Paid content with your collages
-10. **Journal Archive** (`/journal`) - Day One entries
+### Update to Match MiracleMining.network
+
+The current LTSUMN page needs substantial updates to match the actual content from miraclemining.network:
+
+**Header Update:**
+- Keep the long header: "Love Transcends Reality through Mining Miracles via Social Engagements, User/IA Controlled Censorship/Filters, and Creator IP through Data Mining"
+
+**14 Live Features Section (from miraclemining.network):**
+
+Core Social (4 features):
+1. Home Feed - 4-tier visibility system
+2. Profile - Avatar upload, posts/media/likes tabs
+3. Discover & Search - Category filters, Rising Stars
+4. Connections - Tier-based filtering
+
+Content & Monetization (3 features):
+1. Reality Hub - AI Media Gallery, YouTube, Twitch, Spotify, RSS
+2. LTRStream - Live streaming with category filters
+3. PostMining - Upload pay-to-view content
+
+Marketplace & Services (2 features):
+1. LTMarket - Products, auctions, services
+2. LTCare - Life coaching and therapy directory
+
+Safety & Infrastructure (5 features):
+1. Calendar & Events - Event creation, ticket purchasing
+2. LTMessaging - Real-time chat, video calls
+3. LTMiningNetwork - Mining dashboard, stats
+4. IARainbowGuardian - AI safety, personal censorship import
+5. Settings - Theme toggle, account preferences
+
+**Subscription Tiers (Updated Pricing from site):**
+- SelfCelebrity: $50/mo
+- 4Family: $100/mo
+- Miner: $250/mo
+- Pearl: $350/mo
+- Jasper: $500/mo
+
+**Mining Tiers (3 Leaves - Correct values):**
+| Tier | Total RC | Creator | Viewers | Platform |
+|------|----------|---------|---------|----------|
+| Bronze | $1 RC | 80% ($0.80) | - | 20% ($0.20) |
+| Silver | $2 RC | 40% ($0.80) | 35% ($0.70) | 25% ($0.50) |
+| Gold | $5 RC | 65% ($3.25) | 25% ($1.25) | 10% ($0.50) |
+
+**Financial Vision Section:**
+- $3B Valuation Target (Miracle Network App)
+- $1.5T Annual Redistribution Goal (LT:S&ANP)
+- 75% Revenue to Citizens
+- $1,500/month Projected User Earnings
+
+**Roadmap (v1/v2/v3):**
+- v1 Beta: 14 features complete
+- v2 Growth: API integrations, auth, RC launch, mobile apps
+- v3 Ecosystem: LTHousing, LTThrifty, global expansion
 
 ---
 
-## Implementation Steps
+## 4. Add Historic Legacy Strongman Section to Side Panels
 
-1. Copy all uploaded images to src/assets with organized folders
-2. Create reusable ImageGallery component with lightbox
-3. Build Hero with cosmic background and floating logos
-4. Create AboutSection with profile photo and DNA heritage
-5. Build JohnStrongmanTribute with White House letter feature
-6. Create MediaGallery with payment tier overlays
-7. Build all sub-pages with appropriate branding
-8. Add cosmic animations throughout
+### About Rainbow Section (from miraclemining.network content)
+- "From adversity to advocacy — a story of resilience and transformative love"
+- Survivor of trafficking and institutional abuse, now leading advocate
+- Founded Love Transcends in 2013
+- HIV/AIDS awareness, mental health reform advocate, and Smart Revover Lifestyle Since 2013
+-attended San Bernardino College craft Hills College for psychology arts Theatre in business.
+- Philosophy: "Love Transcends Adversity"
+
+### Core Values Display
+- Compassion, Equity, Community, Justice, Love, honesty, transparency, empathy, remorse, inclusivity, uniqueness, honor, and Justice.
+
+### Vision Statistics
+- 75% Ad Revenue to Citizens
+- $1.5T Annual Redistribution Goal (by year 15)
+
+---
+
+## 5. Additional Gallery Images
+
+Add the cosmic artwork images to the gallery:
+- `88B5AC9F-8F75-448F-B7E4-A5C97A83A6FA.png` - Rainbow Guardian Rangers
+- `8FEA27B8-2F46-4880-8E02-173A728B59C2.png` - Love Transcends multilingual cosmic art
+
+---
+
+## Technical Implementation Files
+
+### Files to Create/Copy:
+```text
+public/videos/hero-video-1.mp4
+public/videos/hero-video-2.mp4  
+public/videos/hero-video-3.mp4
+public/videos/hero-video-4.mp4
+src/assets/about/john-strongman-portrait.png
+src/assets/about/rainbow-strongman-portrait.jpeg
+src/assets/gallery/rainbow-guardian-rangers.png
+src/assets/gallery/love-transcends-multilingual.png
+```
+
+### Files to Modify:
+
+1. **src/components/landing/HeroSection.tsx**
+   - Add video background element
+   - Video autoplay, muted, loop
+   - Dark overlay for readability
+
+2. **src/components/landing/AboutSection.tsx**
+   - Update Rainbow Strongman photo to new image
+   - Add detailed biography from miraclemining.network
+   - Add Core Values display
+   - Keep "Legacy of Historic Strongmans" title
+
+3. **src/components/landing/JohnStrongmanTribute.tsx**
+   - Replace photo with new World Bank illustration
+
+4. **src/pages/LTSUMN.tsx** (Major Rewrite)
+   - Update all 14 features with correct details
+   - Fix subscription tier pricing
+   - Add correct mining tier percentages (Bronze/Silver/Gold)
+   - Add Financial Vision section ($3B target, $1.5T redistribution)
+   - Add v1/v2/v3 Roadmap
+   - Add Demo button linking to miraclemining.network/app
+   - Add Historic Legacy Strongman sidebar panel
+
+5. **src/pages/Gallery.tsx**
+   - Add new cosmic artwork images
+
+---
+
+## Summary of Changes
+
+| Component | Change |
+|-----------|--------|
+| Hero Video | Add autoplay background video |
+| John Photo | New World Bank Mining Expert illustration |
+| Rainbow Photo | New personal portrait |
+| LTSUMN | Complete content update matching miraclemining.network |
+| About Section | Enhanced bio with Core Values |
+| Gallery | 2 new cosmic artworks added |
 
