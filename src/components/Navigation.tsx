@@ -11,7 +11,7 @@ const navLinks = [
   { name: 'LTSUMN', path: '/ltsumn' },
   { name: 'LTSANP', path: '/ltsanp' },
   { name: 'Gallery', path: '/gallery' },
-  { name: 'Social Universe', path: '/social-universe' },
+  { name: 'Social Universe', path: '/socialuniverse' },
 ];
 
 export const Navigation = () => {
