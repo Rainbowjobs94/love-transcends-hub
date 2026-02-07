@@ -1,6 +1,8 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
+import { LeftPanel } from '@/components/LeftPanel';
+import { RightPanel } from '@/components/RightPanel';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -11,6 +13,8 @@ const ShiftCoin = () => {
     <div className="min-h-screen cosmic-bg">
       <Navigation />
       <StarField />
+      <LeftPanel />
+      <RightPanel />
       
       <main className="pt-24 relative z-10">
         {/* Hero */}

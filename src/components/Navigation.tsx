@@ -12,6 +12,8 @@ const navLinks = [
   { name: 'LTSANP', path: '/ltsanp' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'Social Universe', path: '/socialuniverse' },
+  { name: 'LT Social', path: '/ltsocial' },
+  { name: 'Miracle Mining', path: '/miraclemining' },
 ];
 
 export const Navigation = () => {
@@ -20,9 +22,9 @@ export const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/30">
       <div className="container mx-auto px-4">
-        {/* Main Navigation Row */}
+        {/* Main Navigation Row - Logo + Media Controls Only */}
         <div className="flex items-center justify-between h-16">
-          {/* Left: Media Controls */}
+          {/* Left: Media Controls (Play + Back) */}
           <div className="flex items-center gap-2">
             <MediaControls />
           </div>
@@ -39,56 +41,31 @@ export const Navigation = () => {
             </span>
           </Link>
 
-          {/* Right: Mobile Menu Button */}
+          {/* Right: Mobile Menu Button for Navigation Tabs */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="p-2 text-foreground hover:bg-primary/10 rounded-lg transition-colors"
+            aria-label="Open navigation menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-4">
-            {navLinks.slice(0, 3).map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cosmic-purple to-cosmic-teal group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
-          </div>
         </div>
 
-        {/* Secondary Navigation Row (Desktop) */}
-        <div className="hidden md:flex items-center justify-center gap-6 pb-2">
-          {navLinks.slice(3).map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cosmic-purple to-cosmic-teal group-hover:w-full transition-all duration-300" />
-            </Link>
-          ))}
-        </div>
-
-        {/* Mobile Navigation */}
+        {/* Tab Drawer - Opens when hamburger is clicked */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/30 animate-slide-up">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className="block py-3 text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div className="py-4 border-t border-border/30 animate-slide-up">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className="block py-3 px-4 text-center text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-lg transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
         )}
       </div>
