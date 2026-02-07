@@ -1,6 +1,8 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
+import { LeftPanel } from '@/components/LeftPanel';
+import { RightPanel } from '@/components/RightPanel';
 import { Button } from '@/components/ui/button';
 import { Coins, Zap, Shield, FileCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,6 +12,8 @@ const MiracleMining = () => {
     <div className="min-h-screen cosmic-bg">
       <Navigation />
       <StarField />
+      <LeftPanel />
+      <RightPanel />
       
       <main className="pt-24 relative z-10">
         {/* Hero */}

@@ -9,11 +9,15 @@ import { ShiftCoinPreview } from '@/components/landing/ShiftCoinPreview';
 import { InvestorPreview } from '@/components/landing/InvestorPreview';
 import { MediaGalleryPreview } from '@/components/landing/MediaGalleryPreview';
 import { DonationButton } from '@/components/DonationButton';
+import { LeftPanel } from '@/components/LeftPanel';
+import { RightPanel } from '@/components/RightPanel';
 
 const Index = () => {
   return (
     <div className="min-h-screen cosmic-bg">
       <Navigation />
+      <LeftPanel />
+      <RightPanel />
       
       <main>
         <HeroSection />
