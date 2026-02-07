@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { 
   Crown, 
   History, 
@@ -9,7 +10,10 @@ import {
   Dna,
   BookOpen,
   Users,
-  PanelLeft
+  PanelLeft,
+  Home,
+  Coffee,
+  Building
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -49,8 +53,8 @@ export const LeftPanel = () => {
         
         <ScrollArea className="h-[calc(100vh-80px)]">
           <div className="p-4 space-y-4">
-            {/* Historic Strongman Legacy */}
-            <Card className="glass-card border-border/30">
+            {/* Historic Strongman Legacy - Clickable to /story */}
+            <Card className="glass-card border-border/30 cursor-pointer hover:border-primary/50 transition-colors">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg rainbow-text">
                   <Crown className="w-5 h-5" />
@@ -58,21 +62,27 @@ export const LeftPanel = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <img 
-                  src={rainbowPortrait} 
-                  alt="Rainbow Strongman" 
-                  className="w-24 h-24 rounded-full mx-auto cosmic-glow object-cover"
-                />
+                {/* Portrait - Clickable to Rainbow's bio */}
+                <Link to="/story" className="block">
+                  <img 
+                    src={rainbowPortrait} 
+                    alt="Rainbow Strongman" 
+                    className="w-24 h-24 rounded-full mx-auto cosmic-glow object-cover hover:scale-110 transition-transform cursor-pointer"
+                  />
+                  <p className="text-center text-sm text-foreground mt-2 hover:text-primary transition-colors">
+                    Tap to view full bio
+                  </p>
+                </Link>
                 
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="name-origin" className="border-border/30">
                     <AccordionTrigger className="text-sm py-2">
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 text-foreground">
                         <Star className="w-4 h-4 text-cosmic-gold" />
                         Name Origin (JJarvex)
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="text-xs text-muted-foreground space-y-1">
+                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
                       <p><strong>John</strong> — Faithful first apostle</p>
                       <p><strong>Jasper</strong> — Foundation stone of heaven</p>
                       <p><strong>River</strong> — Gender-nonconforming flow, River of Life</p>
@@ -82,48 +92,48 @@ export const LeftPanel = () => {
                   
                   <AccordionItem value="astrology" className="border-border/30">
                     <AccordionTrigger className="text-sm py-2">
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 text-foreground">
                         <Sparkles className="w-4 h-4 text-cosmic-purple" />
                         Astrology Analysis
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="text-xs text-muted-foreground">
+                    <AccordionContent className="text-xs text-foreground/80">
                       Detailed cosmic alignment and birth chart analysis revealing destiny patterns.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="timeline" className="border-border/30">
                     <AccordionTrigger className="text-sm py-2">
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 text-foreground">
                         <History className="w-4 h-4 text-cosmic-teal" />
                         Tragic Events Timeline
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="text-xs text-muted-foreground">
+                    <AccordionContent className="text-xs text-foreground/80">
                       Survivor journey from 2013 through institutional abuse, trafficking, and transformation into advocacy.
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="values" className="border-border/30">
                     <AccordionTrigger className="text-sm py-2">
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 text-foreground">
                         <Heart className="w-4 h-4 text-rainbow-red" />
                         Core Values
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="text-xs text-muted-foreground">
+                    <AccordionContent className="text-xs text-foreground/80">
                       Compassion, Equity, Community, Justice, Love, Honesty, Transparency, Empathy, Remorse, Inclusivity, Uniqueness, Honor
                     </AccordionContent>
                   </AccordionItem>
                   
                   <AccordionItem value="ancestry" className="border-border/30">
                     <AccordionTrigger className="text-sm py-2">
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 text-foreground">
                         <Dna className="w-4 h-4 text-rainbow-green" />
                         Ancestry Documentation
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="text-xs text-muted-foreground space-y-1">
+                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
                       <p>• 23andMe DNA verification</p>
                       <p>• King Richard III lineage</p>
                       <p>• Pharaoh Ramesses III (Prince of Egypt)</p>
@@ -136,53 +146,75 @@ export const LeftPanel = () => {
               </CardContent>
             </Card>
 
-            {/* LTHistory */}
-            <Card className="glass-card border-cosmic-gold/20">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg text-cosmic-gold">
-                  <BookOpen className="w-5 h-5" />
-                  LTHistory
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground space-y-2">
-                <p className="font-semibold text-foreground">John Strongman</p>
-                <p>Co-Founder, Inspiration & Living Miracle</p>
-                <p className="text-xs">46-year World Bank legacy • White House recognition • Saved African women & children</p>
-              </CardContent>
-            </Card>
+            {/* LTHistory - Clickable to John Strongman bio */}
+            <Link to="/story#john-strongman" className="block">
+              <Card className="glass-card border-cosmic-gold/20 cursor-pointer hover:border-cosmic-gold/50 transition-colors">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg text-cosmic-gold">
+                    <BookOpen className="w-5 h-5" />
+                    LTHistory
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm space-y-2">
+                  <p className="font-semibold text-foreground">John Strongman</p>
+                  <p className="text-foreground/80">Co-Founder, Inspiration & Living Miracle</p>
+                  <p className="text-xs text-foreground/70">46-year World Bank legacy • White House recognition • Saved African women & children</p>
+                  <p className="text-xs text-primary mt-2">Tap to view full story →</p>
+                </CardContent>
+              </Card>
+            </Link>
 
-            {/* LTDimensions */}
-            <Card className="glass-card border-cosmic-purple/20">
+            {/* LTDimensions - Placeholder (not clickable) */}
+            <Card className="glass-card border-cosmic-purple/20 opacity-70">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg text-cosmic-purple">
                   <Sparkles className="w-5 h-5" />
                   LTDimensions
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground space-y-2">
-                <p>AI-generated beta tools</p>
-                <p className="text-xs">DigiGuardians: Virtual companions that will integrate with IAGuardian and appear on location maps.</p>
+              <CardContent className="text-sm space-y-2">
+                <p className="text-foreground/80">AI-generated beta tools</p>
+                <p className="text-xs text-foreground/70">DigiGuardians: Virtual companions that will integrate with iAGuardian and appear on location maps.</p>
+                <p className="text-xs text-muted-foreground italic">Coming Soon</p>
               </CardContent>
             </Card>
 
-            {/* LTFoster&Recovery */}
-            <Card className="glass-card border-rainbow-green/20">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg text-rainbow-green">
-                  <Users className="w-5 h-5" />
-                  LTFoster&Recovery
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground space-y-2">
-                <ul className="text-xs space-y-1">
-                  <li>• Therapy & treatment directory</li>
-                  <li>• IAGuardian life coaching</li>
-                  <li>• Ancestry data protection for foster kids</li>
-                  <li>• Bio family finder & adoption support</li>
-                  <li>• Network support groups</li>
-                </ul>
-              </CardContent>
-            </Card>
+            {/* LTSANP - Clickable to /ltsanp (includes Foster, Care, Housing) */}
+            <Link to="/ltsanp" className="block">
+              <Card className="glass-card border-rainbow-green/20 cursor-pointer hover:border-rainbow-green/50 transition-colors">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg text-rainbow-green">
+                    <Users className="w-5 h-5" />
+                    LTSANP
+                  </CardTitle>
+                  <p className="text-xs text-foreground/80">Love Transcends Sponsorship & Advertisement Nonprofit</p>
+                </CardHeader>
+                <CardContent className="text-sm space-y-3">
+                  <p className="text-foreground/80">Redistribution of boosted shares & tips into community initiatives:</p>
+                  
+                  <div className="space-y-2 text-xs">
+                    <div className="flex items-center gap-2 text-foreground/80">
+                      <Users className="w-3 h-3 text-rainbow-green" />
+                      <span><strong>LTFoster&Recovery</strong> — Therapy, treatment, adoption support</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-foreground/80">
+                      <Heart className="w-3 h-3 text-rainbow-red" />
+                      <span><strong>LTCare</strong> — Recovery services, life coaching</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-foreground/80">
+                      <Coffee className="w-3 h-3 text-rainbow-orange" />
+                      <span><strong>LTCakeCafe</strong> — Not-for-profit cafe & art space</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-foreground/80">
+                      <Building className="w-3 h-3 text-cosmic-teal" />
+                      <span><strong>LTHousing</strong> — Tiny home projects (ETA 2031)</span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-xs text-primary mt-2">Tap to learn more →</p>
+                </CardContent>
+              </Card>
+            </Link>
 
             {/* Contact & Donate Combined */}
             <Card className="glass-card border-cosmic-teal/20">
@@ -195,7 +227,7 @@ export const LeftPanel = () => {
               <CardContent className="space-y-3">
                 <a 
                   href="mailto:rainbowstrongman@ltsocial.net"
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
                 >
                   <Mail className="w-4 h-4" />
                   rainbowstrongman@ltsocial.net
