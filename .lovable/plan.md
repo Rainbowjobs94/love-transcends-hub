@@ -1,82 +1,61 @@
 
 
-# Fix Slide-Out Panels & Navigation
+# Right Panel Reorganization & LTSU Feature Corrections
 
-## Problem Summary
-The current implementation has:
-1. **Three trigger buttons** instead of two (there's an extra hamburger menu at the top repeating tabs)
-2. **Font colors** are hard to read in the panels
-3. **Panel items don't navigate** to their respective pages - they just show text
-4. **LTSANP and LTFoster** need to be merged and moved to the LEFT panel
+## Summary of Changes Required
+
+The right panel has incorrect labeling and ordering. Additionally, the Gallery page is missing the full media library with paywalls for Videos, Pictures, and Music drops.
 
 ---
 
-## Changes Required
+## 1. Right Panel Corrections (`RightPanel.tsx`)
 
-### 1. Navigation.tsx - Simplify Header
+### Current Order (WRONG):
+1. LTR Network (V1)
+2. LTMN (V2)
+3. LTSU (V3)
+4. LTCakeCafe
+5. iAGuardian Security
+6. Partnership & Investing
+7. Contact & Donate
 
-**Current Issue:** There's a hamburger menu button showing all navigation tabs, cluttering the page.
-
-**Fix:**
-- Remove the hamburger menu button and tab drawer from the navigation header
-- Header should ONLY show: `[Play] [Back] | [LOGO] | [Skip] [Stop]`
-- No tabs in the header at all - navigation happens through the slide-out panels
-
-```
-+------------------------------------------------------------+
-|  [Play] [Back]  |   [LOGO Home Link]   |  [Skip] [Stop]    |
-+------------------------------------------------------------+
-```
-
----
-
-### 2. LeftPanel.tsx - Fix Navigation + Merge LTSANP
-
-**Current Issue:** Items show info but don't navigate anywhere. Font colors are hard to read.
-
-**Fixes:**
-- Make **Rainbow Strongman portrait** clickable - navigates to `/story` (your bio section)
-- Make **"Historic Strongman Legacy" card** clickable - navigates to `/story` (John Strongman bio section)  
-- Make **LTHistory card** clickable - navigates to `/story#john-strongman`
-- Make **LTDimensions card** non-clickable for now (placeholder text only)
-- Make **LTFoster&Recovery card** clickable - navigates to `/ltsanp` (merged with LTSANP)
-- **Add LTSANP section** to LEFT panel (moved from right)
-- Make **Contact & Donate** links work properly
-- Fix text colors for better readability (use `text-foreground` instead of `text-muted-foreground` for key text)
-
-**Left Panel Order:**
-1. Historic Strongman Legacy (clickable to /story) - portrait clickable to your bio
-2. LTHistory (clickable to /story#john-strongman)
-3. LTDimensions (placeholder - not clickable)
-4. LTSANP (NEW - contains LTFoster, LTCare, LTCakeCafe, LTHousing) - clickable to /ltsanp
-5. Contact & Donate
+### New Order (CORRECT):
+1. **LTSU** (V1 - Social Universe) - FIRST, labeled as V1
+2. **LTMN** (unchanged)
+3. **LTR Network** (renamed/repositioned)
+4. iAGuardian Security
+5. Partnership & Investing
+6. Contact & Donate
+7. ~~LTCakeCafe~~ (REMOVED - already in left panel's LTSANP)
 
 ---
 
-### 3. RightPanel.tsx - Remove LTSANP, Keep Platform Hub
+## 2. LTSU Card - Complete Rewrite (V1)
 
-**Fixes:**
-- Remove LTSANP card (moved to left panel)
-- Remove LTFoster&Recovery (merged into LTSANP on left)
-- Keep these sections:
-  1. **LTR Network** (V1) - Master Mining Miracle Hub
-  2. **LTMN** (V2) - Miracle Network (blockchain, crypto, mining)
-  3. **LTSU** (V3) - Social Universe (full demo - ETA 2028)
-  4. **LTCakeCafe** - Not-for-profit cafe (stays here as it's a service highlight)
-  5. **iAGuardian Security** - Safety & fraud protection
-  6. **Partnership & Investing** - Business opportunities
-  7. **Contact & Donate** (mirror)
+**LTSU is now V1 with these specific features:**
+
+| Feature | Description |
+|---------|-------------|
+| **4-Tier Marketplace** | Public, Homies, Friendlies, Inner Circle |
+| **Paid Posting** | OnlyFans-style pay-to-view posts |
+| **Messaging** | Direct messaging system |
+| **Live Stream Tipping** | Tip creators during live streams |
+| **Calendar Events** | Event scheduling and discovery |
+| **LTRealityStream** | Gallery of Videos, Pictures, Music, Digital Items with paywalls |
+| **RC Token Wallet** | Reality Coin wallet integration |
+
+**Subscription Models:**
+
+| Tier | Price | Features |
+|------|-------|----------|
+| **Viewer** | $10/mo | Watch Homies' streams, earn share of platform revenue divided by active viewers. Requirement: 8hrs/week platform use + Sunday 10am check-in |
+| **Self-Celebrity** | $20/mo | Pay-to-post tool access, 10% withdrawal fee, 5% platform fee for viewer bonuses |
 
 ---
 
-### 4. Fix Font Colors Throughout Panels
+## 3. Add LTRealityStream Library Reference
 
-**Issue:** Text is hard to read.
-
-**Fix:** Update color classes:
-- Headings: `text-foreground` (bright, readable)
-- Body text: `text-foreground/80` (slightly dimmed but still readable)
-- Secondary info: `text-muted-foreground` (only for less important details)
+The Gallery page exists but needs to be referenced as the **LTRealityStream** - the Video, Picture, and Music drop library with paywalls. The LTSU card should link to `/gallery` for the media library.
 
 ---
 
@@ -84,62 +63,109 @@ The current implementation has:
 
 | File | Changes |
 |------|---------|
-| `src/components/Navigation.tsx` | Remove hamburger menu button and tab drawer. Keep only logo + media controls. |
-| `src/components/LeftPanel.tsx` | Add navigation to clickable items. Add LTSANP section. Fix font colors. Merge LTFoster into LTSANP. |
-| `src/components/RightPanel.tsx` | Remove LTSANP card. Remove LTFoster card. Fix font colors. |
+| `src/components/RightPanel.tsx` | Reorder cards, update LTSU to V1 with correct features, remove LTCakeCafe, add LTRealityStream reference |
+| `src/components/socialuniverse/VersionBadge.tsx` | No changes needed (already supports v1) |
 
 ---
 
-## Visual Representation
+## Technical Changes to `RightPanel.tsx`
+
+### 1. Remove LTCakeCafe Card
+Delete lines 157-174 and remove `Coffee` icon import.
+
+### 2. Move LTSU to Top & Update to V1
+LTSU card moves from position 3 to position 1, with:
+- Badge: `v1` (green "V1 Basic")
+- New subtitle: "LTSocial Universe - Core Platform"
+- Features list updated:
+  - 4-Tier Marketplace (Public, Homies, Friendlies, Inner Circle)
+  - Paid Posting (OnlyFans-style)
+  - Messaging
+  - Live Stream Tipping
+  - Calendar Events
+  - LTRealityStream (Video/Picture/Music with paywalls)
+  - RC Token Wallet
+
+### 3. Add Subscription Accordion
+Add expandable section showing:
+- **Viewer ($10/mo):** Earn share of platform revenue when watching Homies' streams. Must be active 8hrs/week + Sunday 10am check-in.
+- **Self-Celebrity ($20/mo):** Pay-to-post access. 10% withdrawal fee. Platform takes 5% for viewer bonus pool.
+
+### 4. Reorder Cards
+Final order:
+1. LTSU (V1) - links to `/socialuniverse`
+2. LTMN - unchanged, links to `/miraclemining`
+3. LTR Network - links to `/ltsumn`
+4. iAGuardian Security
+5. Partnership & Investing
+6. Contact & Donate
+
+---
+
+## Updated LTSU Card Content
 
 ```
-HEADER:
-+------------------------------------------------------------+
-|  [▶ Play] [◀ Back]  |    [LOGO → Home]    |  [▶ Skip] [■]  |
-+------------------------------------------------------------+
+LTSU (V1)
+LTSocial Universe - Core Platform
 
-LEFT PANEL (tap icon to open):
-+----------------------------------+
-| Historic Strongman Legacy        |
-| [Portrait] ← TAP = /story (bio)  |
-+----------------------------------+
-| LTHistory ← TAP = /story#john    |
-+----------------------------------+
-| LTDimensions (Coming Soon)       |
-+----------------------------------+
-| LTSANP ← TAP = /ltsanp           |
-| (includes Foster, Care, Housing) |
-+----------------------------------+
-| Contact & Donate                 |
-+----------------------------------+
+Features:
+• 4-Tier Marketplace (Public, Homies, Friendlies, Inner Circle)
+• Paid Posting (pay-to-view like OnlyFans)
+• Messaging
+• Live Stream Tipping
+• Calendar Events
+• LTRealityStream Gallery (Videos, Pictures, Music, Digital Items)
+• RC Token Wallet
 
-RIGHT PANEL (tap icon to open):
-+----------------------------------+
-| LTR Network (V1)                 |
-+----------------------------------+
-| LTMN (V2)                        |
-+----------------------------------+
-| LTSU (V3)                        |
-+----------------------------------+
-| LTCakeCafe                       |
-+----------------------------------+
-| iAGuardian Security              |
-+----------------------------------+
-| Partnership & Investing          |
-+----------------------------------+
-| Contact & Donate                 |
-+----------------------------------+
+[Expandable: Subscription Tiers]
+  Viewer ($10/mo):
+  - Earn share of platform revenue watching Homies' streams
+  - Revenue divided by active viewer count
+  - Requirement: 8hrs/week activity + Sunday 10am check-in
+
+  Self-Celebrity ($20/mo):
+  - Pay-to-post tool access
+  - 10% withdrawal fee on earnings
+  - 5% goes to viewer bonus pool
+
+Tap to explore →
+```
+
+---
+
+## Visual Comparison
+
+### Before:
+```
+RIGHT PANEL:
+1. LTR Network (V1) ← Wrong position
+2. LTMN (V2)
+3. LTSU (V3) ← Wrong version & position
+4. LTCakeCafe ← Should be removed
+5. iAGuardian
+6. Partnership
+7. Contact
+```
+
+### After:
+```
+RIGHT PANEL:
+1. LTSU (V1) ← Correct! First position, V1 badge
+2. LTMN
+3. LTR Network ← Moved down
+4. iAGuardian
+5. Partnership
+6. Contact
 ```
 
 ---
 
 ## Summary
 
-This plan will:
-1. Remove the extra hamburger menu from the header (just logo + media controls)
-2. Make panel items navigate to their respective pages when tapped
-3. Move LTSANP to the left panel
-4. Merge LTFoster&Recovery into LTSANP
-5. Fix font colors so everything is readable
-6. Keep the two slide-out panel triggers (left and right)
+This update will:
+1. Move **LTSU to the top** of the right panel
+2. Change **LTSU to V1** with correct features (4-tier marketplace, paid posting, messaging, tipping, calendar, LTRealityStream, wallet)
+3. Add **subscription tier details** ($10 Viewer, $20 Self-Celebrity with specific requirements)
+4. **Remove LTCakeCafe** (already in left panel)
+5. Reorder remaining cards: LTSU → LTMN → LTR Network → iAGuardian → Partnership → Contact
 
