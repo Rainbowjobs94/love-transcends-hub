@@ -316,29 +316,6 @@ const SocialUniverse = () => {
             </div>
           </section>
 
-          {/* Compliance & Security Section */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-center mb-6 text-foreground">
-              Compliance & Security
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="glass-card rounded-xl p-6 text-center border border-green-500/30">
-                <Shield className="w-12 h-12 mx-auto mb-3 text-green-400" />
-                <h3 className="font-bold text-foreground mb-2">KYC Required</h3>
-                <p className="text-sm text-muted-foreground">Identity verification for all payout-eligible users</p>
-              </div>
-              <div className="glass-card rounded-xl p-6 text-center border border-blue-500/30">
-                <Lock className="w-12 h-12 mx-auto mb-3 text-blue-400" />
-                <h3 className="font-bold text-foreground mb-2">AML Compliant</h3>
-                <p className="text-sm text-muted-foreground">Anti-money laundering protocols in place</p>
-              </div>
-              <div className="glass-card rounded-xl p-6 text-center border border-purple-500/30">
-                <Server className="w-12 h-12 mx-auto mb-3 text-purple-400" />
-                <h3 className="font-bold text-foreground mb-2">Secure Infrastructure</h3>
-                <p className="text-sm text-muted-foreground">Enterprise-grade security for all transactions</p>
-              </div>
-            </div>
-          </section>
 
           {/* Support Our Mission Section */}
           <section className="mb-8">

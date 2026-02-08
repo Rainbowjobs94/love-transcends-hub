@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import { 
   Users, Shield, Brain, Coins, Calendar, Home, MessageCircle,
   DollarSign, Check, Star, Zap, Globe, Settings, Search, 
-  Heart, Video, ShoppingBag, Pickaxe, TrendingUp, Target
+  Heart, Video, ShoppingBag, Pickaxe, TrendingUp, Target,
+  Lock, Server, Building, HardDrive
 } from 'lucide-react';
 import socialUniverseGlobe from '@/assets/hero/social-universe-globe.png';
 import rainbowStrongmanPortrait from '@/assets/about/rainbow-strongman-portrait.jpeg';
@@ -182,6 +183,73 @@ const LTSUMN = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </section>
+
+              {/* Node Information */}
+              <section>
+                <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+                  Mining Nodes
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  {[
+                    { name: 'Personal Node', desc: 'Home mining setup', cost: '$50/mo', multiplier: '1x', icon: Home, color: 'border-cosmic-teal/50', iconColor: 'text-cosmic-teal' },
+                    { name: 'Community Node', desc: 'Shared pool mining', cost: '$150/mo', multiplier: '3x', icon: Users, color: 'border-cosmic-purple/50', iconColor: 'text-cosmic-purple' },
+                    { name: 'Enterprise Node', desc: 'High-volume operations', cost: '$500/mo', multiplier: '10x', icon: Building, color: 'border-cosmic-gold/50', iconColor: 'text-cosmic-gold' },
+                  ].map((node) => (
+                    <div key={node.name} className={`glass-card rounded-xl p-6 text-center border ${node.color}`}>
+                      <node.icon className={`w-12 h-12 mx-auto mb-3 ${node.iconColor}`} />
+                      <h3 className="font-bold text-lg text-foreground mb-1">{node.name}</h3>
+                      <p className="text-sm text-muted-foreground mb-3">{node.desc}</p>
+                      <div className="flex justify-center gap-4 text-sm">
+                        <span className="text-cosmic-gold font-bold">{node.cost}</span>
+                        <span className="text-muted-foreground">•</span>
+                        <span className="text-cosmic-teal font-bold">{node.multiplier} multiplier</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Node Benefits */}
+                <div className="glass-card rounded-xl p-6">
+                  <h3 className="font-bold text-xl text-foreground mb-4 text-center">Node Benefits</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {[
+                      { icon: HardDrive, text: 'Run your own validator node' },
+                      { icon: Coins, text: 'Earn passive income from network fees' },
+                      { icon: Shield, text: 'Contribute to network security' },
+                      { icon: TrendingUp, text: 'Stake RC tokens for enhanced rewards' },
+                    ].map((benefit, idx) => (
+                      <div key={idx} className="text-center p-3">
+                        <benefit.icon className="w-8 h-8 mx-auto mb-2 text-cosmic-purple" />
+                        <p className="text-xs text-muted-foreground">{benefit.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Compliance & Security */}
+              <section>
+                <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+                  Compliance & Security
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="glass-card rounded-xl p-6 text-center border border-green-500/30">
+                    <Shield className="w-12 h-12 mx-auto mb-3 text-green-400" />
+                    <h3 className="font-bold text-foreground mb-2">KYC Required</h3>
+                    <p className="text-sm text-muted-foreground">Identity verification for all payout-eligible users</p>
+                  </div>
+                  <div className="glass-card rounded-xl p-6 text-center border border-blue-500/30">
+                    <Lock className="w-12 h-12 mx-auto mb-3 text-blue-400" />
+                    <h3 className="font-bold text-foreground mb-2">AML Compliant</h3>
+                    <p className="text-sm text-muted-foreground">Anti-money laundering protocols in place</p>
+                  </div>
+                  <div className="glass-card rounded-xl p-6 text-center border border-purple-500/30">
+                    <Server className="w-12 h-12 mx-auto mb-3 text-purple-400" />
+                    <h3 className="font-bold text-foreground mb-2">Secure Infrastructure</h3>
+                    <p className="text-sm text-muted-foreground">Enterprise-grade security for all transactions</p>
+                  </div>
                 </div>
               </section>
 
