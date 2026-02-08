@@ -16,7 +16,9 @@ import {
   Calendar,
   Wallet,
   Image,
-  Music
+  Music,
+  Coffee,
+  Shirt
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -249,6 +251,62 @@ export const RightPanel = () => {
                 </CardContent>
               </Card>
             </Link>
+
+            {/* LTOpportunity */}
+            <Card className="glass-card border-cosmic-gold/20">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg text-cosmic-gold">
+                  <Briefcase className="w-5 h-5" />
+                  LTOpportunity
+                </CardTitle>
+                <p className="text-xs text-foreground/70">Business & Commerce Ventures</p>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="ltcakecafe" className="border-border/30">
+                    <AccordionTrigger className="text-sm py-2 text-foreground">
+                      <span className="flex items-center gap-2">
+                        <Coffee className="w-4 h-4 text-cosmic-gold" />
+                        LTCakeCafe
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
+                      <p>• Not-for-profit cafe & art space</p>
+                      <p>• Live music & performance venue</p>
+                      <p>• Community workshops & events</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="ltthrifty" className="border-border/30">
+                    <AccordionTrigger className="text-sm py-2 text-foreground">
+                      <span className="flex items-center gap-2">
+                        <Heart className="w-4 h-4 text-cosmic-purple" />
+                        LTThrifty
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
+                      <p>• Sustainable commerce & thrift</p>
+                      <p>• Eco-friendly shopping</p>
+                      <p>• Community donations hub</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="ltapparel" className="border-border/30">
+                    <AccordionTrigger className="text-sm py-2 text-foreground">
+                      <span className="flex items-center gap-2">
+                        <Shirt className="w-4 h-4 text-cosmic-teal" />
+                        LTApparel
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
+                      <p>• Wear your support merchandise</p>
+                      <p>• Mission-driven fashion</p>
+                      <p>• Proceeds support LT initiatives</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
 
             {/* Contact & Donate */}
             <Card className="glass-card border-cosmic-purple/20">
