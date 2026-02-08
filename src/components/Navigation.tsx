@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import miracleLogo from '@/assets/logos/miracle-network-logo.jpeg';
 import { MediaControls } from './MediaControls';
+import { Button } from '@/components/ui/button';
+import { Heart, LogIn } from 'lucide-react';
 
 export const Navigation = () => {
   return (
@@ -25,8 +27,19 @@ export const Navigation = () => {
             </span>
           </Link>
 
-          {/* Right: Empty space for balance (panels have their own triggers) */}
-          <div className="w-24" />
+          {/* Right: Donate and Login buttons */}
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-semibold">
+              <a href="https://gofundme.com/f/love-transcends-reality-llc" target="_blank" rel="noopener noreferrer">
+                <Heart className="w-4 h-4 mr-1" /> Donate
+              </a>
+            </Button>
+            <Button asChild size="sm" variant="outline">
+              <a href="https://ltsocial.net" target="_blank" rel="noopener noreferrer">
+                <LogIn className="w-4 h-4 mr-1" /> Login
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </nav>

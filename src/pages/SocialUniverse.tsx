@@ -7,7 +7,10 @@ import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { VersionBadge } from '@/components/socialuniverse/VersionBadge';
-import { Check, Users, MessageCircle, Video, Calendar, Wallet, Image, Music, Star, Phone, Mail, Instagram, Youtube } from 'lucide-react';
+import { 
+  Check, Users, MessageCircle, Video, Calendar, Wallet, Image, Music, Star, Phone, Mail, Instagram, Youtube,
+  Heart, HeartHandshake, Home, ShoppingBag, Shirt, MessageSquare, Gift, Pickaxe, Globe, Eye, Shield, Lock, Server, Diamond
+} from 'lucide-react';
 import socialUniverseGlobe from '@/assets/hero/social-universe-globe.png';
 
 // TikTok icon component (not available in lucide-react)
@@ -81,7 +84,7 @@ const SocialUniverse = () => {
             <h2 className="text-2xl font-bold text-center mb-6 text-foreground">
               Subscription Tiers
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Free Viewer */}
               <Card className="glass-card border-border/30">
                 <CardHeader className="text-center pb-2">
@@ -131,7 +134,7 @@ const SocialUniverse = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-cosmic-purple mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground">Earn platform revenue share</span>
+                      <span className="text-muted-foreground">Earn 5% platform revenue share</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-cosmic-purple mt-0.5 shrink-0" />
@@ -173,7 +176,47 @@ const SocialUniverse = () => {
                   </ul>
                   <div className="mt-4 p-3 bg-cosmic-gold/10 rounded-lg">
                     <p className="text-xs text-muted-foreground">
-                      <strong className="text-foreground">Fees:</strong> 10% withdrawal fee • 5% to viewer bonus pool
+                      <strong className="text-foreground">Fees:</strong> 7% on all payouts • 5% to viewer bonus pool
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Self-Celebrity Exclusive Tier */}
+              <Card className="glass-card border-2 border-transparent relative overflow-hidden" style={{ background: 'linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(135deg, hsl(var(--cosmic-gold)), hsl(var(--cosmic-purple)), hsl(var(--cosmic-teal))) border-box' }}>
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-cosmic-gold to-cosmic-purple text-white text-xs px-3 py-1 rounded-bl-lg flex items-center gap-1">
+                  <Diamond className="w-3 h-3" /> Invite Only
+                </div>
+                <CardHeader className="text-center pb-2">
+                  <CardTitle className="text-xl bg-gradient-to-r from-cosmic-gold via-cosmic-purple to-cosmic-teal bg-clip-text text-transparent">Self-Celebrity Exclusive</CardTitle>
+                  <p className="text-2xl font-bold text-foreground">Code Required</p>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-cosmic-gold mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">All Self-Celebrity features</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-cosmic-purple mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Premium creator benefits</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-cosmic-teal mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Priority support</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-cosmic-gold mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Exclusive badges</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-cosmic-purple mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">VIP networking access</span>
+                    </li>
+                  </ul>
+                  <div className="mt-4 p-3 bg-gradient-to-r from-cosmic-gold/10 via-cosmic-purple/10 to-cosmic-teal/10 rounded-lg border border-cosmic-gold/30">
+                    <p className="text-xs text-muted-foreground">
+                      <strong className="text-foreground">Access:</strong> Invitation code required from existing members
                     </p>
                   </div>
                 </CardContent>
@@ -197,6 +240,125 @@ const SocialUniverse = () => {
                     <p className="text-xs text-muted-foreground">{tier.desc}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Programs Section */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-center mb-6 text-foreground">
+              Our Programs
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {[
+                { icon: HeartHandshake, name: 'LTCare', desc: 'In-Home Recovery Support', color: 'text-green-400', bg: 'bg-green-500/20' },
+                { icon: Heart, name: 'LTRecovery', desc: 'Recovery & Mental Health', color: 'text-blue-400', bg: 'bg-blue-500/20' },
+                { icon: Home, name: 'LTShelter', desc: 'Housing & Stability', color: 'text-purple-400', bg: 'bg-purple-500/20' },
+                { icon: ShoppingBag, name: 'LTThrifty', desc: 'Sustainable Commerce', color: 'text-orange-400', bg: 'bg-orange-500/20' },
+                { icon: Shirt, name: 'LTApparel', desc: 'Wear Your Support', color: 'text-pink-400', bg: 'bg-pink-500/20' },
+                { icon: MessageSquare, name: 'LTCommunication', desc: 'Stay Connected', color: 'text-teal-400', bg: 'bg-teal-500/20' },
+              ].map((program) => (
+                <div key={program.name} className={`glass-card rounded-xl p-4 text-center ${program.bg} border border-white/10`}>
+                  <program.icon className={`w-8 h-8 mx-auto mb-2 ${program.color}`} />
+                  <p className="font-semibold text-sm text-foreground">{program.name}</p>
+                  <p className="text-xs text-muted-foreground">{program.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Our Story Section */}
+          <section className="mb-8">
+            <div className="glass-card rounded-xl p-8">
+              <h2 className="text-2xl font-bold text-center mb-6 rainbow-text">Our Story</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center p-4">
+                  <h3 className="font-bold text-cosmic-gold mb-2">Our Mission</h3>
+                  <p className="text-sm text-muted-foreground">
+                    To create a supportive global community that provides comprehensive resources for individuals and families navigating recovery, housing instability, and personal growth.
+                  </p>
+                </div>
+                <div className="text-center p-4">
+                  <h3 className="font-bold text-cosmic-purple mb-2">Our Vision</h3>
+                  <p className="text-sm text-muted-foreground">
+                    A world where every person has access to support, community, and the tools they need to thrive—regardless of their circumstances.
+                  </p>
+                </div>
+                <div className="text-center p-4">
+                  <h3 className="font-bold text-cosmic-teal mb-2">Our Story</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Love Transcends Reality was founded on the belief that love knows no boundaries. Through seven core programs and the LTSocial Miracle Network, we're building a future where everyone belongs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Token Utility Section */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-center mb-6 text-foreground">
+              RC Token Utility
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { icon: Gift, name: 'Community Rewards', desc: 'Earn tokens for engagement and positive contributions', color: 'text-cosmic-gold' },
+                { icon: Pickaxe, name: 'Mining & Nodes', desc: 'Participate in the network and earn through mining', color: 'text-cosmic-purple' },
+                { icon: Globe, name: 'Ecosystem Utility', desc: 'Use tokens across all LT platforms and services', color: 'text-cosmic-teal' },
+                { icon: Eye, name: 'Transparent Giving', desc: 'Traceable donations with full accountability', color: 'text-rainbow-green' },
+              ].map((utility) => (
+                <div key={utility.name} className="glass-card rounded-xl p-4 text-center">
+                  <utility.icon className={`w-10 h-10 mx-auto mb-3 ${utility.color}`} />
+                  <p className="font-semibold text-foreground">{utility.name}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{utility.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Compliance & Security Section */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-center mb-6 text-foreground">
+              Compliance & Security
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="glass-card rounded-xl p-6 text-center border border-green-500/30">
+                <Shield className="w-12 h-12 mx-auto mb-3 text-green-400" />
+                <h3 className="font-bold text-foreground mb-2">KYC Required</h3>
+                <p className="text-sm text-muted-foreground">Identity verification for all payout-eligible users</p>
+              </div>
+              <div className="glass-card rounded-xl p-6 text-center border border-blue-500/30">
+                <Lock className="w-12 h-12 mx-auto mb-3 text-blue-400" />
+                <h3 className="font-bold text-foreground mb-2">AML Compliant</h3>
+                <p className="text-sm text-muted-foreground">Anti-money laundering protocols in place</p>
+              </div>
+              <div className="glass-card rounded-xl p-6 text-center border border-purple-500/30">
+                <Server className="w-12 h-12 mx-auto mb-3 text-purple-400" />
+                <h3 className="font-bold text-foreground mb-2">Secure Infrastructure</h3>
+                <p className="text-sm text-muted-foreground">Enterprise-grade security for all transactions</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Support Our Mission Section */}
+          <section className="mb-8">
+            <div className="glass-card rounded-xl p-8 text-center border border-cosmic-gold/30">
+              <Heart className="w-16 h-16 mx-auto mb-4 text-cosmic-gold" />
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Support Our Mission</h2>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Your donation helps us build a more connected, supportive world. Every contribution goes directly toward our community programs.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button asChild size="lg" className="bg-[#0070ba] hover:bg-[#005ea6] text-white">
+                  <a href="https://paypal.me/rainbowstrongman" target="_blank" rel="noopener noreferrer">
+                    Donate via PayPal
+                  </a>
+                </Button>
+                <Button asChild size="lg" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-semibold">
+                  <a href="https://gofundme.com/f/love-transcends-reality-llc" target="_blank" rel="noopener noreferrer">
+                    <Heart className="w-5 h-5 mr-2" /> GoFundMe Campaign
+                  </a>
+                </Button>
               </div>
             </div>
           </section>
