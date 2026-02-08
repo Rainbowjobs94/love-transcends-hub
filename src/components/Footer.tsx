@@ -1,5 +1,17 @@
 import { Link } from 'react-router-dom';
+import { Phone, Instagram, Youtube } from 'lucide-react';
 import miracleFlag from '@/assets/logos/miracle-network-flag.jpeg';
+
+// TikTok icon component (not available in lucide-react)
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 
 const links = {
   platforms: [
@@ -17,6 +29,11 @@ const links = {
     { name: 'LTSANP', path: '/ltsanp' },
     { name: 'Media Gallery', path: '/gallery' },
   ],
+  connect: [
+    { name: 'Instagram', url: 'https://instagram.com/rainbowstrongman', icon: Instagram },
+    { name: 'TikTok', url: 'https://tiktok.com/@rainbowjobs', icon: TikTokIcon },
+    { name: 'YouTube', url: 'https://youtube.com/@rainbowstrongman', icon: Youtube },
+  ],
 };
 
 export const Footer = () => {
@@ -27,7 +44,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <img 
                 src={miracleFlag} 
@@ -74,6 +91,35 @@ export const Footer = () => {
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-accent transition-colors text-sm"
                   >
+                    {link.name} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Connect</h4>
+            <ul className="space-y-3">
+              <li>
+                <a 
+                  href="tel:369-888-1000"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  369-888-1000
+                </a>
+              </li>
+              {links.connect.map((link) => (
+                <li key={link.url}>
+                  <a 
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm"
+                  >
+                    <link.icon className="w-4 h-4" />
                     {link.name} ↗
                   </a>
                 </li>

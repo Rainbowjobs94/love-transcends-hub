@@ -7,8 +7,19 @@ import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { VersionBadge } from '@/components/socialuniverse/VersionBadge';
-import { Check, Users, MessageCircle, Video, Calendar, Wallet, Image, Music, Star } from 'lucide-react';
+import { Check, Users, MessageCircle, Video, Calendar, Wallet, Image, Music, Star, Phone, Mail, Instagram, Youtube } from 'lucide-react';
 import socialUniverseGlobe from '@/assets/hero/social-universe-globe.png';
+
+// TikTok icon component (not available in lucide-react)
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 
 const SocialUniverse = () => {
   return (
@@ -218,6 +229,68 @@ const SocialUniverse = () => {
                     Visit SocialUniverse.love
                   </a>
                 </Button>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact & Social Section */}
+          <section className="mb-8">
+            <div className="glass-card rounded-xl p-8">
+              <h2 className="text-xl font-bold text-center mb-6 rainbow-text">Contact & Social</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                {/* Phone */}
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-cosmic-teal/20 flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-cosmic-teal" />
+                  </div>
+                  <p className="text-sm text-muted-foreground">Main Line</p>
+                  <a href="tel:369-888-1000" className="font-semibold text-foreground hover:text-cosmic-teal transition-colors">
+                    369-888-1000
+                  </a>
+                </div>
+
+                {/* Email */}
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-cosmic-purple/20 flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-cosmic-purple" />
+                  </div>
+                  <p className="text-sm text-muted-foreground">Email</p>
+                  <a href="mailto:Rainbow@rainbowjobs.love" className="font-semibold text-foreground hover:text-cosmic-purple transition-colors text-sm">
+                    Rainbow@rainbowjobs.love
+                  </a>
+                </div>
+
+                {/* Social Media */}
+                <div className="flex flex-col items-center gap-2">
+                  <p className="text-sm text-muted-foreground">Follow Us</p>
+                  <div className="flex items-center gap-4">
+                    <a 
+                      href="https://instagram.com/rainbowstrongman" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center hover:scale-110 transition-transform"
+                    >
+                      <Instagram className="w-5 h-5 text-white" />
+                    </a>
+                    <a 
+                      href="https://tiktok.com/@rainbowjobs" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-black flex items-center justify-center hover:scale-110 transition-transform"
+                    >
+                      <TikTokIcon className="w-5 h-5 text-white" />
+                    </a>
+                    <a 
+                      href="https://youtube.com/@rainbowstrongman" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center hover:scale-110 transition-transform"
+                    >
+                      <Youtube className="w-5 h-5 text-white" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
