@@ -13,6 +13,7 @@ import MiracleMining from "./pages/MiracleMining";
 import SocialUniverse from "./pages/SocialUniverse";
 import LTSUMN from "./pages/LTSUMN";
 import Gallery from "./pages/Gallery";
+import LTOpportunity from "./pages/LTOpportunity";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/socialuniverse" element={<SocialUniverse />} />
           <Route path="/ltsumn" element={<LTSUMN />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/ltopportunity" element={<LTOpportunity />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
