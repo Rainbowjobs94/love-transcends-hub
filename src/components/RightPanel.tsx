@@ -58,7 +58,66 @@ export const RightPanel = () => {
         
         <ScrollArea className="h-[calc(100vh-80px)]">
           <div className="p-4 space-y-4">
-            {/* LTSU - Social Universe V1 (FIRST) */}
+            {/* LTOpportunity - FIRST (TOP) */}
+            <Link to="/ltopportunity" className="block">
+              <Card className="glass-card border-cosmic-gold/30 cursor-pointer hover:border-cosmic-gold/60 transition-colors hover:scale-[1.01]">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-lg text-cosmic-gold">
+                    <Briefcase className="w-5 h-5" />
+                    LTOpportunity
+                  </CardTitle>
+                  <p className="text-xs text-foreground/70">Business & Commerce Ventures</p>
+                </CardHeader>
+                <CardContent>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="ltcakecafe" className="border-border/30">
+                      <AccordionTrigger className="text-sm py-2 text-foreground">
+                        <span className="flex items-center gap-2">
+                          <Coffee className="w-4 h-4 text-cosmic-gold" />
+                          LTCakeCafe
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-foreground/80 space-y-1">
+                        <p>• Not-for-profit cafe & art space</p>
+                        <p>• Live music & performance venue</p>
+                        <p>• Community workshops & events</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                    
+                    <AccordionItem value="ltthrifty" className="border-border/30">
+                      <AccordionTrigger className="text-sm py-2 text-foreground">
+                        <span className="flex items-center gap-2">
+                          <Heart className="w-4 h-4 text-cosmic-purple" />
+                          LTThrifty
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-foreground/80 space-y-1">
+                        <p>• Sustainable commerce & thrift</p>
+                        <p>• Eco-friendly shopping</p>
+                        <p>• Community donations hub</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                    
+                    <AccordionItem value="ltapparel" className="border-border/30">
+                      <AccordionTrigger className="text-sm py-2 text-foreground">
+                        <span className="flex items-center gap-2">
+                          <Shirt className="w-4 h-4 text-cosmic-teal" />
+                          LTApparel
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-foreground/80 space-y-1">
+                        <p>• Wear your support merchandise</p>
+                        <p>• Mission-driven fashion</p>
+                        <p>• Proceeds support LT initiatives</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <p className="text-xs text-primary mt-3">Tap to explore marketplace →</p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* LTSU - Social Universe V1 */}
             <Link to="/socialuniverse" className="block">
               <Card className="glass-card border-rainbow-green/30 cursor-pointer hover:border-rainbow-green/60 transition-colors">
                 <CardHeader className="pb-2">
@@ -252,61 +311,7 @@ export const RightPanel = () => {
               </Card>
             </Link>
 
-            {/* LTOpportunity */}
-            <Card className="glass-card border-cosmic-gold/20">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg text-cosmic-gold">
-                  <Briefcase className="w-5 h-5" />
-                  LTOpportunity
-                </CardTitle>
-                <p className="text-xs text-foreground/70">Business & Commerce Ventures</p>
-              </CardHeader>
-              <CardContent>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="ltcakecafe" className="border-border/30">
-                    <AccordionTrigger className="text-sm py-2 text-foreground">
-                      <span className="flex items-center gap-2">
-                        <Coffee className="w-4 h-4 text-cosmic-gold" />
-                        LTCakeCafe
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
-                      <p>• Not-for-profit cafe & art space</p>
-                      <p>• Live music & performance venue</p>
-                      <p>• Community workshops & events</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="ltthrifty" className="border-border/30">
-                    <AccordionTrigger className="text-sm py-2 text-foreground">
-                      <span className="flex items-center gap-2">
-                        <Heart className="w-4 h-4 text-cosmic-purple" />
-                        LTThrifty
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
-                      <p>• Sustainable commerce & thrift</p>
-                      <p>• Eco-friendly shopping</p>
-                      <p>• Community donations hub</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="ltapparel" className="border-border/30">
-                    <AccordionTrigger className="text-sm py-2 text-foreground">
-                      <span className="flex items-center gap-2">
-                        <Shirt className="w-4 h-4 text-cosmic-teal" />
-                        LTApparel
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-foreground/80 space-y-1">
-                      <p>• Wear your support merchandise</p>
-                      <p>• Mission-driven fashion</p>
-                      <p>• Proceeds support LT initiatives</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </CardContent>
-            </Card>
+            
 
             {/* Contact & Donate */}
             <Card className="glass-card border-cosmic-purple/20">
