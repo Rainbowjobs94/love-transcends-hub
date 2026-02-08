@@ -3,14 +3,20 @@ import {
   Globe, 
   Coins, 
   Briefcase, 
-  Coffee, 
   Shield, 
   Heart,
   Mail,
   ExternalLink,
   Tv,
   MapPin,
-  PanelRight
+  PanelRight,
+  Users,
+  MessageCircle,
+  Video,
+  Calendar,
+  Wallet,
+  Image,
+  Music
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -50,31 +56,61 @@ export const RightPanel = () => {
         
         <ScrollArea className="h-[calc(100vh-80px)]">
           <div className="p-4 space-y-4">
-            {/* LTR - Love Transcends Reality Network */}
-            <Link to="/ltsumn" className="block">
-              <Card className="glass-card border-rainbow-violet/30 cursor-pointer hover:border-rainbow-violet/60 transition-colors">
+            {/* LTSU - Social Universe V1 (FIRST) */}
+            <Link to="/socialuniverse" className="block">
+              <Card className="glass-card border-rainbow-green/30 cursor-pointer hover:border-rainbow-green/60 transition-colors">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="flex items-center gap-2 text-lg rainbow-text">
-                      <Tv className="w-5 h-5" />
-                      LTR Network
+                    <CardTitle className="flex items-center gap-2 text-lg text-rainbow-green">
+                      <Globe className="w-5 h-5" />
+                      LTSU
                     </CardTitle>
                     <VersionBadge version="v1" />
                   </div>
-                  <p className="text-xs text-foreground/80">Love Transcends Reality: Master Mining Miracle Hub</p>
+                  <p className="text-xs text-foreground/80">LTSocial Universe - Core Platform</p>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-xs text-foreground/70">
-                    AI Media Gallery • LTTV Live Streams • Music Drops • YouTube, Twitch, Spotify, RSS Integration
-                  </p>
-                  
                   <div className="space-y-2">
-                    <FeatureStatus label="Social Feed (tip to share)" active />
-                    <FeatureStatus label="Paywalls" active />
+                    <FeatureStatus label="4-Tier Marketplace (Public, Homies, Friendlies, Inner Circle)" active />
+                    <FeatureStatus label="Paid Posting (OnlyFans-style)" active />
                     <FeatureStatus label="Messaging" active />
-                    <FeatureStatus label="Digital & AI Goods" active />
-                    <FeatureStatus label="RC Wallet (1:1.75 in, 75c/25c out)" active />
+                    <FeatureStatus label="Live Stream Tipping" active />
+                    <FeatureStatus label="Calendar Events" active />
+                    <FeatureStatus label="LTRealityStream Gallery" active />
+                    <FeatureStatus label="RC Token Wallet" active />
                   </div>
+                  
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="subscriptions" className="border-border/30">
+                      <AccordionTrigger className="text-sm py-2 text-foreground">Subscription Tiers</AccordionTrigger>
+                      <AccordionContent className="text-xs text-foreground/80 space-y-3">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <p className="font-semibold text-foreground">Viewer - $10/mo</p>
+                          <ul className="mt-1 space-y-1">
+                            <li>• Earn share of platform revenue watching Homies' streams</li>
+                            <li>• Revenue divided by active viewer count</li>
+                            <li>• Requirement: 8hrs/week activity</li>
+                            <li>• Sunday 10am check-in required</li>
+                          </ul>
+                        </div>
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <p className="font-semibold text-foreground">Self-Celebrity - $20/mo</p>
+                          <ul className="mt-1 space-y-1">
+                            <li>• Pay-to-post tool access</li>
+                            <li>• 10% withdrawal fee on earnings</li>
+                            <li>• 5% goes to viewer bonus pool</li>
+                          </ul>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  
+                  <Link to="/gallery" className="flex items-center gap-2 text-xs text-primary hover:underline">
+                    <Image className="w-3 h-3" />
+                    <Video className="w-3 h-3" />
+                    <Music className="w-3 h-3" />
+                    LTRealityStream Gallery →
+                  </Link>
                   
                   <p className="text-xs text-primary">Tap to explore →</p>
                 </CardContent>
@@ -122,56 +158,36 @@ export const RightPanel = () => {
               </Card>
             </Link>
 
-            {/* LTSU - Social Universe V3 */}
-            <Link to="/socialuniverse" className="block">
-              <Card className="glass-card border-rainbow-red/30 cursor-pointer hover:border-rainbow-red/60 transition-colors">
+            {/* LTR - Love Transcends Reality Network */}
+            <Link to="/ltsumn" className="block">
+              <Card className="glass-card border-rainbow-violet/30 cursor-pointer hover:border-rainbow-violet/60 transition-colors">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="flex items-center gap-2 text-lg text-rainbow-red">
-                      <Globe className="w-5 h-5" />
-                      LTSU
+                    <CardTitle className="flex items-center gap-2 text-lg rainbow-text">
+                      <Tv className="w-5 h-5" />
+                      LTR Network
                     </CardTitle>
                     <VersionBadge version="v3" />
                   </div>
-                  <p className="text-xs text-foreground/80">LTSocial Universe • ETA 2028</p>
+                  <p className="text-xs text-foreground/80">Love Transcends Reality: Master Mining Miracle Hub</p>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-xs font-semibold text-foreground">Master Network Hub - All Features Demo</p>
+                  <p className="text-xs text-foreground/70">
+                    AI Media Gallery • LTTV Live Streams • Music Drops • YouTube, Twitch, Spotify, RSS Integration
+                  </p>
                   
                   <div className="space-y-2">
-                    <FeatureStatus label="Social Feed" active />
+                    <FeatureStatus label="Social Feed (tip to share)" active />
                     <FeatureStatus label="Paywalls" active />
                     <FeatureStatus label="Messaging" active />
                     <FeatureStatus label="Digital & AI Goods" active />
-                    <FeatureStatus label="Crypto Wallet" active />
+                    <FeatureStatus label="RC Wallet (1:1.75 in, 75c/25c out)" active />
                   </div>
                   
-                  <p className="text-xs text-foreground/70">
-                    5-Feed System • All V1/V2/V3 features included
-                  </p>
-                  <p className="text-xs text-primary">Tap to explore demo →</p>
+                  <p className="text-xs text-primary">Tap to explore →</p>
                 </CardContent>
               </Card>
             </Link>
-
-            {/* LTCakeCafe */}
-            <Card className="glass-card border-rainbow-orange/20">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg text-rainbow-orange">
-                  <Coffee className="w-5 h-5" />
-                  LTCakeCafe
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm space-y-2">
-                <p className="font-semibold text-foreground">Not-for-profit Cafe & Art Space</p>
-                <ul className="text-xs text-foreground/80 space-y-1">
-                  <li>• Specialty drinks & unique culinary experiences</li>
-                  <li>• Art exhibition space</li>
-                  <li>• Live music/performance venue</li>
-                  <li>• Community workshops & creator meetups</li>
-                </ul>
-              </CardContent>
-            </Card>
 
             {/* iAGuardian Security */}
             <Card className="glass-card border-rainbow-blue/20">
