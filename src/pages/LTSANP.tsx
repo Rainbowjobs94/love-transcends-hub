@@ -6,7 +6,7 @@ import { RightPanel } from '@/components/RightPanel';
 import { Button } from '@/components/ui/button';
 import { 
   DollarSign, Users, Target, Heart, Coffee, Home, 
-  HeartHandshake, Building, Sparkles, Calendar, Brain
+  HeartHandshake, Building, Sparkles, Calendar, Brain, HandHeart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -89,7 +89,7 @@ const LTSANP = () => {
               Love Transcends sponsors community programs that heal, nourish, and house those in need.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
               {/* LTCakes */}
               <div className="glass-card rounded-2xl p-8 border border-rainbow-orange/30">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rainbow-orange to-rainbow-yellow mx-auto mb-6 flex items-center justify-center">
@@ -181,6 +181,38 @@ const LTSANP = () => {
                   <div className="p-3 rounded-lg bg-background/50 flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-muted-foreground" />
                     <p className="text-sm text-muted-foreground">Target Launch: 2031</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LTCommunity */}
+              <div className="glass-card rounded-2xl p-8 border border-rainbow-blue/30">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rainbow-blue to-rainbow-violet mx-auto mb-6 flex items-center justify-center">
+                  <HandHeart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-rainbow-blue text-center mb-4">LTCommunity</h3>
+                <span className="block text-center text-xs text-muted-foreground mb-4 uppercase tracking-wider">Building Together</span>
+                
+                <div className="space-y-4">
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Users className="w-5 h-5 text-rainbow-blue mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Community Events</p>
+                    <p className="text-xs text-muted-foreground">Gatherings & celebrations</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <HeartHandshake className="w-5 h-5 text-rainbow-violet mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Local Support Networks</p>
+                    <p className="text-xs text-muted-foreground">Neighbor-to-neighbor help</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-rainbow-blue/10 border border-rainbow-blue/30">
+                    <Heart className="w-5 h-5 text-rainbow-blue mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Volunteer Coordination</p>
+                    <p className="text-xs text-muted-foreground">Connecting helpers with needs</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/50">
+                    <Sparkles className="w-5 h-5 text-rainbow-violet mb-2" />
+                    <p className="font-semibold text-foreground text-sm">Mutual Aid Programs</p>
+                    <p className="text-xs text-muted-foreground">Community-powered support</p>
                   </div>
                 </div>
               </div>
