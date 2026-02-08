@@ -1,61 +1,44 @@
 
 
-# Right Panel Reorganization & LTSU Feature Corrections
+# Contact Information & Social Media Update
 
-## Summary of Changes Required
+## Summary of Changes
 
-The right panel has incorrect labeling and ordering. Additionally, the Gallery page is missing the full media library with paywalls for Videos, Pictures, and Music drops.
-
----
-
-## 1. Right Panel Corrections (`RightPanel.tsx`)
-
-### Current Order (WRONG):
-1. LTR Network (V1)
-2. LTMN (V2)
-3. LTSU (V3)
-4. LTCakeCafe
-5. iAGuardian Security
-6. Partnership & Investing
-7. Contact & Donate
-
-### New Order (CORRECT):
-1. **LTSU** (V1 - Social Universe) - FIRST, labeled as V1
-2. **LTMN** (unchanged)
-3. **LTR Network** (renamed/repositioned)
-4. iAGuardian Security
-5. Partnership & Investing
-6. Contact & Donate
-7. ~~LTCakeCafe~~ (REMOVED - already in left panel's LTSANP)
+Update contact details across multiple files to add the main phone number and social media links.
 
 ---
 
-## 2. LTSU Card - Complete Rewrite (V1)
+## Current Contact Info Found
 
-**LTSU is now V1 with these specific features:**
-
-| Feature | Description |
-|---------|-------------|
-| **4-Tier Marketplace** | Public, Homies, Friendlies, Inner Circle |
-| **Paid Posting** | OnlyFans-style pay-to-view posts |
-| **Messaging** | Direct messaging system |
-| **Live Stream Tipping** | Tip creators during live streams |
-| **Calendar Events** | Event scheduling and discovery |
-| **LTRealityStream** | Gallery of Videos, Pictures, Music, Digital Items with paywalls |
-| **RC Token Wallet** | Reality Coin wallet integration |
-
-**Subscription Models:**
-
-| Tier | Price | Features |
-|------|-------|----------|
-| **Viewer** | $10/mo | Watch Homies' streams, earn share of platform revenue divided by active viewers. Requirement: 8hrs/week platform use + Sunday 10am check-in |
-| **Self-Celebrity** | $20/mo | Pay-to-post tool access, 10% withdrawal fee, 5% platform fee for viewer bonuses |
+| Location | Current Email | Current Phone |
+|----------|---------------|---------------|
+| `ContactSection.tsx` | Rainbow@rainbowjobs.love, Rainbowstrongman@ltsocial.net | 369-888-1001 (Rainbow), 369-888-1002 (John) |
+| `Footer.tsx` | None displayed | None displayed |
+| `Navigation.tsx` | None | None |
 
 ---
 
-## 3. Add LTRealityStream Library Reference
+## Updates Required
 
-The Gallery page exists but needs to be referenced as the **LTRealityStream** - the Video, Picture, and Music drop library with paywalls. The LTSU card should link to `/gallery` for the media library.
+### 1. Add Main Phone Number: **369-888-1000**
+
+This is the primary contact number to be added to:
+- ContactSection (as main line)
+- Footer (new contact section)
+- SocialUniverse page (new contact section)
+
+### 2. Add Social Media Links
+
+| Platform | Handle/Link |
+|----------|-------------|
+| **Instagram** | @RainbowStrongman → `https://instagram.com/rainbowstrongman` |
+| **TikTok** | @RainbowJobs → `https://tiktok.com/@rainbowjobs` |
+| **YouTube** | Rainbow Strongman → `https://youtube.com/@rainbowstrongman` |
+
+### 3. Keep Current Emails (already correct)
+- Rainbow@rainbowjobs.love
+- Rainbowstrongman@ltsocial.net
+- Johnjasper@rainbowjobs.love
 
 ---
 
@@ -63,99 +46,85 @@ The Gallery page exists but needs to be referenced as the **LTRealityStream** - 
 
 | File | Changes |
 |------|---------|
-| `src/components/RightPanel.tsx` | Reorder cards, update LTSU to V1 with correct features, remove LTCakeCafe, add LTRealityStream reference |
-| `src/components/socialuniverse/VersionBadge.tsx` | No changes needed (already supports v1) |
+| `src/components/landing/ContactSection.tsx` | Add main phone 369-888-1000, add Instagram/TikTok/YouTube icons and links |
+| `src/components/Footer.tsx` | Add new "Connect" column with phone and social media links |
+| `src/pages/SocialUniverse.tsx` | Add contact section at bottom with phone and socials |
 
 ---
 
-## Technical Changes to `RightPanel.tsx`
+## Technical Changes
 
-### 1. Remove LTCakeCafe Card
-Delete lines 157-174 and remove `Coffee` icon import.
+### ContactSection.tsx Updates
 
-### 2. Move LTSU to Top & Update to V1
-LTSU card moves from position 3 to position 1, with:
-- Badge: `v1` (green "V1 Basic")
-- New subtitle: "LTSocial Universe - Core Platform"
-- Features list updated:
-  - 4-Tier Marketplace (Public, Homies, Friendlies, Inner Circle)
-  - Paid Posting (OnlyFans-style)
-  - Messaging
-  - Live Stream Tipping
-  - Calendar Events
-  - LTRealityStream (Video/Picture/Music with paywalls)
-  - RC Token Wallet
-
-### 3. Add Subscription Accordion
-Add expandable section showing:
-- **Viewer ($10/mo):** Earn share of platform revenue when watching Homies' streams. Must be active 8hrs/week + Sunday 10am check-in.
-- **Self-Celebrity ($20/mo):** Pay-to-post access. 10% withdrawal fee. Platform takes 5% for viewer bonus pool.
-
-### 4. Reorder Cards
-Final order:
-1. LTSU (V1) - links to `/socialuniverse`
-2. LTMN - unchanged, links to `/miraclemining`
-3. LTR Network - links to `/ltsumn`
-4. iAGuardian Security
-5. Partnership & Investing
-6. Contact & Donate
-
----
-
-## Updated LTSU Card Content
+Add social media row after the email section for Rainbow Strongman:
 
 ```
-LTSU (V1)
-LTSocial Universe - Core Platform
+Social Media Links:
+- Instagram icon → instagram.com/rainbowstrongman
+- TikTok icon → tiktok.com/@rainbowjobs  
+- YouTube icon → youtube.com/@rainbowstrongman
+```
 
-Features:
-• 4-Tier Marketplace (Public, Homies, Friendlies, Inner Circle)
-• Paid Posting (pay-to-view like OnlyFans)
-• Messaging
-• Live Stream Tipping
-• Calendar Events
-• LTRealityStream Gallery (Videos, Pictures, Music, Digital Items)
-• RC Token Wallet
+Add main phone line before individual numbers:
+```
+Main Line: 369-888-1000
+Rainbow: 369-888-1001
+John: 369-888-1002
+```
 
-[Expandable: Subscription Tiers]
-  Viewer ($10/mo):
-  - Earn share of platform revenue watching Homies' streams
-  - Revenue divided by active viewer count
-  - Requirement: 8hrs/week activity + Sunday 10am check-in
+### Footer.tsx Updates
 
-  Self-Celebrity ($20/mo):
-  - Pay-to-post tool access
-  - 10% withdrawal fee on earnings
-  - 5% goes to viewer bonus pool
+Add new "Connect" column:
+```
+Connect
+├── Phone: 369-888-1000
+├── Instagram ↗
+├── TikTok ↗
+└── YouTube ↗
+```
 
-Tap to explore →
+### SocialUniverse.tsx Updates
+
+Add contact section before "Three Pillars" section:
+```
+Contact & Social
+├── Phone: 369-888-1000
+├── Email: Rainbow@rainbowjobs.love
+└── Social: Instagram | TikTok | YouTube
 ```
 
 ---
 
-## Visual Comparison
+## Icon Requirements
 
-### Before:
-```
-RIGHT PANEL:
-1. LTR Network (V1) ← Wrong position
-2. LTMN (V2)
-3. LTSU (V3) ← Wrong version & position
-4. LTCakeCafe ← Should be removed
-5. iAGuardian
-6. Partnership
-7. Contact
-```
+Will use Lucide icons where available:
+- `Phone` - already imported
+- `Mail` - already imported
+- `Instagram` - available in lucide-react
+- `Youtube` - available in lucide-react
 
-### After:
+For TikTok (not in lucide), will use either:
+- Custom SVG icon, or
+- Text link with external link indicator
+
+---
+
+## Updated Contact Card Structure
+
 ```
-RIGHT PANEL:
-1. LTSU (V1) ← Correct! First position, V1 badge
-2. LTMN
-3. LTR Network ← Moved down
-4. iAGuardian
-5. Partnership
-6. Contact
+Rainbow Strongman
+CEO, Founder, Survivor Influencer & Historian
+
+📍 219 Sheridan Ave, Longwood, FL 32750
+📞 Main: 369-888-1000
+📞 Direct: 369-888-1001
+✉️ Rainbow@rainbowjobs.love
+✉️ Rainbowstrongman@ltsocial.net
+
+Follow:
+📸 Instagram: @RainbowStrongman
+🎵 TikTok: @RainbowJobs
+🎬 YouTube: Rainbow Strongman
 ```
 
 ---
@@ -163,9 +132,11 @@ RIGHT PANEL:
 ## Summary
 
 This update will:
-1. Move **LTSU to the top** of the right panel
-2. Change **LTSU to V1** with correct features (4-tier marketplace, paid posting, messaging, tipping, calendar, LTRealityStream, wallet)
-3. Add **subscription tier details** ($10 Viewer, $20 Self-Celebrity with specific requirements)
-4. **Remove LTCakeCafe** (already in left panel)
-5. Reorder remaining cards: LTSU → LTMN → LTR Network → iAGuardian → Partnership → Contact
+1. Add **369-888-1000** as the main phone number
+2. Add **Instagram** (@RainbowStrongman) link
+3. Add **TikTok** (@RainbowJobs) link
+4. Add **YouTube** (Rainbow Strongman) link
+5. Keep existing emails unchanged
+6. Update Footer with social links
+7. Add contact info to SocialUniverse page
 
