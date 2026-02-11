@@ -1,7 +1,18 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 export type MiningTier = 'bronze' | 'silver';
+
+// V2 MiracleCoin constants
+const FIRST_UNLOCK = new Date('2030-12-31T23:59:59Z').getTime();
+const CLAIM_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+
+export interface ReserveEntry {
+  amount: number;
+  unlockDate: string;
+  claimDeadline: string;
+  status: 'locked' | 'claimable' | 'expired';
+}
 
 interface Wallet {
   id: string;
@@ -48,9 +59,9 @@ export function useMining(userId: string | undefined) {
   const [isMining, setIsMining] = useState(false);
   const [walletLoading, setWalletLoading] = useState(true);
   const [logs, setLogs] = useState<string[]>([
-    '[SYSTEM] BioNexus Protocol v1.0 initialized',
-    '[SYSTEM] Shift Coin Protocol engine ready',
-    '[NETWORK] Connected to LTR Miracle Network',
+    '[SYSTEM] BioNexus Protocol v2.0 initialized',
+    '[SYSTEM] MiracleCoin (MCL) engine ready — 50/50 split active',
+    '[NETWORK] Connected to LTR Miracle Network (Polygon)',
   ]);
   const [liveStats, setLiveStats] = useState<LiveStats>({
     hashRate: 0,
@@ -189,7 +200,7 @@ export function useMining(userId: string | undefined) {
             blocks_validated: w.blocks_validated + 1,
           } : w);
 
-          addLog(`[MINER] Block #${blockNum} validated — +${reward} RC earned`);
+          addLog(`[MINER] Block #${blockNum} validated — +${reward} MCL earned (50% immediate)`);
 
           return {
             ...prev,
@@ -237,9 +248,9 @@ export function useMining(userId: string | undefined) {
 
     setIsMining(true);
     setLiveStats(s => ({ ...s, miningProgress: 0 }));
-    addLog('[MINER] Mining engine started — Shift Coin Protocol active');
-    addLog('[NETWORK] Auto-selecting optimal blockchain route...');
-    addLog(`[NETWORK] Tier: ${TIER_CONFIG[wallet.current_tier].label} — ${TIER_CONFIG[wallet.current_tier].reward} RC/block`);
+    addLog('[MINER] Mining engine started — MiracleCoin Protocol v2 active');
+    addLog('[NETWORK] Auto-selecting optimal blockchain route (Polygon)...');
+    addLog(`[NETWORK] Tier: ${TIER_CONFIG[wallet.current_tier].label} — ${TIER_CONFIG[wallet.current_tier].reward} MCL/block (50/50 split)`);
   }, [userId, wallet, addLog]);
 
   const stopMining = useCallback(async () => {
@@ -269,12 +280,34 @@ export function useMining(userId: string | undefined) {
         .limit(10);
       if (data) setSessions(data.map(s => ({ ...s, rc_earned: Number(s.rc_earned), avg_hash_rate: Number(s.avg_hash_rate), tier: s.tier as MiningTier })));
 
-      addLog(`[STATS] Session: ${sessionEarnedRef.current.toFixed(4)} RC | ${sessionBlocksRef.current} blocks | avg ${avgHash} MH/s`);
+      addLog(`[STATS] Session: ${sessionEarnedRef.current.toFixed(4)} MCL | ${sessionBlocksRef.current} blocks | avg ${avgHash} MH/s`);
     }
 
     addLog('[MINER] Mining engine stopped');
     sessionIdRef.current = null;
   }, [userId, addLog]);
+
+  // V2 MiracleCoin computed values (informational — 50/50 split)
+  const mclBalances = useMemo(() => {
+    const totalMined = wallet?.total_mined ?? 0;
+    const available = totalMined * 0.5; // 50% immediate
+    const locked = totalMined * 0.5;    // 50% locked
+    const claimable = 0; // Not yet unlocked (Dec 31 2030)
+
+    // Build reserve entries from sessions
+    const reserveEntries: ReserveEntry[] = sessions.map(s => {
+      const reserveAmt = s.rc_earned * 0.5;
+      const unlockDate = new Date(FIRST_UNLOCK).toISOString();
+      const claimDeadline = new Date(FIRST_UNLOCK + CLAIM_WINDOW_MS).toISOString();
+      const now = Date.now();
+      let status: ReserveEntry['status'] = 'locked';
+      if (now >= FIRST_UNLOCK && now <= FIRST_UNLOCK + CLAIM_WINDOW_MS) status = 'claimable';
+      else if (now > FIRST_UNLOCK + CLAIM_WINDOW_MS) status = 'expired';
+      return { amount: reserveAmt, unlockDate, claimDeadline, status };
+    }).filter(e => e.amount > 0);
+
+    return { totalMined, available, locked, claimable, reserveEntries };
+  }, [wallet, sessions]);
 
   return {
     wallet,
@@ -288,5 +321,6 @@ export function useMining(userId: string | undefined) {
     stopMining,
     setTier,
     tierConfig: TIER_CONFIG,
+    mclBalances,
   };
 }
