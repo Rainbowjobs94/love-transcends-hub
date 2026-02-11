@@ -17,6 +17,7 @@ import Gallery from "./pages/Gallery";
 import LTOpportunity from "./pages/LTOpportunity";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import BioNexusProtocol from "./pages/BioNexusProtocol";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/ltopportunity" element={<LTOpportunity />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/bionexus" element={<BioNexusProtocol />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
