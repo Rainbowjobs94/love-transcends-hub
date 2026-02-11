@@ -13,7 +13,8 @@ import {
   PanelLeft,
   Home,
   Coffee,
-  Building
+  Building,
+  LogIn
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -250,6 +251,14 @@ export const LeftPanel = () => {
                 </Button>
               </CardContent>
             </Card>
+
+            {/* Admin Login */}
+            <Link to="/admin-login" className="block">
+              <Button variant="outline" className="w-full flex items-center gap-2">
+                <LogIn className="w-4 h-4" />
+                Admin Login
+              </Button>
+            </Link>
           </div>
         </ScrollArea>
       </SheetContent>
