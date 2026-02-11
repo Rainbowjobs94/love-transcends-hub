@@ -14,6 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
+      mining_sessions: {
+        Row: {
+          avg_hash_rate: number
+          blocks_mined: number
+          created_at: string
+          ended_at: string | null
+          id: string
+          rc_earned: number
+          started_at: string
+          tier: Database["public"]["Enums"]["mining_tier"]
+          user_id: string
+        }
+        Insert: {
+          avg_hash_rate?: number
+          blocks_mined?: number
+          created_at?: string
+          ended_at?: string | null
+          id?: string
+          rc_earned?: number
+          started_at?: string
+          tier?: Database["public"]["Enums"]["mining_tier"]
+          user_id: string
+        }
+        Update: {
+          avg_hash_rate?: number
+          blocks_mined?: number
+          created_at?: string
+          ended_at?: string | null
+          id?: string
+          rc_earned?: number
+          started_at?: string
+          tier?: Database["public"]["Enums"]["mining_tier"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mining_transactions: {
+        Row: {
+          amount: number
+          block_number: number
+          created_at: string
+          id: string
+          type: Database["public"]["Enums"]["mining_tx_type"]
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          block_number: number
+          created_at?: string
+          id?: string
+          type?: Database["public"]["Enums"]["mining_tx_type"]
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          block_number?: number
+          created_at?: string
+          id?: string
+          type?: Database["public"]["Enums"]["mining_tx_type"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mining_wallets: {
+        Row: {
+          blocks_validated: number
+          created_at: string
+          current_tier: Database["public"]["Enums"]["mining_tier"]
+          id: string
+          rc_balance: number
+          total_mined: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          blocks_validated?: number
+          created_at?: string
+          current_tier?: Database["public"]["Enums"]["mining_tier"]
+          id?: string
+          rc_balance?: number
+          total_mined?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          blocks_validated?: number
+          created_at?: string
+          current_tier?: Database["public"]["Enums"]["mining_tier"]
+          id?: string
+          rc_balance?: number
+          total_mined?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -74,6 +170,8 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      mining_tier: "bronze" | "silver"
+      mining_tx_type: "block_reward" | "bonus"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -202,6 +300,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      mining_tier: ["bronze", "silver"],
+      mining_tx_type: ["block_reward", "bonus"],
     },
   },
 } as const

@@ -1,93 +1,27 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 import {
   Shield, Zap, Coins, Activity, Play, Square,
-  TrendingUp, Clock, Cpu, BarChart3, ArrowLeft
+  TrendingUp, Clock, Cpu, BarChart3, ArrowLeft, Wallet, History
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
-interface MiningStats {
-  totalMined: number;
-  hashRate: number;
-  blocksValidated: number;
-  uptime: number;
-  currentBlock: number;
-  networkDifficulty: number;
-}
+import { useMining, MiningTier } from '@/hooks/useMining';
 
 const BioNexusProtocol = () => {
   const { user, isAdmin, loading } = useAuth();
-  const [isMining, setIsMining] = useState(false);
-  const [miningProgress, setMiningProgress] = useState(0);
-  const [stats, setStats] = useState<MiningStats>({
-    totalMined: 0,
-    hashRate: 0,
-    blocksValidated: 0,
-    uptime: 0,
-    currentBlock: 100000,
-    networkDifficulty: 42.7,
-  });
-  const [logs, setLogs] = useState<string[]>([
-    '[SYSTEM] BioNexus Protocol v0.9.1-beta initialized',
-    '[SYSTEM] Shift Coin Protocol engine ready',
-    '[NETWORK] Connected to LTR Miracle Network',
-  ]);
+  const {
+    wallet, walletLoading, sessions, transactions,
+    isMining, liveStats, logs,
+    startMining, stopMining, setTier, tierConfig,
+  } = useMining(user?.id);
 
-  const addLog = useCallback((msg: string) => {
-    setLogs(prev => [...prev.slice(-50), `[${new Date().toLocaleTimeString()}] ${msg}`]);
-  }, []);
-
-  useEffect(() => {
-    if (!isMining) return;
-
-    const interval = setInterval(() => {
-      setMiningProgress(prev => {
-        if (prev >= 100) {
-          // Block mined!
-          setStats(s => ({
-            ...s,
-            totalMined: +(s.totalMined + 0.25).toFixed(4),
-            blocksValidated: s.blocksValidated + 1,
-            currentBlock: s.currentBlock + 1,
-          }));
-          addLog(`[MINER] Block #${stats.currentBlock + 1} validated — +0.25 RC earned`);
-          return 0;
-        }
-        return prev + Math.random() * 8 + 2;
-      });
-
-      setStats(s => ({
-        ...s,
-        hashRate: +(Math.random() * 15 + 25).toFixed(1),
-        uptime: s.uptime + 1,
-        networkDifficulty: +(42 + Math.random() * 3).toFixed(1),
-      }));
-    }, 800);
-
-    return () => clearInterval(interval);
-  }, [isMining, addLog, stats.currentBlock]);
-
-  const startMining = () => {
-    setIsMining(true);
-    setMiningProgress(0);
-    addLog('[MINER] Mining engine started — Shift Coin Protocol active');
-    addLog('[NETWORK] Auto-selecting optimal blockchain route...');
-    addLog('[NETWORK] Route selected: Zero-gas lane via LTR Bridge');
-  };
-
-  const stopMining = () => {
-    setIsMining(false);
-    addLog('[MINER] Mining engine stopped');
-    addLog(`[STATS] Session total: ${stats.totalMined} RC | ${stats.blocksValidated} blocks`);
-  };
-
-  if (loading) {
+  if (loading || walletLoading) {
     return (
       <div className="min-h-screen cosmic-bg flex items-center justify-center">
         <div className="animate-pulse text-primary text-xl">Loading...</div>
@@ -98,13 +32,16 @@ const BioNexusProtocol = () => {
   if (!user) return <Navigate to="/admin-login" replace />;
   if (!isAdmin) return <Navigate to="/admin" replace />;
 
+  const tier = wallet?.current_tier ?? 'bronze';
+  const config = tierConfig[tier];
+
   const statCards = [
-    { icon: Coins, label: 'RC Mined', value: `${stats.totalMined} RC`, color: 'text-cosmic-gold' },
-    { icon: Zap, label: 'Hash Rate', value: `${stats.hashRate} MH/s`, color: 'text-cosmic-teal' },
-    { icon: Activity, label: 'Blocks Validated', value: stats.blocksValidated.toString(), color: 'text-rainbow-green' },
-    { icon: Clock, label: 'Uptime', value: `${Math.floor(stats.uptime / 60)}m ${stats.uptime % 60}s`, color: 'text-cosmic-purple' },
-    { icon: Cpu, label: 'Current Block', value: `#${stats.currentBlock}`, color: 'text-rainbow-blue' },
-    { icon: BarChart3, label: 'Difficulty', value: stats.networkDifficulty.toString(), color: 'text-rainbow-orange' },
+    { icon: Coins, label: 'RC Balance', value: `${wallet?.rc_balance?.toFixed(2) ?? '0'} RC`, color: 'text-cosmic-gold' },
+    { icon: Zap, label: 'Hash Rate', value: `${liveStats.hashRate} MH/s`, color: 'text-cosmic-teal' },
+    { icon: Activity, label: 'Blocks Validated', value: (wallet?.blocks_validated ?? 0).toString(), color: 'text-rainbow-green' },
+    { icon: Clock, label: 'Total Mined', value: `${wallet?.total_mined?.toFixed(2) ?? '0'} RC`, color: 'text-cosmic-purple' },
+    { icon: Cpu, label: 'Current Block', value: `#${liveStats.currentBlock}`, color: 'text-rainbow-blue' },
+    { icon: BarChart3, label: 'Difficulty', value: liveStats.networkDifficulty.toString(), color: 'text-rainbow-orange' },
   ];
 
   return (
@@ -121,7 +58,7 @@ const BioNexusProtocol = () => {
               <Shield className="w-8 h-8" />
               BioNexus Protocol
             </h1>
-            <p className="text-foreground/70 mt-1">Shift Coin Mining Simulator — Reality Coin (RC)</p>
+            <p className="text-foreground/70 mt-1">Shift Coin Mining — Reality Coin (RC)</p>
           </div>
           <div className={`px-3 py-1 rounded-full text-xs font-semibold ${isMining ? 'bg-rainbow-green/20 text-rainbow-green animate-pulse' : 'bg-muted text-muted-foreground'}`}>
             {isMining ? '● MINING' : '○ IDLE'}
@@ -141,66 +78,95 @@ const BioNexusProtocol = () => {
           ))}
         </div>
 
-        {/* Mining Control */}
-        <Card className="glass-card border-primary/30 mb-6">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Cpu className="w-5 h-5 text-primary" />
-              Mining Engine
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Block Progress</span>
-                <span className="text-foreground font-mono">{Math.min(100, Math.round(miningProgress))}%</span>
+        <div className="grid lg:grid-cols-3 gap-6 mb-6">
+          {/* Mining Control */}
+          <Card className="glass-card border-primary/30 lg:col-span-2">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Cpu className="w-5 h-5 text-primary" />
+                Mining Engine
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Block Progress</span>
+                  <span className="text-foreground font-mono">{Math.min(100, Math.round(liveStats.miningProgress))}%</span>
+                </div>
+                <Progress value={Math.min(100, liveStats.miningProgress)} className="h-3" />
               </div>
-              <Progress value={Math.min(100, miningProgress)} className="h-3" />
-            </div>
 
-            <div className="flex gap-3">
-              <Button
-                onClick={startMining}
-                disabled={isMining}
-                className="flex-1 cosmic-button text-white"
-              >
-                <Play className="w-4 h-4 mr-2" />
-                Start Mining
-              </Button>
-              <Button
-                onClick={stopMining}
-                disabled={!isMining}
-                variant="destructive"
-                className="flex-1"
-              >
-                <Square className="w-4 h-4 mr-2" />
-                Stop Mining
-              </Button>
-            </div>
+              <div className="flex gap-3">
+                <Button onClick={startMining} disabled={isMining} className="flex-1 cosmic-button text-white">
+                  <Play className="w-4 h-4 mr-2" /> Start Mining
+                </Button>
+                <Button onClick={stopMining} disabled={!isMining} variant="destructive" className="flex-1">
+                  <Square className="w-4 h-4 mr-2" /> Stop Mining
+                </Button>
+              </div>
 
-            <div className="grid grid-cols-3 gap-3 text-center text-xs">
-              <div className="p-2 rounded-lg bg-background/30">
-                <p className="text-muted-foreground">Protocol</p>
-                <p className="font-semibold text-foreground">Shift Coin v2</p>
+              <div className="grid grid-cols-3 gap-3 text-center text-xs">
+                <div className="p-2 rounded-lg bg-background/30">
+                  <p className="text-muted-foreground">Protocol</p>
+                  <p className="font-semibold text-foreground">Shift Coin v2</p>
+                </div>
+                <div className="p-2 rounded-lg bg-background/30">
+                  <p className="text-muted-foreground">Gas Fee</p>
+                  <p className="font-semibold text-rainbow-green">$0.00</p>
+                </div>
+                <div className="p-2 rounded-lg bg-background/30">
+                  <p className="text-muted-foreground">RC/Block</p>
+                  <p className="font-semibold text-cosmic-gold">{config.reward} RC</p>
+                </div>
               </div>
-              <div className="p-2 rounded-lg bg-background/30">
-                <p className="text-muted-foreground">Gas Fee</p>
-                <p className="font-semibold text-rainbow-green">$0.00</p>
-              </div>
-              <div className="p-2 rounded-lg bg-background/30">
-                <p className="text-muted-foreground">RC Value</p>
-                <p className="font-semibold text-cosmic-gold">$1.00</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* Mining Logs */}
-        <Card className="glass-card border-border/30">
+          {/* Tier Selector + Wallet */}
+          <div className="space-y-6">
+            <Card className="glass-card border-cosmic-gold/30">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Wallet className="w-5 h-5 text-cosmic-gold" /> Wallet
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-cosmic-gold">{wallet?.rc_balance?.toFixed(4) ?? '0.0000'} RC</p>
+                <p className="text-xs text-muted-foreground mt-1">Persistent balance • auto-saved</p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-border/30">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm">Mining Tier</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup
+                  value={tier}
+                  onValueChange={(v) => setTier(v as MiningTier)}
+                  disabled={isMining}
+                  className="space-y-2"
+                >
+                  {(Object.entries(tierConfig) as [MiningTier, typeof tierConfig.bronze][]).map(([key, cfg]) => (
+                    <div key={key} className="flex items-center space-x-2">
+                      <RadioGroupItem value={key} id={key} />
+                      <Label htmlFor={key} className="text-sm cursor-pointer">
+                        {cfg.label} — {cfg.reward} RC/block, ~{cfg.baseHash} MH/s
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+                {isMining && <p className="text-[10px] text-muted-foreground mt-2">Stop mining to change tier</p>}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Logs */}
+        <Card className="glass-card border-border/30 mb-6">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-cosmic-teal" />
-              Mining Logs
+              <TrendingUp className="w-5 h-5 text-cosmic-teal" /> Mining Logs
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -211,13 +177,67 @@ const BioNexusProtocol = () => {
                   log.includes('[NETWORK]') ? 'text-cosmic-teal' :
                   log.includes('[STATS]') ? 'text-cosmic-gold' :
                   'text-foreground/60'
-                }>
-                  {log}
-                </p>
+                }>{log}</p>
               ))}
             </div>
           </CardContent>
         </Card>
+
+        {/* History */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Recent Transactions */}
+          <Card className="glass-card border-border/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Coins className="w-5 h-5 text-cosmic-gold" /> Recent Transactions
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {transactions.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No transactions yet. Start mining!</p>
+              ) : (
+                <div className="space-y-1 max-h-52 overflow-y-auto">
+                  {transactions.map(tx => (
+                    <div key={tx.id} className="flex justify-between text-xs py-1 border-b border-border/20">
+                      <span className="text-muted-foreground">Block #{tx.block_number}</span>
+                      <span className="text-rainbow-green font-mono">+{tx.amount} RC</span>
+                      <span className="text-muted-foreground">{new Date(tx.created_at).toLocaleTimeString()}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Session History */}
+          <Card className="glass-card border-border/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <History className="w-5 h-5 text-cosmic-purple" /> Session History
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {sessions.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No sessions yet.</p>
+              ) : (
+                <div className="space-y-2 max-h-52 overflow-y-auto">
+                  {sessions.map(s => (
+                    <div key={s.id} className="p-2 rounded-lg bg-background/30 text-xs space-y-1">
+                      <div className="flex justify-between">
+                        <span className="text-cosmic-gold font-semibold">{s.rc_earned.toFixed(4)} RC</span>
+                        <span className="text-muted-foreground">{s.blocks_mined} blocks</span>
+                      </div>
+                      <div className="flex justify-between text-muted-foreground">
+                        <span>{new Date(s.started_at).toLocaleString()}</span>
+                        <span className="capitalize">{s.tier}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       </main>
       <Footer />
     </div>
