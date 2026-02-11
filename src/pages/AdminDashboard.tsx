@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks/useAuth';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -45,14 +45,14 @@ const AdminDashboard = () => {
   }
 
   const tools = [
-    { icon: Users, label: 'User Management', desc: 'Manage platform users & roles', color: 'text-rainbow-blue' },
-    { icon: Package, label: 'LTApparel Orders', desc: 'View & manage clothing orders', color: 'text-cosmic-gold' },
-    { icon: BarChart3, label: 'Analytics', desc: 'Platform stats & metrics', color: 'text-rainbow-green' },
-    { icon: Video, label: 'AI Video Studio', desc: 'AI video generation tools', color: 'text-cosmic-purple' },
-    { icon: Coffee, label: 'LTCakeCafe Manager', desc: 'Cafe events & menu', color: 'text-cosmic-teal' },
-    { icon: Shirt, label: 'Apparel Manager', desc: 'Product catalog & inventory', color: 'text-rainbow-violet' },
-    { icon: FileText, label: 'Content Manager', desc: 'Blog posts & media', color: 'text-primary' },
-    { icon: Settings, label: 'Platform Settings', desc: 'System configuration', color: 'text-foreground' },
+    { icon: Users, label: 'User Management', desc: 'Manage platform users & roles', color: 'text-rainbow-blue', link: null },
+    { icon: Package, label: 'LTApparel Orders', desc: 'View & manage clothing orders', color: 'text-cosmic-gold', link: '/ltopportunity' },
+    { icon: BarChart3, label: 'Analytics', desc: 'Platform stats & metrics', color: 'text-rainbow-green', link: null },
+    { icon: Video, label: 'AI Video Studio', desc: 'AI video generation tools', color: 'text-cosmic-purple', link: null },
+    { icon: Coffee, label: 'LTCakeCafe Manager', desc: 'Cafe events & menu', color: 'text-cosmic-teal', link: null },
+    { icon: Shirt, label: 'Apparel Manager', desc: 'Product catalog & inventory', color: 'text-rainbow-violet', link: '/ltopportunity' },
+    { icon: FileText, label: 'Content Manager', desc: 'Blog posts & media', color: 'text-primary', link: null },
+    { icon: Settings, label: 'Platform Settings', desc: 'System configuration', color: 'text-foreground', link: null },
   ];
 
   return (
@@ -72,23 +72,31 @@ const AdminDashboard = () => {
 
         {/* Tools Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {tools.map((tool) => (
-            <Card
-              key={tool.label}
-              className="glass-card border-border/30 hover:border-primary/40 transition-all cursor-pointer hover:scale-[1.02]"
-            >
-              <CardHeader className="pb-2">
-                <tool.icon className={`w-8 h-8 ${tool.color} mb-2`} />
-                <CardTitle className="text-base">{tool.label}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-xs text-foreground/60">{tool.desc}</p>
-              </CardContent>
-            </Card>
-          ))}
+          {tools.map((tool) => {
+            const cardContent = (
+              <Card
+                key={tool.label}
+                className={`glass-card border-border/30 hover:border-primary/40 transition-all cursor-pointer hover:scale-[1.02] ${!tool.link ? 'opacity-70' : ''}`}
+              >
+                <CardHeader className="pb-2">
+                  <tool.icon className={`w-8 h-8 ${tool.color} mb-2`} />
+                  <CardTitle className="text-base">{tool.label}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-xs text-foreground/60">{tool.desc}</p>
+                  {!tool.link && <p className="text-[10px] text-muted-foreground italic mt-1">Coming Soon</p>}
+                </CardContent>
+              </Card>
+            );
+            return tool.link ? (
+              <Link key={tool.label} to={tool.link}>{cardContent}</Link>
+            ) : (
+              <div key={tool.label}>{cardContent}</div>
+            );
+          })}
         </div>
 
-        {/* Creator Hub Embeds */}
+        {/* Creator Hub */}
         <div className="mt-12">
           <h2 className="text-2xl font-bold text-foreground mb-4">LTCreations Hub</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -105,19 +113,21 @@ const AdminDashboard = () => {
                 </Button>
               </CardContent>
             </Card>
-            <Card className="glass-card border-rainbow-green/30">
-              <CardHeader>
-                <CardTitle className="text-rainbow-green flex items-center gap-2">
-                  <Shield className="w-5 h-5" /> BioNexus Protocol
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-foreground/70">Blockchain compliance & BioNexus protocol management.</p>
-                <Button className="mt-3 cosmic-button" size="sm" disabled>
-                  Coming Soon
-                </Button>
-              </CardContent>
-            </Card>
+            <Link to="/admin/bionexus">
+              <Card className="glass-card border-rainbow-green/30 hover:border-rainbow-green/60 transition-colors cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="text-rainbow-green flex items-center gap-2">
+                    <Shield className="w-5 h-5" /> BioNexus Protocol
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-foreground/70">Shift Coin mining simulator & BioNexus protocol management.</p>
+                  <Button className="mt-3 cosmic-button text-white" size="sm">
+                    Launch Mining
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
       </main>
