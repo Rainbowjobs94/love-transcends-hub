@@ -18,6 +18,8 @@ import LTOpportunity from "./pages/LTOpportunity";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import BioNexusProtocol from "./pages/BioNexusProtocol";
+import UserLogin from "./pages/UserLogin";
+import UserMining from "./pages/UserMining";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +46,8 @@ const App = () => (
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/bionexus" element={<BioNexusProtocol />} />
+            <Route path="/login" element={<UserLogin />} />
+            <Route path="/mining" element={<UserMining />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
