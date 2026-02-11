@@ -161,30 +161,21 @@ export function useMining(userId: string | undefined) {
           const blockNum = prev.currentBlock + 1;
           const reward = config.reward;
 
-          // Update wallet in DB
+          // Atomic wallet update + transaction insert via RPC
           supabase
-            .from('mining_wallets')
-            .update({
-              rc_balance: wallet.rc_balance + sessionEarnedRef.current + reward,
-              total_mined: wallet.total_mined + sessionEarnedRef.current + reward,
-              blocks_validated: wallet.blocks_validated + sessionBlocksRef.current + 1,
+            .rpc('add_mining_reward', {
+              _amount: reward,
+              _block_num: blockNum,
             })
-            .eq('user_id', userId)
-            .then(() => {});
-
-          // Insert transaction
-          supabase
-            .from('mining_transactions')
-            .insert({
-              user_id: userId,
-              amount: reward,
-              type: 'block_reward',
-              block_number: blockNum,
-            })
-            .then(({ data }) => {
-              if (data) {
-                setTransactions(prev => [{ ...(data as any)[0], amount: reward }, ...prev].slice(0, 20));
-              }
+            .then(() => {
+              // Add transaction to local state
+              setTransactions(prev => [{
+                id: crypto.randomUUID(),
+                amount: reward,
+                type: 'block_reward',
+                block_number: blockNum,
+                created_at: new Date().toISOString(),
+              }, ...prev].slice(0, 20));
             });
 
           sessionEarnedRef.current += reward;
