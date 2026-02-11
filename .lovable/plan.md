@@ -1,53 +1,61 @@
 
 
-# Make BioNexus Protocol Fully Functional
+# User Login and Simulated Mining for Visitors
 
-## What This Does
+## Overview
+Add a public-facing login/signup system so site visitors can create accounts and experience a simulated version of the BioNexus MCL mining dashboard -- without requiring admin privileges or touching the admin-only database tables.
 
-Turns the BioNexus mining simulator into a fully persistent, functional system. Your RC balance, blocks validated, mining sessions, and transaction history will all be saved to the database -- nothing resets when you refresh or leave the page.
+---
 
-## Features
+## What Changes
 
-1. **Persistent Wallet** -- Your Reality Coin (RC) balance saves automatically and loads when you return
-2. **Mining Session Tracking** -- Every mining session records start/end time, duration, and RC earned
-3. **Transaction History** -- A full ledger of all RC earned, with timestamps
-4. **Mining Tiers** -- Bronze and Silver levels with different hash rates and reward multipliers
-5. **Auto-Save** -- Stats save to the database every time a block is mined
-6. **Session Summary** -- When you stop mining, a session summary is saved with total earnings
+### 1. User Login Page (`src/pages/UserLogin.tsx`)
+- A new login/signup page at `/login` (separate from `/admin-login`)
+- Same cosmic styling as the admin login but branded for regular users ("MiracleCoin Portal" instead of "Admin Login")
+- Email + password authentication using the existing auth system
+- After login, redirects to `/mining` (the user mining dashboard)
 
-## Technical Details
+### 2. User Mining Dashboard (`src/pages/UserMining.tsx`)
+- A new page at `/mining` that requires authentication (any logged-in user, **not** admin)
+- Reuses the same visual layout as BioNexusProtocol (balance overview, mining engine, logs, stats, 50/50 split indicator, unlock countdown, trading status, reserves)
+- **All mining is simulated in local React state only** -- no database writes, no RLS issues
+- Mining sessions, transactions, balances, and logs are all ephemeral (reset on page refresh)
+- This keeps the admin mining data separate and protected
 
-### Database Tables (3 new tables)
+### 3. Local Mining Hook (`src/hooks/useLocalMining.ts`)
+- A new hook that mirrors `useMining` but stores everything in React state instead of the database
+- Same mining loop logic: progress bar, block rewards, hash rate simulation, tier selection
+- Same 50/50 MCL split calculation with reserve entries
+- No database calls at all -- purely client-side simulation
 
-**`mining_wallets`** -- One row per user, stores their RC balance and lifetime stats
-- `user_id`, `rc_balance`, `total_mined`, `blocks_validated`, `current_tier` (bronze/silver), `created_at`, `updated_at`
+### 4. Navigation Update (`src/components/Navigation.tsx`)
+- Change the "Login" button to link to `/login` instead of the external `ltsocial.net`
+- When a user is logged in, show their email/avatar and a "Mining" link instead of the login button
+- Admin users will still see a separate "Admin" link
 
-**`mining_sessions`** -- One row per mining session (start to stop)
-- `user_id`, `started_at`, `ended_at`, `rc_earned`, `blocks_mined`, `avg_hash_rate`, `tier`
+### 5. Route Registration (`src/App.tsx`)
+- Add `/login` route pointing to `UserLogin`
+- Add `/mining` route pointing to `UserMining`
 
-**`mining_transactions`** -- Individual block rewards logged as transactions
-- `user_id`, `amount`, `type` (block_reward, bonus, etc.), `block_number`, `created_at`
+---
 
-All tables have RLS policies so users can only access their own data. Admins can view all.
+## File Summary
 
-### Frontend Changes
+| File | Action | Purpose |
+|---|---|---|
+| `src/pages/UserLogin.tsx` | Create | Public login/signup page for visitors |
+| `src/pages/UserMining.tsx` | Create | User-facing simulated mining dashboard |
+| `src/hooks/useLocalMining.ts` | Create | Client-side-only mining simulation hook |
+| `src/components/Navigation.tsx` | Modify | Update Login button to `/login`, show user state when logged in |
+| `src/App.tsx` | Modify | Add `/login` and `/mining` routes |
 
-**`src/pages/BioNexusProtocol.tsx`** -- Major rewrite:
-- Load wallet from database on mount (or create one if first visit)
-- On each block mined: insert a transaction row, update wallet balance
-- On stop mining: save the session record
-- Add a "Mining Tier" selector (Bronze: 1x rewards, Silver: 2x rewards)
-- Add a "Transaction History" section showing recent earnings
-- Add a "Session History" section showing past mining sessions
-- Add a "Wallet" card showing persistent RC balance
+### No Database Changes
+- No new tables or migrations needed
+- Existing admin-only RLS policies remain untouched
+- User accounts are created through the existing authentication system (profiles table auto-creation via trigger)
 
-### Mining Tier Rules
-- **Bronze** -- 0.25 RC per block, base hash rate ~30 MH/s
-- **Silver** -- 0.50 RC per block, boosted hash rate ~55 MH/s, faster block discovery
-
-### Data Flow
-1. Page loads -> fetch wallet from `mining_wallets` (upsert if new)
-2. Start mining -> create pending session record
-3. Block mined -> insert into `mining_transactions`, update `mining_wallets` balance
-4. Stop mining -> update session with final stats
+### Security
+- Regular users cannot access `/admin` or `/admin/bionexus` (existing admin role checks remain)
+- The simulated mining page uses zero database writes -- all state is local
+- Admin mining data stays completely isolated from user simulation
 
