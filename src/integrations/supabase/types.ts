@@ -160,6 +160,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      add_mining_reward: {
+        Args: { _amount: number; _block_num: number }
+        Returns: undefined
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
