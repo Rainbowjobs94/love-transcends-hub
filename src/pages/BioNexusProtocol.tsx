@@ -9,16 +9,20 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import {
   Shield, Zap, Coins, Activity, Play, Square,
-  TrendingUp, Clock, Cpu, BarChart3, ArrowLeft, Wallet, History
+  TrendingUp, Clock, Cpu, BarChart3, ArrowLeft, History
 } from 'lucide-react';
 import { useMining, MiningTier } from '@/hooks/useMining';
+import MiningBalanceOverview from '@/components/mining/MiningBalanceOverview';
+import UnlockCountdown from '@/components/mining/UnlockCountdown';
+import TradingStatus from '@/components/mining/TradingStatus';
+import MiningReserves from '@/components/mining/MiningReserves';
 
 const BioNexusProtocol = () => {
   const { user, isAdmin, loading } = useAuth();
   const {
     wallet, walletLoading, sessions, transactions,
     isMining, liveStats, logs,
-    startMining, stopMining, setTier, tierConfig,
+    startMining, stopMining, setTier, tierConfig, mclBalances,
   } = useMining(user?.id);
 
   if (loading || walletLoading) {
@@ -36,10 +40,10 @@ const BioNexusProtocol = () => {
   const config = tierConfig[tier];
 
   const statCards = [
-    { icon: Coins, label: 'RC Balance', value: `${wallet?.rc_balance?.toFixed(2) ?? '0'} RC`, color: 'text-cosmic-gold' },
+    { icon: Coins, label: 'MCL Balance', value: `${wallet?.rc_balance?.toFixed(2) ?? '0'} MCL`, color: 'text-cosmic-gold' },
     { icon: Zap, label: 'Hash Rate', value: `${liveStats.hashRate} MH/s`, color: 'text-cosmic-teal' },
     { icon: Activity, label: 'Blocks Validated', value: (wallet?.blocks_validated ?? 0).toString(), color: 'text-rainbow-green' },
-    { icon: Clock, label: 'Total Mined', value: `${wallet?.total_mined?.toFixed(2) ?? '0'} RC`, color: 'text-cosmic-purple' },
+    { icon: Clock, label: 'Total Mined', value: `${wallet?.total_mined?.toFixed(2) ?? '0'} MCL`, color: 'text-cosmic-purple' },
     { icon: Cpu, label: 'Current Block', value: `#${liveStats.currentBlock}`, color: 'text-rainbow-blue' },
     { icon: BarChart3, label: 'Difficulty', value: liveStats.networkDifficulty.toString(), color: 'text-rainbow-orange' },
   ];
@@ -58,12 +62,20 @@ const BioNexusProtocol = () => {
               <Shield className="w-8 h-8" />
               BioNexus Protocol
             </h1>
-            <p className="text-foreground/70 mt-1">Shift Coin Mining — Reality Coin (RC)</p>
+            <p className="text-foreground/70 mt-1">MiracleCoin (MCL) Mining — KYC-Gated v2.0 • 50/50 Split</p>
           </div>
           <div className={`px-3 py-1 rounded-full text-xs font-semibold ${isMining ? 'bg-rainbow-green/20 text-rainbow-green animate-pulse' : 'bg-muted text-muted-foreground'}`}>
             {isMining ? '● MINING' : '○ IDLE'}
           </div>
         </div>
+
+        {/* V2 Balance Overview (Available / Claimable / Locked / Total) */}
+        <MiningBalanceOverview
+          totalMined={mclBalances.totalMined}
+          availableBalance={mclBalances.available}
+          lockedBalance={mclBalances.locked}
+          claimableBalance={mclBalances.claimable}
+        />
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
@@ -84,7 +96,7 @@ const BioNexusProtocol = () => {
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
                 <Cpu className="w-5 h-5 text-primary" />
-                Mining Engine
+                MCL Mining Engine
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -108,34 +120,35 @@ const BioNexusProtocol = () => {
               <div className="grid grid-cols-3 gap-3 text-center text-xs">
                 <div className="p-2 rounded-lg bg-background/30">
                   <p className="text-muted-foreground">Protocol</p>
-                  <p className="font-semibold text-foreground">Shift Coin v2</p>
+                  <p className="font-semibold text-foreground">MCL v2.0</p>
                 </div>
                 <div className="p-2 rounded-lg bg-background/30">
                   <p className="text-muted-foreground">Gas Fee</p>
                   <p className="font-semibold text-rainbow-green">$0.00</p>
                 </div>
                 <div className="p-2 rounded-lg bg-background/30">
-                  <p className="text-muted-foreground">RC/Block</p>
-                  <p className="font-semibold text-cosmic-gold">{config.reward} RC</p>
+                  <p className="text-muted-foreground">MCL/Block</p>
+                  <p className="font-semibold text-cosmic-gold">{config.reward} MCL</p>
+                </div>
+              </div>
+
+              {/* 50/50 Split Indicator */}
+              <div className="p-3 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/20">
+                <p className="text-xs font-semibold text-cosmic-purple mb-1">50/50 Split Active</p>
+                <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                  <span className="flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-cosmic-gold" /> 50% Immediate
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-cosmic-purple" /> 50% Locked (3yr)
+                  </span>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Tier Selector + Wallet */}
-          <div className="space-y-6">
-            <Card className="glass-card border-cosmic-gold/30">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Wallet className="w-5 h-5 text-cosmic-gold" /> Wallet
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-bold text-cosmic-gold">{wallet?.rc_balance?.toFixed(4) ?? '0.0000'} RC</p>
-                <p className="text-xs text-muted-foreground mt-1">Persistent balance • auto-saved</p>
-              </CardContent>
-            </Card>
-
+          {/* Right Column: Tier + Trading Status */}
+          <div className="space-y-4">
             <Card className="glass-card border-border/30">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">Mining Tier</CardTitle>
@@ -151,7 +164,7 @@ const BioNexusProtocol = () => {
                     <div key={key} className="flex items-center space-x-2">
                       <RadioGroupItem value={key} id={key} />
                       <Label htmlFor={key} className="text-sm cursor-pointer">
-                        {cfg.label} — {cfg.reward} RC/block, ~{cfg.baseHash} MH/s
+                        {cfg.label} — {cfg.reward} MCL/block, ~{cfg.baseHash} MH/s
                       </Label>
                     </div>
                   ))}
@@ -159,7 +172,18 @@ const BioNexusProtocol = () => {
                 {isMining && <p className="text-[10px] text-muted-foreground mt-2">Stop mining to change tier</p>}
               </CardContent>
             </Card>
+
+            <TradingStatus lastTradeTime={null} />
           </div>
+        </div>
+
+        {/* Unlock Countdown + Reserves */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-6">
+          <UnlockCountdown />
+          <MiningReserves
+            lockedBalance={mclBalances.locked}
+            entries={mclBalances.reserveEntries}
+          />
         </div>
 
         {/* Logs */}
@@ -200,7 +224,7 @@ const BioNexusProtocol = () => {
                   {transactions.map(tx => (
                     <div key={tx.id} className="flex justify-between text-xs py-1 border-b border-border/20">
                       <span className="text-muted-foreground">Block #{tx.block_number}</span>
-                      <span className="text-rainbow-green font-mono">+{tx.amount} RC</span>
+                      <span className="text-rainbow-green font-mono">+{tx.amount} MCL</span>
                       <span className="text-muted-foreground">{new Date(tx.created_at).toLocaleTimeString()}</span>
                     </div>
                   ))}
@@ -224,7 +248,7 @@ const BioNexusProtocol = () => {
                   {sessions.map(s => (
                     <div key={s.id} className="p-2 rounded-lg bg-background/30 text-xs space-y-1">
                       <div className="flex justify-between">
-                        <span className="text-cosmic-gold font-semibold">{s.rc_earned.toFixed(4)} RC</span>
+                        <span className="text-cosmic-gold font-semibold">{s.rc_earned.toFixed(4)} MCL</span>
                         <span className="text-muted-foreground">{s.blocks_mined} blocks</span>
                       </div>
                       <div className="flex justify-between text-muted-foreground">

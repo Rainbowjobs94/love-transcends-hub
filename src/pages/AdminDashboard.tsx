@@ -121,7 +121,7 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-foreground/70">Shift Coin mining simulator & BioNexus protocol management.</p>
+                  <p className="text-sm text-foreground/70">MiracleCoin (MCL) mining v2.0 with 50/50 split & KYC-gated protocol.</p>
                   <Button className="mt-3 cosmic-button text-white" size="sm">
                     Launch Mining
                   </Button>
