@@ -19,13 +19,9 @@ import MiningReserves from '@/components/mining/MiningReserves';
 
 const BioNexusProtocol = () => {
   const { user, isAdmin, loading } = useAuth();
-  const {
-    wallet, walletLoading, sessions, transactions,
-    isMining, liveStats, logs,
-    startMining, stopMining, setTier, tierConfig, mclBalances,
-  } = useMining(user?.id);
 
-  if (loading || walletLoading) {
+  // Auth checks BEFORE any other hooks or logic
+  if (loading) {
     return (
       <div className="min-h-screen cosmic-bg flex items-center justify-center">
         <div className="animate-pulse text-primary text-xl">Loading...</div>
@@ -35,6 +31,24 @@ const BioNexusProtocol = () => {
 
   if (!user) return <Navigate to="/admin-login" replace />;
   if (!isAdmin) return <Navigate to="/admin" replace />;
+
+  return <BioNexusProtocolContent userId={user.id} />;
+};
+
+const BioNexusProtocolContent = ({ userId }: { userId: string }) => {
+  const {
+    wallet, walletLoading, sessions, transactions,
+    isMining, liveStats, logs,
+    startMining, stopMining, setTier, tierConfig, mclBalances,
+  } = useMining(userId);
+
+  if (walletLoading) {
+    return (
+      <div className="min-h-screen cosmic-bg flex items-center justify-center">
+        <div className="animate-pulse text-primary text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   const tier = wallet?.current_tier ?? 'bronze';
   const config = tierConfig[tier];
