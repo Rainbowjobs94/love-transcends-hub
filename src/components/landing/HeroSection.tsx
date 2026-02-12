@@ -77,8 +77,8 @@ export const HeroSection = () => {
           {/* Three Pillars */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
             <div className="glass-card rounded-xl p-6 hover:cosmic-glow transition-all duration-300">
-              <div className="text-3xl font-bold rainbow-text mb-2">LT</div>
-              <h3 className="font-semibold text-foreground mb-1">LTSocial</h3>
+              <div className="text-3xl font-bold rainbow-text mb-2">SU</div>
+              <h3 className="font-semibold text-foreground mb-1">LTSocialUniverse</h3>
               <p className="text-sm text-muted-foreground">IaGuardian Protected Family Network</p>
             </div>
             <div className="glass-card rounded-xl p-6 hover:cosmic-glow transition-all duration-300">
@@ -87,8 +87,8 @@ export const HeroSection = () => {
               <p className="text-sm text-muted-foreground">Smart Contracts Protecting IP for Life</p>
             </div>
             <div className="glass-card rounded-xl p-6 hover:cosmic-glow transition-all duration-300">
-              <div className="text-3xl font-bold rainbow-text mb-2">SU</div>
-              <h3 className="font-semibold text-foreground mb-1">LTSocialUniverse</h3>
+              <div className="text-3xl font-bold rainbow-text mb-2">LTR</div>
+              <h3 className="font-semibold text-foreground mb-1">LTReality</h3>
               <p className="text-sm text-muted-foreground">A Miracle in Reality</p>
             </div>
           </div>
