@@ -18,7 +18,7 @@ export const Navigation = () => {
           </div>
 
           {/* Center: Logo */}
-          <Link to="/" className="flex items-center gap-3 group absolute left-1/2 transform -translate-x-1/2">
+          <Link to="/" className="flex items-center gap-3 group absolute left-1/2 transform -translate-x-[55%]">
             <img
               src={miracleLogo}
               alt="Love Transcends Reality"
@@ -32,8 +32,8 @@ export const Navigation = () => {
           {/* Right: Auth-aware buttons */}
           <div className="flex items-center gap-2">
             <Button asChild size="sm" variant="outline" className="hidden md:inline-flex border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
-              <a href="https://ltreality.net" target="_blank" rel="noopener noreferrer">
-                <Globe className="w-4 h-4 mr-1" /> LTReality
+              <a href="https://socialuniverse.love" target="_blank" rel="noopener noreferrer">
+                <Globe className="w-4 h-4 mr-1" /> LTSocialUniverse
               </a>
             </Button>
             <Button asChild size="sm" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-semibold">
