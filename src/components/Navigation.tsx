@@ -32,11 +32,6 @@ export const Navigation = () => {
           {/* Right: Auth-aware buttons */}
           <div className="flex items-center gap-2">
             <Button asChild size="sm" variant="outline" className="hidden md:inline-flex border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
-              <a href="https://socialuniverse.love" target="_blank" rel="noopener noreferrer">
-                <Globe className="w-4 h-4 mr-1" /> LTSU
-              </a>
-            </Button>
-            <Button asChild size="sm" variant="outline" className="hidden md:inline-flex border-purple-400/50 text-purple-400 hover:bg-purple-400/10">
               <a href="https://ltreality.net" target="_blank" rel="noopener noreferrer">
                 <Globe className="w-4 h-4 mr-1" /> LTR
               </a>
