@@ -31,7 +31,7 @@ export const Navigation = () => {
 
           {/* Right: Auth-aware buttons */}
           <div className="flex items-center gap-2">
-            <Button asChild size="sm" variant="outline" className="border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
+            <Button asChild size="sm" variant="outline" className="hidden md:inline-flex border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
               <a href="https://ltreality.net" target="_blank" rel="noopener noreferrer">
                 <Globe className="w-4 h-4 mr-1" /> LTReality
               </a>
