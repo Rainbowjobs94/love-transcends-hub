@@ -46,7 +46,6 @@ export const ContactSection = () => {
                 <MapPin className="w-5 h-5 text-cosmic-teal flex-shrink-0" />
                 <div className="text-sm text-muted-foreground">
                   <p>Love Transcends Reality LLC</p>
-                  <p>219 Sheridan Ave, Longwood, FL 32750</p>
                 </div>
               </div>
               
