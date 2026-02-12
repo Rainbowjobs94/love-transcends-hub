@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import miracleLogo from '@/assets/logos/miracle-network-logo.jpeg';
 import { MediaControls } from './MediaControls';
 import { Button } from '@/components/ui/button';
-import { Heart, LogIn, Pickaxe, Shield, LogOut } from 'lucide-react';
+import { Heart, LogIn, Pickaxe, Shield, LogOut, Globe } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 export const Navigation = () => {
@@ -31,6 +31,11 @@ export const Navigation = () => {
 
           {/* Right: Auth-aware buttons */}
           <div className="flex items-center gap-2">
+            <Button asChild size="sm" variant="outline" className="border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
+              <a href="https://ltreality.net" target="_blank" rel="noopener noreferrer">
+                <Globe className="w-4 h-4 mr-1" /> LTReality
+              </a>
+            </Button>
             <Button asChild size="sm" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-semibold">
               <a href="https://gofundme.com/f/love-transcends-reality-llc" target="_blank" rel="noopener noreferrer">
                 <Heart className="w-4 h-4 mr-1" /> Donate

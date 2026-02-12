@@ -252,13 +252,7 @@ export const LeftPanel = () => {
               </CardContent>
             </Card>
 
-            {/* Admin Login */}
-            <Link to="/admin-login" className="block">
-              <Button variant="outline" className="w-full flex items-center gap-2">
-                <LogIn className="w-4 h-4" />
-                Admin Login
-              </Button>
-            </Link>
+            {/* Removed Admin Login button — login is in the top nav */}
           </div>
         </ScrollArea>
       </SheetContent>
