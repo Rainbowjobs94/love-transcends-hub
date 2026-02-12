@@ -11,7 +11,7 @@ import {
   Coins, Zap, Activity, Play, Square,
   TrendingUp, Clock, Cpu, BarChart3, Home, History, Sparkles,
 } from 'lucide-react';
-import { useLocalMining, MiningTier } from '@/hooks/useLocalMining';
+import { useMining, MiningTier } from '@/hooks/useMining';
 import MiningBalanceOverview from '@/components/mining/MiningBalanceOverview';
 import UnlockCountdown from '@/components/mining/UnlockCountdown';
 import TradingStatus from '@/components/mining/TradingStatus';
@@ -20,12 +20,12 @@ import MiningReserves from '@/components/mining/MiningReserves';
 const UserMining = () => {
   const { user, loading } = useAuth();
   const {
-    wallet, sessions, transactions,
+    wallet, walletLoading, sessions, transactions,
     isMining, liveStats, logs,
     startMining, stopMining, setTier, tierConfig, mclBalances,
-  } = useLocalMining();
+  } = useMining(user?.id);
 
-  if (loading) {
+  if (loading || walletLoading) {
     return (
       <div className="min-h-screen cosmic-bg flex items-center justify-center">
         <div className="animate-pulse text-primary text-xl">Loading...</div>
@@ -35,14 +35,14 @@ const UserMining = () => {
 
   if (!user) return <Navigate to="/login" replace />;
 
-  const tier = wallet.current_tier;
+  const tier = wallet?.current_tier ?? 'bronze';
   const config = tierConfig[tier];
 
   const statCards = [
-    { icon: Coins, label: 'MCL Balance', value: `${wallet.rc_balance.toFixed(2)} MCL`, color: 'text-cosmic-gold' },
+    { icon: Coins, label: 'MCL Balance', value: `${wallet?.rc_balance?.toFixed(2) ?? '0'} MCL`, color: 'text-cosmic-gold' },
     { icon: Zap, label: 'Hash Rate', value: `${liveStats.hashRate} MH/s`, color: 'text-cosmic-teal' },
-    { icon: Activity, label: 'Blocks Validated', value: wallet.blocks_validated.toString(), color: 'text-rainbow-green' },
-    { icon: Clock, label: 'Total Mined', value: `${wallet.total_mined.toFixed(2)} MCL`, color: 'text-cosmic-purple' },
+    { icon: Activity, label: 'Blocks Validated', value: (wallet?.blocks_validated ?? 0).toString(), color: 'text-rainbow-green' },
+    { icon: Clock, label: 'Total Mined', value: `${wallet?.total_mined?.toFixed(2) ?? '0'} MCL`, color: 'text-cosmic-purple' },
     { icon: Cpu, label: 'Current Block', value: `#${liveStats.currentBlock}`, color: 'text-rainbow-blue' },
     { icon: BarChart3, label: 'Difficulty', value: liveStats.networkDifficulty.toString(), color: 'text-rainbow-orange' },
   ];
@@ -71,7 +71,7 @@ const UserMining = () => {
         {/* Simulation Notice */}
         <div className="mb-6 p-3 rounded-lg bg-cosmic-gold/10 border border-cosmic-gold/20 text-sm text-cosmic-gold">
           <Sparkles className="w-4 h-4 inline mr-2" />
-          Simulation mode — balances reset on page refresh. Experience MCL mining risk-free!
+          Your MCL mining data is saved — balances persist across sessions!
         </div>
 
         {/* Balance Overview */}
