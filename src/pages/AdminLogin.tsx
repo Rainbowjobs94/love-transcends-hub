@@ -14,8 +14,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -25,22 +24,12 @@ const AdminLogin = () => {
     setIsLoading(true);
 
     try {
-      if (isSignUp) {
-        const { error } = await signUp(email, password);
-        if (error) {
-          setError(error.message);
-        } else {
-          toast({ title: 'Account created! You can now sign in.' });
-          setIsSignUp(false);
-        }
+      const { error } = await signIn(email, password);
+      if (error) {
+        setError(error.message);
       } else {
-        const { error } = await signIn(email, password);
-        if (error) {
-          setError(error.message);
-        } else {
-          toast({ title: 'Logged in successfully' });
-          navigate('/admin');
-        }
+        toast({ title: 'Logged in successfully' });
+        navigate('/admin');
       }
     } catch (err: any) {
       setError(err?.message || 'An unexpected error occurred');
@@ -58,9 +47,9 @@ const AdminLogin = () => {
             <div className="mx-auto w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-2">
               <Shield className="w-8 h-8 text-primary" />
             </div>
-            <CardTitle className="text-2xl rainbow-text">{isSignUp ? 'Create Account' : 'Admin Login'}</CardTitle>
+            <CardTitle className="text-2xl rainbow-text">Admin Login</CardTitle>
             <CardDescription className="text-foreground/70">
-              {isSignUp ? 'Sign up for an admin account' : 'Sign in to access the LTCreations Admin Dashboard'}
+              Sign in to access the LTCreations Admin Dashboard
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -95,15 +84,9 @@ const AdminLogin = () => {
               </div>
               <Button type="submit" className="w-full cosmic-button" disabled={isLoading}>
                 <LogIn className="w-4 h-4 mr-2" />
-                {isLoading ? (isSignUp ? 'Creating...' : 'Signing in...') : (isSignUp ? 'Sign Up' : 'Sign In')}
+                {isLoading ? 'Signing in...' : 'Sign In'}
               </Button>
             </form>
-            <p className="text-center text-sm text-foreground/70 mt-4">
-              {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
-              <button onClick={() => { setIsSignUp(!isSignUp); setError(''); }} className="text-primary hover:underline">
-                {isSignUp ? 'Sign In' : 'Sign Up'}
-              </button>
-            </p>
           </CardContent>
         </Card>
       </main>
