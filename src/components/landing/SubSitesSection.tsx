@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button';
 
 const platforms = [
   {
-    abbr: 'LT',
-    name: 'LTSocial',
+    abbr: 'SU',
+    name: 'LTSocialUniverse',
     tagline: 'IaGuardian Protected Family Network',
     description: 'A family-first social platform with AI Guardian protection, three-tier connections, and mental health focus. 75% creator revenue share.',
-    internalPath: '/ltsocial',
-    externalUrl: 'https://www.ltsocial.com',
+    internalPath: '/socialuniverse',
+    externalUrl: 'https://www.socialuniverse.love',
     color: 'from-rainbow-violet to-rainbow-blue',
   },
   {
@@ -22,12 +22,12 @@ const platforms = [
     color: 'from-rainbow-yellow to-rainbow-orange',
   },
   {
-    abbr: 'SU',
-    name: 'LTSocialUniverse',
+    abbr: 'LTR',
+    name: 'LTReality',
     tagline: 'A Miracle in Reality',
     description: 'The complete ecosystem bringing together social networking, cryptocurrency mining, and creator empowerment in one unified experience.',
-    internalPath: '/socialuniverse',
-    externalUrl: 'https://www.socialuniverse.love',
+    internalPath: '/ltsocial',
+    externalUrl: 'https://www.lovetranscendsreality.org',
     color: 'from-rainbow-green to-rainbow-blue',
   },
 ];
