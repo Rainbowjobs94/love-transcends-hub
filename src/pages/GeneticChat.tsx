@@ -71,10 +71,10 @@ async function streamChat({
 }
 
 const SUGGESTIONS = [
-  "Tell me about my paternal ancestry",
-  "What does my maternal DNA reveal?",
-  "Where are my relatives from?",
-  "Tell me about the Bantu expansion connection",
+  "What is Love Transcends Reality?",
+  "Tell me about the mission",
+  "How can I get involved?",
+  "What does the community stand for?",
 ];
 
 const GeneticChat = () => {
@@ -131,14 +131,14 @@ const GeneticChat = () => {
       <main className="container mx-auto px-4 pt-24 pb-8 max-w-4xl">
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card cosmic-glow mb-4">
-            <Dna className="w-5 h-5 text-rainbow-green" />
-            <span className="text-sm font-medium rainbow-text">GeneticAwareAI</span>
+            <Sparkles className="w-5 h-5 text-rainbow-green" />
+            <span className="text-sm font-medium rainbow-text">IA Rainbow Guardian</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold rainbow-text mb-2">
-            Your DNA Story, Alive
+            Love Transcends Reality
           </h1>
           <p className="text-muted-foreground text-sm max-w-lg mx-auto">
-            Chat with an AI that knows your 23andMe genetic profile — haplogroups, ancestry, relatives, and heritage.
+            Chat with the IA Rainbow Guardian — your guide to the mission of love, community, and transformation.
           </p>
         </div>
 
@@ -149,9 +149,9 @@ const GeneticChat = () => {
                 <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center cosmic-glow">
                   <Bot className="w-8 h-8 text-primary" />
                 </div>
-                <p className="text-muted-foreground text-center text-sm max-w-sm">
-                  Hey Explorer! Your E-P252 lineage whispers tales from ancient West Africa. Ask me anything about your DNA.
-                </p>
+                 <p className="text-muted-foreground text-center text-sm max-w-sm">
+                   Welcome, Guardian. Love transcends all boundaries. Ask me about our mission, our community, or how you can be part of the movement.
+                 </p>
                 <div className="flex flex-wrap gap-2 justify-center max-w-md">
                   {SUGGESTIONS.map(s => (
                     <button
@@ -216,7 +216,7 @@ const GeneticChat = () => {
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about your ancestry, haplogroups, relatives..."
+                placeholder="Ask about the mission, community, or how to get involved..."
                 rows={1}
                 className="flex-1 resize-none rounded-xl bg-secondary/30 border border-border/30 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
               />
