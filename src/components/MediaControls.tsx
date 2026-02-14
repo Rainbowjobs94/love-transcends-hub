@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Square, Music } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, CircleStop, Clapperboard, Film } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const videoTracks = [
@@ -91,7 +91,7 @@ export const MediaControls = ({ onVideoChange }: MediaControlsProps) => {
 
       {/* Now Playing Display - Center */}
       <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
-        <Music size={12} className="text-cosmic-teal" />
+        <Film size={12} className="text-cosmic-teal" />
         <span className="max-w-[120px] truncate">
           {currentTrack.title} ({currentTrackIndex + 1}/{videoTracks.length})
         </span>
@@ -115,7 +115,7 @@ export const MediaControls = ({ onVideoChange }: MediaControlsProps) => {
           className="h-8 w-8 text-foreground hover:text-primary hover:bg-primary/10"
           aria-label="Stop"
         >
-          <Square size={16} />
+          <CircleStop size={16} />
         </Button>
       </div>
     </>
