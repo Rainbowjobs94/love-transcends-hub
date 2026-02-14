@@ -23,9 +23,9 @@ import AdminAIMemory from "./pages/AdminAIMemory";
 import AdminContentManager from "./pages/AdminContentManager";
 import UserLogin from "./pages/UserLogin";
 import UserMining from "./pages/UserMining";
-import GeneticChat from "./pages/GeneticChat";
+
 import NotFound from "./pages/NotFound";
-import { GuardianChatBubble } from "./components/GuardianChatBubble";
+
 
 const queryClient = new QueryClient();
 
@@ -53,11 +53,11 @@ const AppRoutes = () => {
         <Route path="/admin/content" element={<AdminContentManager />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/mining" element={<UserMining />} />
-        <Route path="/genetic-ai" element={<GeneticChat />} />
+        
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {isAdmin && <GuardianChatBubble />}
+      
     </>
   );
 };
