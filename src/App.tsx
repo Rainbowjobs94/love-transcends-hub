@@ -20,6 +20,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import BioNexusProtocol from "./pages/BioNexusProtocol";
 import UserLogin from "./pages/UserLogin";
 import UserMining from "./pages/UserMining";
+import GeneticChat from "./pages/GeneticChat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/admin/bionexus" element={<BioNexusProtocol />} />
             <Route path="/login" element={<UserLogin />} />
             <Route path="/mining" element={<UserMining />} />
+            <Route path="/genetic-ai" element={<GeneticChat />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
