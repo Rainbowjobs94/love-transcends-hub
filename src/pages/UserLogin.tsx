@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Coins, LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Heart, LogIn, Mail, Lock, AlertCircle, UserPlus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const UserLogin = () => {
@@ -30,7 +30,7 @@ const UserLogin = () => {
         if (error) {
           setError(error.message);
         } else {
-          toast({ title: 'Account created! Check your email to verify, then sign in.' });
+          toast({ title: 'Welcome! Check your email to verify your account, then sign in.' });
           setIsSignUp(false);
         }
       } else {
@@ -38,7 +38,7 @@ const UserLogin = () => {
         if (error) {
           setError(error.message);
         } else {
-          toast({ title: 'Welcome to MiracleCoin!' });
+          toast({ title: 'Welcome to Love Transcends Reality' });
           navigate('/mining');
         }
       }
@@ -55,16 +55,16 @@ const UserLogin = () => {
       <main className="container mx-auto px-4 pt-24 pb-16 flex items-center justify-center min-h-[80vh]">
         <Card className="w-full max-w-md glass-card border-primary/30">
           <CardHeader className="text-center space-y-2">
-            <div className="mx-auto w-16 h-16 rounded-full bg-cosmic-gold/20 flex items-center justify-center mb-2">
-              <Coins className="w-8 h-8 text-cosmic-gold" />
+            <div className="mx-auto w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-2">
+              <Heart className="w-8 h-8 text-primary" />
             </div>
             <CardTitle className="text-2xl rainbow-text">
-              {isSignUp ? 'Create Account' : 'MiracleCoin Portal'}
+              {isSignUp ? 'Join the Movement' : 'Love Transcends Reality'}
             </CardTitle>
             <CardDescription className="text-foreground/70">
               {isSignUp
-                ? 'Sign up to experience MCL mining simulation'
-                : 'Sign in to mine MiracleCoin (MCL) in simulation mode'}
+                ? 'Create your account and become part of something greater'
+                : 'Sign in to continue your journey'}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -99,7 +99,7 @@ const UserLogin = () => {
                 />
               </div>
               <Button type="submit" className="w-full cosmic-button" disabled={isLoading}>
-                <LogIn className="w-4 h-4 mr-2" />
+                {isSignUp ? <UserPlus className="w-4 h-4 mr-2" /> : <LogIn className="w-4 h-4 mr-2" />}
                 {isLoading
                   ? (isSignUp ? 'Creating...' : 'Signing in...')
                   : (isSignUp ? 'Sign Up' : 'Sign In')}
