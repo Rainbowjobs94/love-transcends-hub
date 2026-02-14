@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Shield, LogOut, Users, Package, BarChart3,
-  Settings, FileText, Video, Coffee, Shirt
+  Settings, FileText, Video, Coffee, Shirt, Sparkles
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -124,6 +124,21 @@ const AdminDashboard = () => {
                   <p className="text-sm text-foreground/70">MiracleCoin (MCL) mining v2.0 with 50/50 split & KYC-gated protocol.</p>
                   <Button className="mt-3 cosmic-button text-white" size="sm">
                     Launch Mining
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/admin/ai-history">
+              <Card className="glass-card border-cosmic-purple/30 hover:border-cosmic-purple/60 transition-colors cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="text-cosmic-purple flex items-center gap-2">
+                    <Sparkles className="w-5 h-5" /> IA Guardian History
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-foreground/70">View all IA Rainbow Guardian AI conversations & chat logs.</p>
+                  <Button className="mt-3 cosmic-button text-white" size="sm">
+                    View History
                   </Button>
                 </CardContent>
               </Card>
