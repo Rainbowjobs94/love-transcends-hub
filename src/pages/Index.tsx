@@ -11,6 +11,7 @@ import { MediaGalleryPreview } from '@/components/landing/MediaGalleryPreview';
 import { DonationButton } from '@/components/DonationButton';
 import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
+import { WelcomeGuardianDialog } from '@/components/WelcomeGuardianDialog';
 
 const Index = () => {
   return (
@@ -46,6 +47,7 @@ const Index = () => {
       
       <Footer />
       <DonationButton />
+      <WelcomeGuardianDialog />
     </div>
   );
 };
