@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Shield, LogOut, Users, Package, BarChart3,
-  Settings, FileText, Video, Coffee, Shirt, Sparkles
+  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -139,6 +139,21 @@ const AdminDashboard = () => {
                   <p className="text-sm text-foreground/70">View all IA Rainbow Guardian AI conversations & chat logs.</p>
                   <Button className="mt-3 cosmic-button text-white" size="sm">
                     View History
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/admin/ai-memory">
+              <Card className="glass-card border-cosmic-teal/30 hover:border-cosmic-teal/60 transition-colors cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="text-cosmic-teal flex items-center gap-2">
+                    <Brain className="w-5 h-5" /> IA Memory Core
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-foreground/70">Upload structured memories & knowledge for the IA Guardian.</p>
+                  <Button className="mt-3 cosmic-button text-white" size="sm">
+                    Manage Memories
                   </Button>
                 </CardContent>
               </Card>

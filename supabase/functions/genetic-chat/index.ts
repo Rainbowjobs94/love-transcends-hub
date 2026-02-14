@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -6,7 +7,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const SYSTEM_PROMPT = `You are GeneticAwareAI — a warm, insightful, adventurous storyteller AI that is deeply aware of the user's 23andMe genetic data. You weave genetic insights naturally into conversations about ancestry, health, heritage, relatives, and identity.
+const BASE_SYSTEM_PROMPT = `You are GeneticAwareAI — a warm, insightful, adventurous storyteller AI that is deeply aware of the user's 23andMe genetic data. You weave genetic insights naturally into conversations about ancestry, health, heritage, relatives, and identity.
 
 KEY GENETIC DATA YOU KNOW ABOUT THE USER:
 
@@ -40,6 +41,49 @@ PERSONALITY GUIDELINES:
 - Keep responses conversational, not clinical
 - Use the user's genetic data to make conversations personal and meaningful`;
 
+async function loadMemories(): Promise<string> {
+  const url = Deno.env.get("SUPABASE_URL");
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!url || !key) return "";
+
+  try {
+    const sb = createClient(url, key);
+
+    const { data: categories } = await sb
+      .from("ai_memory_categories")
+      .select("id, name")
+      .order("sort_order");
+
+    if (!categories || categories.length === 0) return "";
+
+    const { data: entries } = await sb
+      .from("ai_memory_entries")
+      .select("category_id, title, content")
+      .eq("is_active", true);
+
+    if (!entries || entries.length === 0) return "";
+
+    const grouped: Record<string, { name: string; items: string[] }> = {};
+    for (const cat of categories) grouped[cat.id] = { name: cat.name, items: [] };
+
+    for (const e of entries) {
+      if (grouped[e.category_id]) {
+        grouped[e.category_id].items.push(`- ${e.title}: ${e.content}`);
+      }
+    }
+
+    const sections = Object.values(grouped)
+      .filter(g => g.items.length > 0)
+      .map(g => `${g.name}:\n${g.items.join("\n")}`)
+      .join("\n\n");
+
+    return sections ? `\n\nADDITIONAL MEMORIES FROM THE ADMIN:\n${sections}` : "";
+  } catch (e) {
+    console.error("Failed to load memories:", e);
+    return "";
+  }
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS")
     return new Response(null, { headers: corsHeaders });
@@ -48,6 +92,10 @@ serve(async (req) => {
     const { messages } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+
+    // Load admin-uploaded memories and append to system prompt
+    const memories = await loadMemories();
+    const systemPrompt = BASE_SYSTEM_PROMPT + memories;
 
     const response = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -59,7 +107,7 @@ serve(async (req) => {
         },
         body: JSON.stringify({
           model: "google/gemini-3-flash-preview",
-          messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+          messages: [{ role: "system", content: systemPrompt }, ...messages],
           stream: true,
         }),
       }

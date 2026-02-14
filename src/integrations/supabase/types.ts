@@ -14,6 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_memory_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          sort_order: number | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          sort_order?: number | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
+      ai_memory_entries: {
+        Row: {
+          category_id: string
+          content: string
+          created_at: string
+          id: string
+          is_active: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category_id: string
+          content: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_memory_entries_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "ai_memory_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       chat_conversations: {
         Row: {
           created_at: string
