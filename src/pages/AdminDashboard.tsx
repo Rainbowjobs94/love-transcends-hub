@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Shield, LogOut, Users, Package, BarChart3,
-  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain
+  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain, Palette
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -154,6 +154,21 @@ const AdminDashboard = () => {
                   <p className="text-sm text-foreground/70">Upload structured memories & knowledge for the IA Guardian.</p>
                   <Button className="mt-3 cosmic-button text-white" size="sm">
                     Manage Memories
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/admin/content">
+              <Card className="glass-card border-cosmic-gold/30 hover:border-cosmic-gold/60 transition-colors cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="text-cosmic-gold flex items-center gap-2">
+                    <Palette className="w-5 h-5" /> Content Manager
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-foreground/70">Manage media pricing, hero videos, app branding, podcasts & YouTube.</p>
+                  <Button className="mt-3 cosmic-button text-white" size="sm">
+                    Manage Content
                   </Button>
                 </CardContent>
               </Card>

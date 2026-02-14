@@ -135,6 +135,153 @@ export type Database = {
           },
         ]
       }
+      cms_app_branding: {
+        Row: {
+          app_key: string
+          app_name: string
+          description: string | null
+          favicon_url: string | null
+          id: string
+          logo_url: string | null
+          primary_color: string | null
+          updated_at: string
+        }
+        Insert: {
+          app_key: string
+          app_name: string
+          description?: string | null
+          favicon_url?: string | null
+          id?: string
+          logo_url?: string | null
+          primary_color?: string | null
+          updated_at?: string
+        }
+        Update: {
+          app_key?: string
+          app_name?: string
+          description?: string | null
+          favicon_url?: string | null
+          id?: string
+          logo_url?: string | null
+          primary_color?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      cms_external_links: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          link_type: string
+          sort_order: number | null
+          thumbnail_url: string | null
+          title: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          link_type?: string
+          sort_order?: number | null
+          thumbnail_url?: string | null
+          title: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          link_type?: string
+          sort_order?: number | null
+          thumbnail_url?: string | null
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      cms_hero_videos: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          sort_order: number | null
+          source_type: string
+          title: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          sort_order?: number | null
+          source_type?: string
+          title: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          sort_order?: number | null
+          source_type?: string
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      cms_media: {
+        Row: {
+          access_tier: string
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          media_type: string
+          price: number | null
+          sort_order: number | null
+          source_type: string
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          access_tier?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          media_type?: string
+          price?: number | null
+          sort_order?: number | null
+          source_type?: string
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          access_tier?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          media_type?: string
+          price?: number | null
+          sort_order?: number | null
+          source_type?: string
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       mining_sessions: {
         Row: {
           avg_hash_rate: number
