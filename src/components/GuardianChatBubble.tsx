@@ -1,7 +1,10 @@
-import { useState } from 'react';
-import { MessageCircle, X, Send, Sparkles, Loader2 } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { MessageCircle, X, Send, Sparkles, Loader2, History } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
@@ -68,11 +71,42 @@ async function streamChat({
 }
 
 export const GuardianChatBubble = () => {
+  const { user, isAdmin } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const conversationIdRef = useRef<string | null>(null);
+
+  // Save conversation to database when assistant finishes responding
+  const saveConversation = async (allMessages: Msg[]) => {
+    if (!user || allMessages.length < 2) return;
+    try {
+      // Create conversation if first time
+      if (!conversationIdRef.current) {
+        const title = allMessages[0]?.content?.slice(0, 80) || 'IA Guardian Chat';
+        const { data, error: insertErr } = await supabase
+          .from('chat_conversations')
+          .insert({ user_id: user.id, title })
+          .select('id')
+          .single();
+        if (insertErr || !data) return;
+        conversationIdRef.current = data.id;
+      }
+
+      // Insert latest pair (user + assistant)
+      const latest = allMessages.slice(-2);
+      const rows = latest.map(m => ({
+        conversation_id: conversationIdRef.current!,
+        role: m.role,
+        content: m.content,
+      }));
+      await supabase.from('chat_messages').insert(rows);
+    } catch (e) {
+      console.error('Failed to save chat:', e);
+    }
+  };
 
   const send = async (text: string) => {
     if (!text.trim() || isLoading) return;
@@ -97,13 +131,24 @@ export const GuardianChatBubble = () => {
       await streamChat({
         messages: [...messages, userMsg],
         onDelta: upsert,
-        onDone: () => setIsLoading(false),
+        onDone: () => {
+          setIsLoading(false);
+          // Save after response completes
+          const finalMessages = [...messages, userMsg, { role: 'assistant' as const, content: assistantSoFar }];
+          saveConversation(finalMessages);
+        },
         onError: (msg) => { setError(msg); setIsLoading(false); },
       });
     } catch {
       setError('Connection failed. Please try again.');
       setIsLoading(false);
     }
+  };
+
+  const startNewChat = () => {
+    conversationIdRef.current = null;
+    setMessages([]);
+    setError('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -129,9 +174,23 @@ export const GuardianChatBubble = () => {
             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-primary" />
             </div>
-            <div>
+            <div className="flex-1">
               <p className="text-sm font-semibold rainbow-text">IA Rainbow Guardian</p>
               <p className="text-[10px] text-muted-foreground">GeneticAwareAI • Ask about your DNA</p>
+            </div>
+            <div className="flex items-center gap-1">
+              {isAdmin && (
+                <Link to="/admin/ai-history">
+                  <Button variant="ghost" size="icon" className="h-7 w-7" title="Chat History">
+                    <History className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Button>
+                </Link>
+              )}
+              {messages.length > 0 && (
+                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={startNewChat} title="New Chat">
+                  <MessageCircle className="w-3.5 h-3.5 text-muted-foreground" />
+                </Button>
+              )}
             </div>
           </div>
 
