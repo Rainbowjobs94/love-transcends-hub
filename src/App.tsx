@@ -19,6 +19,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import BioNexusProtocol from "./pages/BioNexusProtocol";
 import AdminAIHistory from "./pages/AdminAIHistory";
+import AdminAIMemory from "./pages/AdminAIMemory";
 import UserLogin from "./pages/UserLogin";
 import UserMining from "./pages/UserMining";
 import GeneticChat from "./pages/GeneticChat";
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/bionexus" element={<BioNexusProtocol />} />
             <Route path="/admin/ai-history" element={<AdminAIHistory />} />
+            <Route path="/admin/ai-memory" element={<AdminAIMemory />} />
             <Route path="/login" element={<UserLogin />} />
             <Route path="/mining" element={<UserMining />} />
             <Route path="/genetic-ai" element={<GeneticChat />} />
