@@ -23,7 +23,11 @@ const AdminLogin = () => {
 
   const logAudit = async (event_type: string, email?: string, details?: string) => {
     try {
-      await supabase.from('admin_audit_log').insert({ event_type, email, details });
+      await supabase.rpc('log_admin_audit', {
+        _event_type: event_type,
+        _email: email ?? null,
+        _details: details ?? null,
+      });
     } catch {}
   };
 
