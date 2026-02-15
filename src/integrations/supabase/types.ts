@@ -469,6 +469,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      log_admin_audit: {
+        Args: { _details?: string; _email?: string; _event_type: string }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
