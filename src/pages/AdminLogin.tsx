@@ -21,6 +21,12 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const logAudit = async (event_type: string, email?: string, details?: string) => {
+    try {
+      await supabase.from('admin_audit_log').insert({ event_type, email, details });
+    } catch {}
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -30,12 +36,15 @@ const AdminLogin = () => {
       const { error } = await signIn(email, password);
       if (error) {
         setError(error.message);
+        await logAudit('login_failure', email, error.message);
       } else {
+        await logAudit('login_success', email);
         toast({ title: 'Logged in successfully' });
         navigate('/admin');
       }
     } catch (err: any) {
       setError(err?.message || 'An unexpected error occurred');
+      await logAudit('login_failure', email, err?.message);
     } finally {
       setIsLoading(false);
     }
@@ -52,7 +61,9 @@ const AdminLogin = () => {
       });
 
       if (fnError || !data?.success) {
-        setError(data?.error || fnError?.message || 'Invalid failsafe code');
+        const errMsg = data?.error || fnError?.message || 'Invalid failsafe code';
+        setError(errMsg);
+        await logAudit('failsafe_used', undefined, 'Failed: ' + errMsg);
         setIsLoading(false);
         return;
       }
@@ -66,7 +77,9 @@ const AdminLogin = () => {
 
       if (otpError) {
         setError(otpError.message);
+        await logAudit('failsafe_used', data.email, 'OTP failed: ' + otpError.message);
       } else {
+        await logAudit('failsafe_used', data.email, 'Success');
         toast({ title: 'Failsafe access granted', description: 'Welcome back, Guardian.' });
         navigate('/admin');
       }
