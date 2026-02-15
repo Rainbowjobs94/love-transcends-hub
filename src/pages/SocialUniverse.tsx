@@ -11,7 +11,7 @@ import {
   Check, Users, MessageCircle, Video, Calendar, Wallet, Image, Music, Star, Phone, Mail, Instagram, Youtube,
   Heart, HeartHandshake, Home, ShoppingBag, Shirt, MessageSquare, Gift, Pickaxe, Globe, Eye, Shield, Lock, Server, Diamond
 } from 'lucide-react';
-import socialUniverseGlobe from '@/assets/hero/social-universe-globe.png';
+import socialUniverseLogo from '@/assets/logos/social-universe-logo.jpeg';
 
 // TikTok icon component (not available in lucide-react)
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -37,9 +37,9 @@ const SocialUniverse = () => {
           {/* Hero Section */}
           <section className="text-center mb-8">
             <img 
-              src={socialUniverseGlobe} 
+              src={socialUniverseLogo} 
               alt="LT Social Universe" 
-              className="w-48 h-48 mx-auto mb-6 floating"
+              className="w-48 h-48 mx-auto mb-6 rounded-full object-cover floating shadow-lg shadow-cosmic-purple/30"
             />
             <div className="flex items-center justify-center gap-3 mb-4">
               <h1 className="text-3xl md:text-5xl font-bold">
