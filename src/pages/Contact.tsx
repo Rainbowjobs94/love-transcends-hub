@@ -59,6 +59,9 @@ const Contact = () => {
                   <Phone className="w-4 h-4" /> 369-888-1001
                 </a>
               </div>
+              <Link to="/rainbow-strongman" className="inline-block mt-4 text-accent hover:underline text-sm">
+                View Full Bio →
+              </Link>
             </div>
 
             {/* John Strongman */}
@@ -83,6 +86,9 @@ const Contact = () => {
                   <Phone className="w-4 h-4" /> 369-888-1002
                 </a>
               </div>
+              <Link to="/john-strongman" className="inline-block mt-4 text-cosmic-gold hover:underline text-sm">
+                View Full Bio →
+              </Link>
             </div>
           </section>
 

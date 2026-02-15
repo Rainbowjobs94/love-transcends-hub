@@ -28,6 +28,7 @@ const links = {
     { name: 'LTSUMN', path: '/ltsumn' },
     { name: 'LTSANP', path: '/ltsanp' },
     { name: 'Media Gallery', path: '/gallery' },
+    { name: 'Contact', path: '/contact' },
   ],
   connect: [
     { name: 'Instagram', url: 'https://instagram.com/rainbowstrongman', icon: Instagram },
