@@ -25,6 +25,7 @@ import UserLogin from "./pages/UserLogin";
 import UserMining from "./pages/UserMining";
 import GeneticChat from "./pages/GeneticChat";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
 
 
@@ -55,6 +56,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/mining" element={<UserMining />} />
         <Route path="/genetic-ai" element={<GeneticChat />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
