@@ -11,7 +11,8 @@ import {
   Heart, Video, ShoppingBag, Pickaxe, TrendingUp, Target,
   Lock, Server, Building, HardDrive
 } from 'lucide-react';
-import socialUniverseGlobe from '@/assets/hero/social-universe-globe.png';
+import socialUniverseLogo from '@/assets/logos/social-universe-logo.jpeg';
+import miracleNetworkLogo from '@/assets/logos/miracle-network-new-logo.png';
 import rainbowStrongmanPortrait from '@/assets/about/rainbow-strongman-portrait.jpeg';
 
 const LTSUMN = () => {
@@ -59,11 +60,10 @@ const LTSUMN = () => {
         {/* Hero */}
         <section className="py-16 text-center">
           <div className="container mx-auto px-4">
-            <img 
-              src={socialUniverseGlobe} 
-              alt="LT Social Universe" 
-              className="w-48 h-48 mx-auto mb-6 floating"
-            />
+            <div className="flex justify-center gap-6 mb-6">
+              <img src={socialUniverseLogo} alt="Social Universe" className="w-24 h-24 rounded-full object-cover floating shadow-lg shadow-cosmic-purple/30" />
+              <img src={miracleNetworkLogo} alt="Miracle Network" className="w-24 h-24 rounded-full object-cover floating shadow-lg shadow-cosmic-gold/30" style={{ animationDelay: '0.5s' }} />
+            </div>
             <span className="premium-badge mb-4 inline-block">LT Social Universe Miracle Network</span>
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6 max-w-6xl mx-auto leading-tight">
               <span className="rainbow-text">Love Transcends Reality</span>{' '}

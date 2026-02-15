@@ -6,6 +6,7 @@ import { RightPanel } from '@/components/RightPanel';
 import { Button } from '@/components/ui/button';
 import { Shield, Users, Heart, Brain, Lock, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import socialUniverseLogo from '@/assets/logos/social-universe-logo.jpeg';
 
 const LTSocial = () => {
   return (
@@ -19,9 +20,7 @@ const LTSocial = () => {
         {/* Hero */}
         <section className="py-16 text-center">
           <div className="container mx-auto px-4">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-rainbow-violet to-rainbow-blue mx-auto mb-6 flex items-center justify-center">
-              <span className="text-3xl font-bold text-white">LT</span>
-            </div>
+            <img src={socialUniverseLogo} alt="LT Social Universe" className="w-24 h-24 rounded-full mx-auto mb-6 object-cover shadow-lg shadow-cosmic-purple/30" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="rainbow-text">LTSocial</span>
             </h1>
