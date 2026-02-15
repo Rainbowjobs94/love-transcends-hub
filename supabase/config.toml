@@ -2,3 +2,6 @@ project_id = "jdyiuctjlchjwtylvsda"
 
 [functions.admin-failsafe]
 verify_jwt = false
+
+[functions.genetic-chat]
+verify_jwt = false
