@@ -136,6 +136,9 @@ export const Footer = () => {
           <p className="text-xs text-muted-foreground mt-2">
             Copyrights & Trademarks since 2013 w/ Patent Development Pending
           </p>
+          <Link to="/privacy" className="text-xs text-accent hover:underline mt-1 inline-block">
+            Privacy & Trademarks Policy
+          </Link>
         </div>
       </div>
     </footer>
