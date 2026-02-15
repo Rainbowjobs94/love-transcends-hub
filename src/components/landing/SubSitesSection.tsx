@@ -1,10 +1,14 @@
 import { ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import socialUniverseLogo from '@/assets/logos/social-universe-logo.jpeg';
+import miracleNetworkLogo from '@/assets/logos/miracle-network-new-logo.png';
+import ltRealityLogo from '@/assets/logos/ltreality-logo.png';
 
 const platforms = [
   {
     abbr: 'SU',
+    logo: socialUniverseLogo,
     name: 'LTSocialUniverse',
     tagline: 'IaGuardian Protected Family Network',
     description: 'A family-first social platform with AI Guardian protection, three-tier connections, and mental health focus. 75% creator revenue share.',
@@ -14,6 +18,7 @@ const platforms = [
   },
   {
     abbr: 'MN',
+    logo: miracleNetworkLogo,
     name: 'LTMiracleMining',
     tagline: 'Smart Contracts Protecting IP for Life',
     description: 'Revolutionary Shift Coin Protocol mining Reality Coins ($1 stable) and Miracle Coins ($1M target). Zero gas fees, instant transactions.',
@@ -23,6 +28,7 @@ const platforms = [
   },
   {
     abbr: 'LTR',
+    logo: ltRealityLogo,
     name: 'LTReality',
     tagline: 'A Miracle in Reality',
     description: 'The complete ecosystem bringing together social networking, cryptocurrency mining, and creator empowerment in one unified experience.',
@@ -58,9 +64,7 @@ export const SubSitesSection = () => {
               className="glass-card rounded-2xl p-8 group hover:cosmic-glow transition-all duration-300"
             >
               {/* Abbreviation Badge */}
-              <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${platform.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                <span className="text-2xl font-bold text-white">{platform.abbr}</span>
-              </div>
+              <img src={platform.logo} alt={platform.name} className="w-16 h-16 rounded-full object-cover mb-6 group-hover:scale-110 transition-transform shadow-lg" />
 
               <h3 className="text-2xl font-bold text-foreground mb-2">{platform.name}</h3>
               <p className="text-accent font-medium mb-4">{platform.tagline}</p>
