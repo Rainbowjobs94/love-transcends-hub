@@ -26,6 +26,7 @@ import UserMining from "./pages/UserMining";
 import GeneticChat from "./pages/GeneticChat";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AdminAuditLog from "./pages/AdminAuditLog";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
 
 
@@ -53,6 +54,7 @@ const AppRoutes = () => {
         <Route path="/admin/ai-history" element={<AdminAIHistory />} />
         <Route path="/admin/ai-memory" element={<AdminAIMemory />} />
         <Route path="/admin/content" element={<AdminContentManager />} />
+        <Route path="/admin/audit" element={<AdminAuditLog />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/mining" element={<UserMining />} />
         <Route path="/genetic-ai" element={<GeneticChat />} />
