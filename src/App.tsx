@@ -28,6 +28,8 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminAuditLog from "./pages/AdminAuditLog";
 import Contact from "./pages/Contact";
+import JohnStrongmanBio from "./pages/JohnStrongmanBio";
+import RainbowStrongmanBio from "./pages/RainbowStrongmanBio";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
 
 
@@ -61,6 +63,8 @@ const AppRoutes = () => {
         <Route path="/genetic-ai" element={<GeneticChat />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/john-strongman" element={<JohnStrongmanBio />} />
+        <Route path="/rainbow-strongman" element={<RainbowStrongmanBio />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

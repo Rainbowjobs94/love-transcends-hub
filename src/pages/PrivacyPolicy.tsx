@@ -1,7 +1,7 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
-import { Shield, FileText, Copyright, Scale } from 'lucide-react';
+import { Shield, FileText, Copyright, Scale, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PrivacyPolicy = () => {
@@ -181,8 +181,50 @@ const PrivacyPolicy = () => {
                 For licensing inquiries, trademark usage requests, or IP concerns, contact:{' '}
                 <a href="mailto:Rainbow@rainbowjobs.love" className="text-accent hover:underline">
                   Rainbow@rainbowjobs.love
+                </a>{' '}or{' '}
+                <a href="mailto:Johnjasper@rainbowjobs.love" className="text-accent hover:underline">
+                  Johnjasper@rainbowjobs.love
                 </a>
               </p>
+            </div>
+          </section>
+
+          {/* Contact & Team */}
+          <section className="glass-card rounded-2xl p-8 mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <Users className="w-8 h-8 text-rainbow-green" />
+              <h2 className="text-2xl font-bold text-foreground">Contact & Team</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 rounded-xl bg-background/30 border border-border/30">
+                <h3 className="font-semibold text-foreground mb-2">Rainbow Strongman</h3>
+                <p className="text-sm text-accent mb-2">Founder & CEO</p>
+                <p className="text-muted-foreground text-sm mb-3">
+                  Survivor, visionary, and advocate for family-first technology.
+                </p>
+                <div className="space-y-1 text-sm text-muted-foreground">
+                  <p>📧 Rainbow@rainbowjobs.love</p>
+                  <p>📧 Rainbowstrongman@ltsocial.net</p>
+                  <p>📞 369-888-1001</p>
+                </div>
+                <Link to="/rainbow-strongman" className="inline-block mt-3 text-accent hover:underline text-sm">
+                  View Full Bio →
+                </Link>
+              </div>
+              <div className="p-4 rounded-xl bg-background/30 border border-border/30">
+                <h3 className="font-semibold text-foreground mb-2">John Strongman</h3>
+                <p className="text-sm text-cosmic-gold mb-2">Co-Founder & Legacy Advisor</p>
+                <p className="text-muted-foreground text-sm mb-3">
+                  46-year World Bank leader and humanitarian.
+                </p>
+                <div className="space-y-1 text-sm text-muted-foreground">
+                  <p>📧 Johnjasper@rainbowjobs.love</p>
+                  <p>📞 369-888-1002</p>
+                </div>
+                <Link to="/john-strongman" className="inline-block mt-3 text-cosmic-gold hover:underline text-sm">
+                  View Full Bio →
+                </Link>
+              </div>
             </div>
           </section>
 
