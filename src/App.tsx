@@ -31,6 +31,7 @@ import AdminSentinel from "./pages/AdminSentinel";
 import Contact from "./pages/Contact";
 import JohnStrongmanBio from "./pages/JohnStrongmanBio";
 import RainbowStrongmanBio from "./pages/RainbowStrongmanBio";
+import About from "./pages/About";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
 import { CosmicEffects } from "./components/CosmicEffects";
 
@@ -69,6 +70,7 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/john-strongman" element={<JohnStrongmanBio />} />
         <Route path="/rainbow-strongman" element={<RainbowStrongmanBio />} />
+        <Route path="/about" element={<About />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
