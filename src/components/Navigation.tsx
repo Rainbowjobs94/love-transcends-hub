@@ -31,6 +31,14 @@ export const Navigation = () => {
 
           {/* Right: Auth-aware buttons */}
           <div className="flex items-center gap-2">
+            <a
+              href="https://ltsocial.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="v3-launch-btn inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300"
+            >
+              🚀 V3 Beta
+            </a>
             <Button asChild size="sm" variant="outline" className="hidden md:inline-flex border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
               <a href="https://ltreality.net" target="_blank" rel="noopener noreferrer">
                 <Globe className="w-4 h-4 mr-1" /> LTR
