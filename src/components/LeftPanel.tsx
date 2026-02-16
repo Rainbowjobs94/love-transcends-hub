@@ -239,7 +239,7 @@ export const LeftPanel = () => {
                   className="w-full cosmic-button text-white"
                 >
                   <a 
-                    href="https://www.gofundme.com/f/love-transcends-reality-llc"
+                    href="https://www.gofundme.com/f/Ltsanp"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
