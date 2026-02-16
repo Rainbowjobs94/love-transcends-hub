@@ -93,8 +93,22 @@ export const HeroSection = () => {
             </div>
           </div>
 
+          {/* V3 Launch Button */}
+          <div className="mb-8 animate-slide-up" style={{ animationDelay: '0.5s' }}>
+            <a
+              href="https://ltsocial.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="v3-launch-btn inline-flex items-center gap-3 px-10 py-4 rounded-full text-lg font-bold uppercase tracking-widest transition-all duration-300"
+            >
+              <span className="text-2xl">🚀</span>
+              <span>Launch LTReality V3 Beta</span>
+              <span className="text-2xl">🔥</span>
+            </a>
+          </div>
+
           {/* CTA Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.6s' }}>
+          <div className="flex flex-wrap justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.7s' }}>
             <Button asChild size="lg" className="cosmic-button text-white font-semibold px-8">
               <Link to="/investors">View Investment Opportunities</Link>
             </Button>
