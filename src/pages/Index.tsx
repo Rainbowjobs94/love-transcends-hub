@@ -12,11 +12,13 @@ import { DonationButton } from '@/components/DonationButton';
 import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
 import { WelcomeGuardianDialog } from '@/components/WelcomeGuardianDialog';
+import { CosmicEffects } from '@/components/CosmicEffects';
 
 const Index = () => {
   return (
     <div className="min-h-screen cosmic-bg">
       <Navigation />
+      <CosmicEffects />
       <LeftPanel />
       <RightPanel />
       

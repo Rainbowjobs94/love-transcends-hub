@@ -251,3 +251,57 @@
   0% { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
+
+/* V3 Launch Button */
+.v3-launch-btn {
+  background: linear-gradient(135deg, hsl(0 85% 50%), hsl(25 95% 55%), hsl(45 90% 55%));
+  color: white;
+  box-shadow:
+    0 0 20px hsl(25 95% 55% / 0.5),
+    0 0 40px hsl(0 85% 50% / 0.3),
+    0 4px 15px hsl(0 0% 0% / 0.3);
+  animation: fire-pulse 2s ease-in-out infinite;
+}
+
+.v3-launch-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 0 30px hsl(25 95% 55% / 0.7),
+    0 0 60px hsl(0 85% 50% / 0.5),
+    0 0 80px hsl(45 90% 55% / 0.3),
+    0 8px 25px hsl(0 0% 0% / 0.4);
+}
+
+@keyframes fire-pulse {
+  0%, 100% { box-shadow: 0 0 20px hsl(25 95% 55% / 0.5), 0 0 40px hsl(0 85% 50% / 0.3); }
+  50% { box-shadow: 0 0 30px hsl(25 95% 55% / 0.7), 0 0 60px hsl(0 85% 50% / 0.5), 0 0 80px hsl(45 90% 55% / 0.2); }
+}
+
+/* Shooting Star Trail */
+.shooting-star-trail {
+  width: var(--length, 100px);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(210 90% 80%), white);
+  border-radius: 2px;
+  transform: rotate(var(--angle, 35deg));
+  animation: shoot var(--duration, 0.8s) linear forwards;
+  box-shadow: 0 0 8px hsl(210 90% 70% / 0.6);
+}
+
+@keyframes shoot {
+  0% { opacity: 1; transform: rotate(var(--angle, 35deg)) translateX(0); }
+  100% { opacity: 0; transform: rotate(var(--angle, 35deg)) translateX(200px); }
+}
+
+/* Firework Particles */
+.firework-particle {
+  animation: burst 1.2s ease-out forwards;
+}
+
+@keyframes burst {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(
+    calc(cos(var(--fw-angle, 0deg)) * var(--fw-distance, 50px)),
+    calc(sin(var(--fw-angle, 0deg)) * var(--fw-distance, 50px))
+  ); opacity: 0; }
+}
