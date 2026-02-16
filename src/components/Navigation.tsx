@@ -49,6 +49,11 @@ export const Navigation = () => {
                 <Heart className="w-4 h-4 mr-1" /> Donate
               </a>
             </Button>
+            <Button asChild size="sm" className="bg-[hsl(210,80%,50%)] hover:bg-[hsl(210,80%,40%)] text-white font-semibold hidden md:inline-flex">
+              <a href="https://paypal.me/jstrongman47" target="_blank" rel="noopener noreferrer">
+                PayPal
+              </a>
+            </Button>
 
             {user ? (
               <>

@@ -191,6 +191,20 @@ export const LeftSidebar = () => {
               <ExternalLink className="w-3 h-3" />
             </a>
           </Button>
+          <Button 
+            asChild 
+            className="w-full bg-[hsl(210,80%,50%)] hover:bg-[hsl(210,80%,40%)] text-white"
+          >
+            <a 
+              href="https://paypal.me/jstrongman47"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              PayPal Donate
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </Button>
         </CardContent>
       </Card>
     </aside>
