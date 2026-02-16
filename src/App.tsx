@@ -11,6 +11,7 @@ import Investors from "./pages/Investors";
 import LTSANP from "./pages/LTSANP";
 import LTSocial from "./pages/LTSocial";
 import MiracleMining from "./pages/MiracleMining";
+import MiningKnowledge from "./pages/MiningKnowledge";
 import SocialUniverse from "./pages/SocialUniverse";
 import LTSUMN from "./pages/LTSUMN";
 import Gallery from "./pages/Gallery";
@@ -51,6 +52,7 @@ const AppRoutes = () => {
         <Route path="/ltsanp" element={<LTSANP />} />
         <Route path="/ltsocial" element={<LTSocial />} />
         <Route path="/miraclemining" element={<MiracleMining />} />
+        <Route path="/mining-knowledge" element={<MiningKnowledge />} />
         <Route path="/socialuniverse" element={<SocialUniverse />} />
         <Route path="/ltsumn" element={<LTSUMN />} />
         <Route path="/gallery" element={<Gallery />} />
