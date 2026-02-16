@@ -203,6 +203,11 @@ const Investors = () => {
                     <Heart className="w-4 h-4 mr-1" /> Donate via LTSANP
                   </a>
                 </Button>
+                <Button asChild size="lg" className="bg-[hsl(210,80%,50%)] hover:bg-[hsl(210,80%,40%)] text-white font-bold">
+                  <a href="https://paypal.me/jstrongman47" target="_blank" rel="noopener noreferrer">
+                    PayPal Donate
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
