@@ -31,6 +31,7 @@ import Contact from "./pages/Contact";
 import JohnStrongmanBio from "./pages/JohnStrongmanBio";
 import RainbowStrongmanBio from "./pages/RainbowStrongmanBio";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
+import { CosmicEffects } from "./components/CosmicEffects";
 
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const AppRoutes = () => {
   const { isAdmin } = useAuth();
   return (
     <>
+      <CosmicEffects />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/story" element={<Story />} />
