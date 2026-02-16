@@ -27,6 +27,7 @@ import GeneticChat from "./pages/GeneticChat";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminAuditLog from "./pages/AdminAuditLog";
+import AdminSentinel from "./pages/AdminSentinel";
 import Contact from "./pages/Contact";
 import JohnStrongmanBio from "./pages/JohnStrongmanBio";
 import RainbowStrongmanBio from "./pages/RainbowStrongmanBio";
@@ -60,6 +61,7 @@ const AppRoutes = () => {
         <Route path="/admin/ai-memory" element={<AdminAIMemory />} />
         <Route path="/admin/content" element={<AdminContentManager />} />
         <Route path="/admin/audit" element={<AdminAuditLog />} />
+        <Route path="/admin/sentinel" element={<AdminSentinel />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/mining" element={<UserMining />} />
         <Route path="/genetic-ai" element={<GeneticChat />} />
