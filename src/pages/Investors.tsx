@@ -4,10 +4,9 @@ import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
 import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { TrendingUp, Users, DollarSign, Target, Award, Shield, Building, Rocket, CheckCircle } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, Target, Globe, ExternalLink, Heart, Rocket, Shield } from 'lucide-react';
 
 const BURST_COLORS = [
   'hsl(0, 85%, 60%)', 'hsl(25, 95%, 55%)', 'hsl(45, 90%, 55%)',
@@ -26,6 +25,15 @@ interface HeroParticle {
   duration: number;
 }
 
+const DOMAINS = [
+  { name: 'LTSocial', url: 'https://ltsocial.net', label: 'V3 Beta Hub', color: 'text-cosmic-teal' },
+  { name: 'Social Universe', url: 'https://socialuniverse.love', label: 'V1 Family Network', color: 'text-rainbow-green' },
+  { name: 'Miracle Mining', url: 'https://miraclemining.network', label: 'V2 Mining Network', color: 'text-rainbow-yellow' },
+  { name: 'LTReality', url: 'https://lovetranscendsreality.org', label: 'Master Hub', color: 'text-rainbow-red' },
+  { name: 'LTSocial.com', url: 'https://ltsocial.com', label: 'Social Platform', color: 'text-rainbow-blue' },
+  { name: 'Rainbow Jobs', url: 'https://rainbowjobs.love', label: 'Founder Portal', color: 'text-rainbow-violet' },
+];
+
 const Investors = () => {
   const [particles, setParticles] = useState<HeroParticle[]>([]);
 
@@ -34,44 +42,25 @@ const Investors = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const now = Date.now();
-
     const newParticles: HeroParticle[] = [];
 
-    // Shooting stars
     for (let i = 0; i < 2; i++) {
       newParticles.push({
-        id: now + Math.random(),
-        x: x + (Math.random() - 0.5) * 60,
-        y: y + (Math.random() - 0.5) * 40,
-        type: 'star',
-        color: 'white',
-        angle: 20 + Math.random() * 40,
-        distance: 80 + Math.random() * 120,
-        size: 2,
-        duration: 0.5 + Math.random() * 0.5,
+        id: now + Math.random(), x: x + (Math.random() - 0.5) * 60, y: y + (Math.random() - 0.5) * 40,
+        type: 'star', color: 'white', angle: 20 + Math.random() * 40, distance: 80 + Math.random() * 120, size: 2, duration: 0.5 + Math.random() * 0.5,
       });
     }
 
-    // Firework particles
     const fwColor = BURST_COLORS[Math.floor(Math.random() * BURST_COLORS.length)];
     for (let i = 0; i < 8; i++) {
       newParticles.push({
-        id: now + Math.random() + i,
-        x,
-        y,
-        type: 'firework',
-        color: fwColor,
-        angle: (360 / 8) * i + Math.random() * 20,
-        distance: 25 + Math.random() * 45,
-        size: 2 + Math.random() * 3,
-        duration: 0.8 + Math.random() * 0.4,
+        id: now + Math.random() + i, x, y, type: 'firework', color: fwColor,
+        angle: (360 / 8) * i + Math.random() * 20, distance: 25 + Math.random() * 45, size: 2 + Math.random() * 3, duration: 0.8 + Math.random() * 0.4,
       });
     }
 
     setParticles((prev) => [...prev.slice(-30), ...newParticles]);
-    setTimeout(() => {
-      setParticles((prev) => prev.filter((p) => !newParticles.includes(p)));
-    }, 1400);
+    setTimeout(() => setParticles((prev) => prev.filter((p) => !newParticles.includes(p))), 1400);
   }, []);
 
   return (
@@ -80,23 +69,20 @@ const Investors = () => {
       <StarField />
       <LeftPanel />
       <RightPanel />
-      
+
       <main className="pt-24 relative z-10">
-        {/* Hero */}
+        {/* Hero with hover fireworks */}
         <section
-          className="py-16 text-center relative overflow-hidden cursor-crosshair"
+          className="py-20 text-center relative overflow-hidden cursor-crosshair"
           onMouseMove={(e) => { if (Math.random() > 0.7) spawnEffects(e); }}
           onClick={spawnEffects}
         >
-          {/* Hover particles */}
           {particles.map((p) => (
             <div
               key={p.id}
               className="absolute rounded-full pointer-events-none"
               style={{
-                left: p.x,
-                top: p.y,
-                width: p.size,
+                left: p.x, top: p.y, width: p.size,
                 height: p.type === 'star' ? 2 : p.size,
                 backgroundColor: p.color,
                 boxShadow: `0 0 6px ${p.color}, 0 0 12px ${p.color}`,
@@ -105,510 +91,124 @@ const Investors = () => {
                   : `hero-burst ${p.duration}s ease-out forwards`,
                 '--h-angle': `${p.angle}deg`,
                 '--h-dist': `${p.distance}px`,
-                ...(p.type === 'star' ? { '--h-length': `${p.distance}px` } : {}),
               } as React.CSSProperties}
             />
           ))}
 
           <div className="container mx-auto px-4 relative z-10">
             <span className="premium-badge mb-4 inline-block">Investment Opportunity</span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
               <span className="text-cosmic-gold">Investor Hub</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Complete Financial Blueprint for Love Transcends Reality. 
-              Path to $3B valuation with multiple investment pathways.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+              75/25 creator-first revenue · $3B North Star · 7-year founder control
             </p>
-            <div className="cosmic-divider w-64 mx-auto mt-8" />
+            <div className="cosmic-divider w-48 mx-auto" />
           </div>
         </section>
 
         {/* Key Metrics */}
-        <section className="py-12">
+        <section className="py-10">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="investor-card text-center">
-                <Target className="w-12 h-12 text-cosmic-gold mx-auto mb-3" />
-                <p className="text-4xl font-bold text-cosmic-gold">$3B</p>
-                <p className="text-sm text-muted-foreground">North Star Target</p>
-                <p className="text-xs text-muted-foreground">Year 5-10</p>
-              </div>
-              <div className="investor-card text-center">
-                <Users className="w-12 h-12 text-cosmic-gold mx-auto mb-3" />
-                <p className="text-4xl font-bold text-cosmic-gold">3.5M</p>
-                <p className="text-sm text-muted-foreground">MAU Target</p>
-                <p className="text-xs text-muted-foreground">Year 3 Upside</p>
-              </div>
-              <div className="investor-card text-center">
-                <DollarSign className="w-12 h-12 text-cosmic-gold mx-auto mb-3" />
-                <p className="text-4xl font-bold text-cosmic-gold">$312M</p>
-                <p className="text-sm text-muted-foreground">Net Revenue</p>
-                <p className="text-xs text-muted-foreground">Year 3 Upside</p>
-              </div>
-              <div className="investor-card text-center">
-                <TrendingUp className="w-12 h-12 text-cosmic-gold mx-auto mb-3" />
-                <p className="text-4xl font-bold text-cosmic-gold">75%</p>
-                <p className="text-sm text-muted-foreground">Creator Share</p>
-                <p className="text-xs text-muted-foreground">Industry-Leading</p>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {[
+                { icon: Target, value: '$3B', label: 'North Star', sub: 'Year 5-10' },
+                { icon: Users, value: '3.5M', label: 'MAU Target', sub: 'Year 3 Upside' },
+                { icon: DollarSign, value: '$312M', label: 'Net Revenue', sub: 'Year 3 Upside' },
+                { icon: TrendingUp, value: '75%', label: 'Creator Share', sub: 'Industry-Leading' },
+              ].map(({ icon: Icon, value, label, sub }) => (
+                <div key={label} className="investor-card text-center p-4">
+                  <Icon className="w-8 h-8 text-cosmic-gold mx-auto mb-2" />
+                  <p className="text-2xl md:text-3xl font-bold text-cosmic-gold">{value}</p>
+                  <p className="text-xs text-muted-foreground">{label}</p>
+                  <p className="text-xs text-muted-foreground/60">{sub}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Four Engine Revenue System */}
-        <section className="py-12">
+        {/* Ecosystem Domains */}
+        <section className="py-10">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              <span className="rainbow-text">The Hybrid Engine</span>
-              <span className="text-foreground"> - Four Revenue Systems</span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <div className="glass-card rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-rainbow-violet/20 flex items-center justify-center">
-                    <span className="font-bold text-rainbow-violet">A</span>
+            <h2 className="text-2xl font-bold text-center mb-6 rainbow-text">Our Ecosystem</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {DOMAINS.map((d) => (
+                <a
+                  key={d.name}
+                  href={d.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card rounded-xl p-5 flex items-center gap-4 group hover:cosmic-glow transition-all duration-300"
+                >
+                  <Globe className={`w-8 h-8 ${d.color} shrink-0`} />
+                  <div className="min-w-0">
+                    <p className="font-bold text-foreground group-hover:text-cosmic-gold transition-colors truncate">{d.name}</p>
+                    <p className="text-xs text-muted-foreground">{d.label}</p>
                   </div>
-                  <h3 className="font-bold text-foreground">LTSocial (Family-First)</h3>
-                </div>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• 75% creator / 25% platform split</li>
-                  <li>• Direct USD payouts, no wallet required</li>
-                  <li>• Revenue: ads, boosts, subscriptions, marketplace</li>
-                </ul>
-              </div>
-
-              <div className="glass-card rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-rainbow-orange/20 flex items-center justify-center">
-                    <span className="font-bold text-rainbow-orange">B</span>
-                  </div>
-                  <h3 className="font-bold text-foreground">Miracle Network (For-Profit)</h3>
-                </div>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Paid advertisements and boosting</li>
-                  <li>• Fanship, 4Family ($30/mo), Self-Celebrity ($100/2mo)</li>
-                  <li>• NFT support and transaction fees</li>
-                </ul>
-              </div>
-
-              <div className="glass-card rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-rainbow-green/20 flex items-center justify-center">
-                    <span className="font-bold text-rainbow-green">C</span>
-                  </div>
-                  <h3 className="font-bold text-foreground">LTSANP (Non-Profit)</h3>
-                </div>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Capture 75% of U.S. ad spend ($1.5T/year)</li>
-                  <li>• Redistribute to citizens via USDC</li>
-                  <li>• Goal: Up to $1M aid per qualified citizen</li>
-                </ul>
-              </div>
-
-              <div className="glass-card rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-rainbow-blue/20 flex items-center justify-center">
-                    <span className="font-bold text-rainbow-blue">D</span>
-                  </div>
-                  <h3 className="font-bold text-foreground">LTReality Mining</h3>
-                </div>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Reality Coin at 1:1 USD in UI/UX</li>
-                  <li>• Late Ledger Hash blockchain verification</li>
-                  <li>• Shift Coin Protocol allocation</li>
-                </ul>
-              </div>
+                  <ExternalLink className="w-4 h-4 text-muted-foreground ml-auto shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Financial Projections */}
-        <section className="py-12">
+        {/* Investment Pathways (concise) */}
+        <section className="py-10">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-cosmic-gold">
-              Three-Year Financial Projections
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {/* Base Case */}
-              <div className="investor-card">
-                <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-muted-foreground" />
-                  Base Case (Conservative)
-                </h3>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Year</TableHead>
-                      <TableHead>MAU</TableHead>
-                      <TableHead>Payer Rate</TableHead>
-                      <TableHead>ARPU</TableHead>
-                      <TableHead className="text-right">Net Revenue</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Year 1</TableCell>
-                      <TableCell>100,000</TableCell>
-                      <TableCell>8%</TableCell>
-                      <TableCell>$28</TableCell>
-                      <TableCell className="text-right font-bold">$2.45M</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Year 2</TableCell>
-                      <TableCell>400,000</TableCell>
-                      <TableCell>8%</TableCell>
-                      <TableCell>$32</TableCell>
-                      <TableCell className="text-right font-bold">$11.2M</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Year 3</TableCell>
-                      <TableCell>1,200,000</TableCell>
-                      <TableCell>8%</TableCell>
-                      <TableCell>$38</TableCell>
-                      <TableCell className="text-right font-bold">$38.5M</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-
-              {/* Upside Case */}
-              <div className="investor-card border-cosmic-gold/40">
-                <h3 className="text-xl font-bold text-cosmic-gold mb-4 flex items-center gap-2">
-                  <Rocket className="w-5 h-5" />
-                  Upside Case (Celebrity Partnership)
-                </h3>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Year</TableHead>
-                      <TableHead>MAU</TableHead>
-                      <TableHead>Payer Rate</TableHead>
-                      <TableHead>ARPU</TableHead>
-                      <TableHead className="text-right">Net Revenue</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Year 1</TableCell>
-                      <TableCell>250,000</TableCell>
-                      <TableCell>12%</TableCell>
-                      <TableCell>$35</TableCell>
-                      <TableCell className="text-right font-bold text-cosmic-gold">$19.46M</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Year 2</TableCell>
-                      <TableCell>1,200,000</TableCell>
-                      <TableCell>11%</TableCell>
-                      <TableCell>$38</TableCell>
-                      <TableCell className="text-right font-bold text-cosmic-gold">$98.8M</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Year 3</TableCell>
-                      <TableCell>3,500,000</TableCell>
-                      <TableCell>12%</TableCell>
-                      <TableCell>$42</TableCell>
-                      <TableCell className="text-right font-bold text-cosmic-gold">$312.4M</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-            </div>
-
-            {/* Break-Even */}
-            <div className="investor-card max-w-2xl mx-auto mt-8">
-              <h3 className="text-xl font-bold text-foreground mb-4">Break-Even Analysis (100K MAU)</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Product/Engineering</span>
-                  <span className="text-foreground">$1,200,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Trust & Safety</span>
-                  <span className="text-foreground">$500,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Targeted Marketing</span>
-                  <span className="text-foreground">$600,000</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Operations/Legal</span>
-                  <span className="text-foreground">$200,000</span>
-                </div>
-                <div className="col-span-2 pt-4 border-t border-border flex justify-between font-bold">
-                  <span>Total OpEx</span>
-                  <span className="text-cosmic-gold">$2,300,000 - $2,500,000</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Investment Pathways */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 rainbow-text">
-              Investment Pathways & Equity Offers
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <div className="investor-card">
-                <div className="flex items-center gap-3 mb-4">
-                  <Building className="w-8 h-8 text-cosmic-teal" />
-                  <div>
-                    <h3 className="font-bold text-foreground">Pathway A: Big-Tech Partnership</h3>
-                    <p className="text-sm text-muted-foreground">Amazon, Google, Microsoft-tier</p>
+            <h2 className="text-2xl font-bold text-center mb-6 text-cosmic-gold">Investment Pathways</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {[
+                { icon: Rocket, title: 'Big-Tech / Celebrity', equity: '7% – 49%', range: '$50M – $500M', highlight: true },
+                { icon: TrendingUp, title: 'Institutional Growth', equity: '5% – 25%', range: '$10M – $100M', highlight: false },
+                { icon: Shield, title: 'Bootstrap (GoFundMe)', equity: 'Full Control', range: 'Self-funded', highlight: false },
+                { icon: Heart, title: 'Community / LTSANP', equity: 'Non-Profit', range: 'Donations', highlight: false },
+              ].map(({ icon: Icon, title, equity, range, highlight }) => (
+                <div key={title} className={`investor-card p-5 ${highlight ? 'border-cosmic-gold/50 bg-cosmic-gold/5' : ''}`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon className={`w-6 h-6 ${highlight ? 'text-cosmic-gold' : 'text-muted-foreground'}`} />
+                    <h3 className={`font-bold ${highlight ? 'text-cosmic-gold' : 'text-foreground'}`}>{title}</h3>
                   </div>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Investment Range</span>
-                    <span className="text-foreground font-semibold">$50M - $500M</span>
-                  </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Equity</span>
-                    <span className="text-foreground font-semibold">7% - 49%</span>
+                    <span className="font-semibold text-foreground">{equity}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Focus</span>
-                    <span className="text-foreground">Infrastructure, scale, distribution</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="investor-card border-cosmic-gold/40 bg-cosmic-gold/5">
-                <div className="absolute -top-3 right-4">
-                  <span className="premium-badge">Recommended</span>
-                </div>
-                <div className="flex items-center gap-3 mb-4">
-                  <Award className="w-8 h-8 text-cosmic-gold" />
-                  <div>
-                    <h3 className="font-bold text-cosmic-gold">Pathway B: Celebrity Partnership</h3>
-                    <p className="text-sm text-muted-foreground">Kelly Clarkson, mission-aligned celebrities</p>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Range</span>
+                    <span className="font-semibold text-foreground">{range}</span>
                   </div>
                 </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Investment Range</span>
-                    <span className="text-cosmic-gold font-semibold">$50M - $500M</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Equity</span>
-                    <span className="text-cosmic-gold font-semibold">7% - 49% (via SPV)</span>
-                  </div>
-                  <div className="mt-3 pt-3 border-t border-cosmic-gold/20 text-xs text-muted-foreground">
-                    <p><strong>Options:</strong> SPV (LT Media & Culinary Studios) up to 49%, Staged unlocks, Revenue-share overlay</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="investor-card">
-                <div className="flex items-center gap-3 mb-4">
-                  <TrendingUp className="w-8 h-8 text-cosmic-purple" />
-                  <div>
-                    <h3 className="font-bold text-foreground">Pathway C: Institutional</h3>
-                    <p className="text-sm text-muted-foreground">Growth capital, expansion</p>
-                  </div>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Investment Range</span>
-                    <span className="text-foreground font-semibold">$10M - $100M</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Equity</span>
-                    <span className="text-foreground font-semibold">5% - 25%</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="investor-card">
-                <div className="flex items-center gap-3 mb-4">
-                  <Shield className="w-8 h-8 text-muted-foreground" />
-                  <div>
-                    <h3 className="font-bold text-foreground">Pathway D: Bootstrap</h3>
-                    <p className="text-sm text-muted-foreground">Self-funded with GoFundMe</p>
-                  </div>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Control</span>
-                    <span className="text-foreground font-semibold">Full founder control</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Growth</span>
-                    <span className="text-foreground">Slower trajectory</span>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-          </div>
-        </section>
-
-        {/* Equity Tier Structure */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
-              Equity Tier Structure
-            </h2>
-
-            <div className="investor-card max-w-4xl mx-auto overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Investment Amount</TableHead>
-                    <TableHead>Equity Offered</TableHead>
-                    <TableHead>Board Seat</TableHead>
-                    <TableHead>Control Level</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="font-medium">$10M - $25M</TableCell>
-                    <TableCell>5% - 10%</TableCell>
-                    <TableCell>Observer</TableCell>
-                    <TableCell>Limited</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">$25M - $50M</TableCell>
-                    <TableCell>10% - 15%</TableCell>
-                    <TableCell>1 Seat</TableCell>
-                    <TableCell>Advisory</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">$50M - $100M</TableCell>
-                    <TableCell>15% - 25%</TableCell>
-                    <TableCell>1-2 Seats</TableCell>
-                    <TableCell>Collaborative</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">$100M - $250M</TableCell>
-                    <TableCell>25% - 35%</TableCell>
-                    <TableCell>2 Seats</TableCell>
-                    <TableCell>Shared Governance</TableCell>
-                  </TableRow>
-                  <TableRow className="bg-cosmic-gold/10">
-                    <TableCell className="font-bold text-cosmic-gold">$250M - $500M</TableCell>
-                    <TableCell className="font-bold text-cosmic-gold">35% - 49%</TableCell>
-                    <TableCell className="font-bold">2-3 Seats</TableCell>
-                    <TableCell className="font-bold">Strategic Partnership</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-
-              <div className="mt-6 p-4 bg-cosmic-purple/10 rounded-lg border border-cosmic-purple/20">
-                <p className="text-center text-sm">
-                  <strong className="text-foreground">🛡️ Founder Protection:</strong>
-                  <span className="text-muted-foreground"> 7-year control over product development regardless of equity structure</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Milestone Valuation */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-cosmic-gold">
-              Milestone-Based Valuation
-            </h2>
-
-            <div className="max-w-3xl mx-auto">
-              <div className="space-y-4">
-                {[
-                  { milestone: '100K MAU Achieved', valuation: '$25M' },
-                  { milestone: '$10M Annual Revenue Run-Rate', valuation: '$50M' },
-                  { milestone: 'Celebrity Flagship Programming Launched', valuation: '$75M' },
-                  { milestone: 'Reality Coin RC Live (Compliant)', valuation: '$100M' },
-                  { milestone: '1M MAU Achieved', valuation: '$150M' },
-                  { milestone: '$100M Annual Revenue Run-Rate', valuation: '$200M' },
-                ].map((item, index) => (
-                  <div key={index} className="glass-card rounded-lg p-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-cosmic-teal" />
-                      <span className="text-foreground">{item.milestone}</span>
-                    </div>
-                    <span className="font-bold text-cosmic-gold">{item.valuation}</span>
-                  </div>
-                ))}
-                <div className="investor-card p-6 flex items-center justify-between border-cosmic-gold/40">
-                  <div className="flex items-center gap-3">
-                    <Target className="w-6 h-6 text-cosmic-gold" />
-                    <span className="font-bold text-lg text-foreground">North Star Target</span>
-                  </div>
-                  <span className="font-bold text-2xl text-cosmic-gold">$3B (Year 5-10)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Competitive Advantages */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 rainbow-text">
-              Competitive Advantages
-            </h2>
-
-            <div className="investor-card max-w-5xl mx-auto overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Feature</TableHead>
-                    <TableHead className="text-center">LTReality</TableHead>
-                    <TableHead className="text-center">Minds</TableHead>
-                    <TableHead className="text-center">Steemit</TableHead>
-                    <TableHead className="text-center">Mastodon</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {[
-                    { feature: 'Shift Coin Protocol', lt: '✓ First Ever', minds: '✗', steemit: '✗', mastodon: '✗' },
-                    { feature: '$1 Stable Cryptocurrency', lt: '✓ Reality Coin', minds: '✗', steemit: '✗ Volatile', mastodon: '✗' },
-                    { feature: 'Live Video Streaming', lt: '✓ With RC Rewards', minds: '✗', steemit: '✗', mastodon: '✗' },
-                    { feature: 'AI Guardian Protection', lt: '✓ Gemini AI', minds: '✗', steemit: '✗', mastodon: '✗' },
-                    { feature: 'Mental Health Services', lt: '✓ AI + Human', minds: '✗', steemit: '✗', mastodon: '✗' },
-                    { feature: 'Three-Tier Connections', lt: '✓ Unique Model', minds: '✗', steemit: '✗', mastodon: '✗' },
-                    { feature: 'Zero Gas Fees', lt: '✓ Auto-selection', minds: '✗', steemit: 'Limited', mastodon: 'N/A' },
-                  ].map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell className="font-medium">{row.feature}</TableCell>
-                      <TableCell className="text-center font-bold text-cosmic-gold">{row.lt}</TableCell>
-                      <TableCell className="text-center text-muted-foreground">{row.minds}</TableCell>
-                      <TableCell className="text-center text-muted-foreground">{row.steemit}</TableCell>
-                      <TableCell className="text-center text-muted-foreground">{row.mastodon}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+            <p className="text-center text-xs text-muted-foreground mt-4">
+              🛡️ 7-year founder control over product development regardless of equity structure
+            </p>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16">
+        <section className="py-14">
           <div className="container mx-auto px-4 text-center">
-            <div className="glass-card max-w-2xl mx-auto p-8 rounded-2xl border border-cosmic-gold/30">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Invest?</h2>
-              <p className="text-muted-foreground mb-6">
-                Contact us to discuss investment opportunities and receive our complete investor deck.
+            <div className="glass-card max-w-xl mx-auto p-8 rounded-2xl border border-cosmic-gold/30">
+              <h2 className="text-xl font-bold text-foreground mb-3">Ready to Invest?</h2>
+              <p className="text-sm text-muted-foreground mb-5">
+                Contact us for the complete investor deck and partnership details.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild size="lg" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-bold">
-                  <a href="mailto:Rainbow@rainbowjobs.love?subject=Investment%20Inquiry">
-                    Contact for Investment
-                  </a>
+                  <a href="mailto:Rainbow@rainbowjobs.love?subject=Investment%20Inquiry">Contact for Investment</a>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/">Back to Home</Link>
+                <Button asChild size="lg" className="v3-launch-btn font-bold">
+                  <a href="https://www.gofundme.com/f/Ltsanp" target="_blank" rel="noopener noreferrer">
+                    <Heart className="w-4 h-4 mr-1" /> Donate via LTSANP
+                  </a>
                 </Button>
               </div>
             </div>
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
