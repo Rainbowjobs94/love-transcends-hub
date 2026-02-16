@@ -160,7 +160,7 @@ export const AboutSection = () => {
                 to the citizens who create the value. Every view, text, and interaction is a mining event."
               </blockquote>
               <Button asChild className="w-full bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-bold">
-                <a href="https://gofundme.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.gofundme.com/f/Ltsanp" target="_blank" rel="noopener noreferrer">
                   <BookOpen className="w-4 h-4 mr-2" /> Purchase Full Autobiography
                 </a>
               </Button>
