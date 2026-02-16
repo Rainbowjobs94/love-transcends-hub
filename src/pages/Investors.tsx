@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { StarField } from '@/components/StarField';
@@ -8,7 +9,71 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Users, DollarSign, Target, Award, Shield, Building, Rocket, CheckCircle } from 'lucide-react';
 
+const BURST_COLORS = [
+  'hsl(0, 85%, 60%)', 'hsl(25, 95%, 55%)', 'hsl(45, 90%, 55%)',
+  'hsl(210, 90%, 55%)', 'hsl(280, 80%, 60%)',
+];
+
+interface HeroParticle {
+  id: number;
+  x: number;
+  y: number;
+  type: 'star' | 'firework';
+  color: string;
+  angle: number;
+  distance: number;
+  size: number;
+  duration: number;
+}
+
 const Investors = () => {
+  const [particles, setParticles] = useState<HeroParticle[]>([]);
+
+  const spawnEffects = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const now = Date.now();
+
+    const newParticles: HeroParticle[] = [];
+
+    // Shooting stars
+    for (let i = 0; i < 2; i++) {
+      newParticles.push({
+        id: now + Math.random(),
+        x: x + (Math.random() - 0.5) * 60,
+        y: y + (Math.random() - 0.5) * 40,
+        type: 'star',
+        color: 'white',
+        angle: 20 + Math.random() * 40,
+        distance: 80 + Math.random() * 120,
+        size: 2,
+        duration: 0.5 + Math.random() * 0.5,
+      });
+    }
+
+    // Firework particles
+    const fwColor = BURST_COLORS[Math.floor(Math.random() * BURST_COLORS.length)];
+    for (let i = 0; i < 8; i++) {
+      newParticles.push({
+        id: now + Math.random() + i,
+        x,
+        y,
+        type: 'firework',
+        color: fwColor,
+        angle: (360 / 8) * i + Math.random() * 20,
+        distance: 25 + Math.random() * 45,
+        size: 2 + Math.random() * 3,
+        duration: 0.8 + Math.random() * 0.4,
+      });
+    }
+
+    setParticles((prev) => [...prev.slice(-30), ...newParticles]);
+    setTimeout(() => {
+      setParticles((prev) => prev.filter((p) => !newParticles.includes(p)));
+    }, 1400);
+  }, []);
+
   return (
     <div className="min-h-screen cosmic-bg">
       <Navigation />
@@ -18,8 +83,34 @@ const Investors = () => {
       
       <main className="pt-24 relative z-10">
         {/* Hero */}
-        <section className="py-16 text-center">
-          <div className="container mx-auto px-4">
+        <section
+          className="py-16 text-center relative overflow-hidden cursor-crosshair"
+          onMouseMove={(e) => { if (Math.random() > 0.7) spawnEffects(e); }}
+          onClick={spawnEffects}
+        >
+          {/* Hover particles */}
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: p.size,
+                height: p.type === 'star' ? 2 : p.size,
+                backgroundColor: p.color,
+                boxShadow: `0 0 6px ${p.color}, 0 0 12px ${p.color}`,
+                animation: p.type === 'star'
+                  ? `hero-shoot ${p.duration}s linear forwards`
+                  : `hero-burst ${p.duration}s ease-out forwards`,
+                '--h-angle': `${p.angle}deg`,
+                '--h-dist': `${p.distance}px`,
+                ...(p.type === 'star' ? { '--h-length': `${p.distance}px` } : {}),
+              } as React.CSSProperties}
+            />
+          ))}
+
+          <div className="container mx-auto px-4 relative z-10">
             <span className="premium-badge mb-4 inline-block">Investment Opportunity</span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-cosmic-gold">Investor Hub</span>

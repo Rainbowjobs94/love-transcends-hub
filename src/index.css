@@ -305,3 +305,18 @@
     calc(sin(var(--fw-angle, 0deg)) * var(--fw-distance, 50px))
   ); opacity: 0; }
 }
+
+/* Hero hover shooting star */
+@keyframes hero-shoot {
+  0% { opacity: 1; transform: rotate(var(--h-angle, 35deg)) translateX(0) scaleX(1); }
+  100% { opacity: 0; transform: rotate(var(--h-angle, 35deg)) translateX(var(--h-dist, 100px)) scaleX(40); }
+}
+
+/* Hero hover firework burst */
+@keyframes hero-burst {
+  0% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(
+    calc(cos(var(--h-angle, 0deg)) * var(--h-dist, 50px)),
+    calc(sin(var(--h-angle, 0deg)) * var(--h-dist, 50px))
+  ) scale(0.3); }
+}
