@@ -1,13 +1,116 @@
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Navigate, Link } from 'react-router-dom';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Shield, LogOut, Users, Package, BarChart3,
-  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain, Palette, Eye
+  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain, Palette, Eye,
+  AlertTriangle, CheckCircle, XCircle, Activity, Loader2,
 } from 'lucide-react';
+
+const SentinelLiveCard = () => {
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({ total: 0, success: 0, failed: 0, lastLogin: null as string | null });
+  const [recentLogs, setRecentLogs] = useState<{ id: string; event_type: string; email: string | null; created_at: string }[]>([]);
+
+  useEffect(() => {
+    const fetch24hStats = async () => {
+      setLoading(true);
+      const { data } = await supabase
+        .from('admin_audit_log')
+        .select('id, event_type, email, created_at')
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      const logs = data || [];
+      const now = Date.now();
+      const recent = logs.filter(l => now - new Date(l.created_at).getTime() < 86400000);
+      setStats({
+        total: recent.length,
+        success: recent.filter(l => l.event_type === 'login_success').length,
+        failed: recent.filter(l => l.event_type === 'login_failure').length,
+        lastLogin: logs.find(l => l.event_type === 'login_success')?.created_at || null,
+      });
+      setRecentLogs(logs.slice(0, 5));
+      setLoading(false);
+    };
+    fetch24hStats();
+  }, []);
+
+  const threatLevel = stats.failed >= 10 ? 'critical' : stats.failed >= 5 ? 'elevated' : stats.failed >= 2 ? 'moderate' : 'normal';
+  const threatConfig = {
+    critical: { color: 'text-destructive', bg: 'bg-destructive/10', Icon: XCircle },
+    elevated: { color: 'text-rainbow-orange', bg: 'bg-rainbow-orange/10', Icon: AlertTriangle },
+    moderate: { color: 'text-cosmic-gold', bg: 'bg-cosmic-gold/10', Icon: AlertTriangle },
+    normal: { color: 'text-rainbow-green', bg: 'bg-rainbow-green/10', Icon: CheckCircle },
+  }[threatLevel];
+
+  const eventLabel = (t: string) => {
+    if (t === 'login_success') return { label: '✓ Login', color: 'text-rainbow-green' };
+    if (t === 'login_failure') return { label: '✗ Failed', color: 'text-destructive' };
+    if (t === 'failsafe_used') return { label: '⚡ Failsafe', color: 'text-rainbow-orange' };
+    return { label: t, color: 'text-muted-foreground' };
+  };
+
+  return (
+    <Card className="glass-card border-border/30 col-span-full">
+      <CardHeader className="pb-2 flex flex-row items-center justify-between">
+        <CardTitle className="text-base flex items-center gap-2">
+          <Activity className="w-5 h-5 text-primary" /> Sentinel Monitor — Live 24h
+        </CardTitle>
+        <Link to="/admin/sentinel">
+          <Button variant="ghost" size="sm" className="text-xs">Full View →</Button>
+        </Link>
+      </CardHeader>
+      <CardContent>
+        {loading ? (
+          <div className="flex justify-center py-6"><Loader2 className="w-5 h-5 animate-spin text-muted-foreground" /></div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
+            {/* Stats Row */}
+            <div className="flex flex-wrap gap-3">
+              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${threatConfig.bg}`}>
+                <threatConfig.Icon className={`w-4 h-4 ${threatConfig.color}`} />
+                <span className={`text-xs font-semibold ${threatConfig.color} capitalize`}>{threatLevel}</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary/30">
+                <Eye className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs text-foreground">{stats.total} events</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary/30">
+                <CheckCircle className="w-3.5 h-3.5 text-rainbow-green" />
+                <span className="text-xs text-foreground">{stats.success} logins</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary/30">
+                <XCircle className="w-3.5 h-3.5 text-destructive" />
+                <span className="text-xs text-foreground">{stats.failed} failed</span>
+              </div>
+            </div>
+            {/* Recent Feed */}
+            <div className="space-y-1.5">
+              {recentLogs.length === 0 ? (
+                <p className="text-xs text-muted-foreground">No recent events.</p>
+              ) : recentLogs.map(log => {
+                const { label, color } = eventLabel(log.event_type);
+                return (
+                  <div key={log.id} className="flex items-center gap-2 text-xs">
+                    <span className={`font-medium ${color} w-20 shrink-0`}>{label}</span>
+                    <span className="text-foreground/70 truncate flex-1">{log.email || '—'}</span>
+                    <span className="text-muted-foreground whitespace-nowrap">{new Date(log.created_at).toLocaleTimeString()}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
 
 const AdminDashboard = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -68,6 +171,11 @@ const AdminDashboard = () => {
           <Button onClick={signOut} variant="outline" size="sm">
             <LogOut className="w-4 h-4 mr-2" /> Sign Out
           </Button>
+        </div>
+
+        {/* Live Sentinel Card */}
+        <div className="mb-6">
+          <SentinelLiveCard />
         </div>
 
         {/* Tools Grid */}
