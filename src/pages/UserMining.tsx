@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import {
   Coins, Zap, Activity, Play, Square,
-  TrendingUp, Clock, Cpu, BarChart3, Home, History, Sparkles,
+  TrendingUp, Clock, Cpu, BarChart3, Home, History, Sparkles, MessageCircle,
 } from 'lucide-react';
 import { useMining, MiningTier } from '@/hooks/useMining';
 import MiningBalanceOverview from '@/components/mining/MiningBalanceOverview';
@@ -264,6 +264,16 @@ const UserMining = () => {
               )}
             </CardContent>
           </Card>
+        </div>
+
+        {/* Ask AI Button */}
+        <div className="mt-6 text-center">
+          <Button asChild variant="outline" className="border-cosmic-purple/40 hover:border-cosmic-purple/70">
+            <Link to="/genetic-ai">
+              <MessageCircle className="w-4 h-4 mr-2 text-cosmic-purple" />
+              Ask IA Guardian About Mining
+            </Link>
+          </Button>
         </div>
       </main>
       <Footer />

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Shield, LogOut, Users, Package, BarChart3,
-  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain, Palette
+  Settings, FileText, Video, Coffee, Shirt, Sparkles, Brain, Palette, Eye
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -169,6 +169,21 @@ const AdminDashboard = () => {
                   <p className="text-sm text-foreground/70">Manage media pricing, hero videos, app branding, podcasts & YouTube.</p>
                   <Button className="mt-3 cosmic-button text-white" size="sm">
                     Manage Content
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/admin/sentinel">
+              <Card className="glass-card border-destructive/30 hover:border-destructive/60 transition-colors cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="text-destructive flex items-center gap-2">
+                    <Eye className="w-5 h-5" /> Sentinel Monitor
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-foreground/70">Real-time security monitoring, threat assessment & audit logs.</p>
+                  <Button className="mt-3 cosmic-button text-white" size="sm">
+                    View Security
                   </Button>
                 </CardContent>
               </Card>

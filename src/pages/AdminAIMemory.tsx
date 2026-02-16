@@ -13,9 +13,12 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Shield, ArrowLeft, Plus, Trash2, Edit2, Save, X,
   Brain, Users, Calendar, Heart, Globe, Dna, Sparkles, Loader2,
-  ChevronRight, FolderOpen
+  ChevronRight, FolderOpen, Upload
 } from 'lucide-react';
 import { toast } from 'sonner';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger
+} from '@/components/ui/dialog';
 
 type Category = {
   id: string;
@@ -66,6 +69,45 @@ const AdminAIMemory = () => {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
+
+  // Bulk import
+  const [showImport, setShowImport] = useState(false);
+  const [importText, setImportText] = useState('');
+  const [importing, setImporting] = useState(false);
+
+  const handleBulkImport = async () => {
+    if (!importText.trim()) return;
+    setImporting(true);
+    let catId: string | null = null;
+    const existing = categories.find(c => c.name === 'Conversation Insights');
+    if (existing) {
+      catId = existing.id;
+    } else {
+      const { data, error } = await supabase.from('ai_memory_categories').insert({
+        name: 'Conversation Insights',
+        description: 'Imported from AI conversation exports',
+        icon: 'Sparkles',
+        sort_order: categories.length + 1,
+      }).select('id').single();
+      if (error || !data) { toast.error('Failed to create category'); setImporting(false); return; }
+      catId = data.id;
+    }
+    const chunks = importText.split(/(?=^## )/m).filter(c => c.trim().length > 20);
+    const entriesToInsert = chunks.slice(0, 50).map((chunk, i) => {
+      const lines = chunk.trim().split('\n');
+      const title = lines[0].replace(/^#+\s*/, '').trim().slice(0, 200) || `Import ${i + 1}`;
+      const content = lines.slice(1).join('\n').trim().slice(0, 5000) || chunk.trim().slice(0, 5000);
+      return { category_id: catId!, title, content };
+    });
+    if (entriesToInsert.length === 0) { toast.error('No parseable content found'); setImporting(false); return; }
+    const { error } = await supabase.from('ai_memory_entries').insert(entriesToInsert);
+    if (error) { toast.error('Failed to import'); } else {
+      toast.success(`Imported ${entriesToInsert.length} memory entries`);
+      setImportText(''); setShowImport(false); fetchCategories();
+      if (selectedCat === catId) fetchEntries(catId);
+    }
+    setImporting(false);
+  };
 
   useEffect(() => {
     if (isAdmin) fetchCategories();
@@ -187,6 +229,34 @@ const AdminAIMemory = () => {
               Upload structured memories that shape the IA Guardian's knowledge
             </p>
           </div>
+          <Dialog open={showImport} onOpenChange={setShowImport}>
+            <DialogTrigger asChild>
+              <Button size="sm" variant="outline" className="ml-auto border-cosmic-purple/40">
+                <Upload className="w-4 h-4 mr-1" /> Import Conversations
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle>Import AI Conversations</DialogTitle>
+              </DialogHeader>
+              <p className="text-sm text-muted-foreground">
+                Paste markdown content from exported AI conversations. Each ## heading becomes a separate memory entry under "Conversation Insights".
+              </p>
+              <Textarea
+                placeholder="## Topic Title&#10;Conversation content here...&#10;&#10;## Another Topic&#10;More content..."
+                value={importText}
+                onChange={e => setImportText(e.target.value)}
+                className="min-h-[200px] bg-background/50"
+              />
+              <div className="flex justify-end gap-2">
+                <Button variant="ghost" onClick={() => setShowImport(false)}>Cancel</Button>
+                <Button onClick={handleBulkImport} disabled={importing || !importText.trim()} className="cosmic-button text-white">
+                  {importing ? <Loader2 className="w-4 h-4 animate-spin mr-1" /> : <Upload className="w-4 h-4 mr-1" />}
+                  Import
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
