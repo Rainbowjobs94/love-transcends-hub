@@ -42,12 +42,15 @@ MIRACLECOIN (MCL) TECHNICAL KNOWLEDGE:
 - Governance: Future DAO governance where MCL holders vote on protocol upgrades, fee structures, and treasury allocation. 1 MCL = 1 vote, quadratic voting for major proposals
 
 SECURITY & CRYPTOGRAPHY:
-- Key Encapsulation Mechanism (KEM): Post-quantum secure key exchange (Kyber-768) between mining nodes for future-proof encrypted communication
-- Encryption at Rest: All wallet data and transaction records encrypted using AES-256-GCM with per-user key derivation (Argon2id KDF)
-- Defense in Depth: Rate limiting (tier-based intervals), block progression validation (monotonic sequence), reward amount verification, IP-based anomaly detection
-- Behavioral Fraud Prevention: ML pattern recognition analyzes typing cadence, mouse dynamics, and session patterns to detect bot-driven or anomalous mining behavior
-- Audit Trail: Immutable admin_audit_log tracks all security events (logins, failures, failsafe usage). Logs cannot be updated or deleted (enforced by RLS)
-- Zero-Trust Architecture: Every API call requires Bearer token authentication. Service role keys never exposed to client. Edge functions validate tokens server-side
+- Post-Quantum Key Encapsulation Mechanism (KEM): Uses CRYSTALS-Kyber-768 (NIST FIPS 203 standard) for key exchange between mining nodes. Kyber provides IND-CCA2 security against both classical and quantum adversaries. Key sizes: public key 1184 bytes, ciphertext 1088 bytes, shared secret 32 bytes. All inter-node communication is encapsulated via KEM → shared secret → AES-256-GCM symmetric channel. Migration path: Kyber-768 today → ML-KEM-1024 when NIST finalizes higher-security parameter sets
+- Hybrid Key Exchange: TLS 1.3 handshakes use X25519+Kyber-768 hybrid mode (draft-ietf-tls-hybrid-design) ensuring classical security even if post-quantum assumptions break. Certificate pinning enforced on all mining node connections
+- Encryption at Rest: All wallet data and transaction records encrypted using AES-256-GCM with per-user key derivation via Argon2id KDF (memory cost 64MB, iterations 3, parallelism 4). Database column-level encryption for sensitive fields (private keys, KYC documents). Key rotation every 90 days with zero-downtime re-encryption
+- Digital Signatures: Block validation signatures use Ed25519 (classical) with planned migration to CRYSTALS-Dilithium (NIST FIPS 204) for post-quantum signature security. Dual-signature mode available during transition period
+- Zero-Trust Architecture: Every API call requires Bearer token authentication verified server-side — no implicit trust from network location. Service role keys never exposed to client code. Edge functions independently validate JWT tokens, check expiry, and verify issuer claims. Principle of least privilege: each function has scoped database access via RLS, never superuser. All internal service-to-service calls are mutually authenticated (mTLS with short-lived certificates). Network segmentation: mining nodes, API layer, and database operate in isolated trust zones with explicit allow-list firewall rules
+- Defense in Depth Layers: (1) Edge: WAF rate limiting + geo-blocking, (2) Transport: TLS 1.3 + certificate pinning, (3) Application: JWT validation + RBAC + input sanitization, (4) Data: RLS + column encryption + audit logging, (5) Infrastructure: isolated VPCs + immutable deployment artifacts
+- Behavioral Fraud Prevention: ML pipeline analyzes typing cadence (keystroke dynamics), mouse movement entropy, and session temporal patterns to detect bot-driven or anomalous mining. Models retrained weekly on flagged sessions. False-positive rate target: <0.1%
+- Audit Trail: Immutable admin_audit_log tracks all security events (logins, failures, failsafe usage, KEM key rotations). Logs cannot be updated or deleted (enforced by RLS INSERT-only policy). Tamper-evident via SHA-256 hash chaining between consecutive log entries
+- Incident Response: Automated circuit breakers halt mining rewards if anomaly score exceeds threshold. Admin failsafe endpoint enables emergency credential rotation without database access. All security incidents trigger structured alerts with severity classification (P0-P3)
 
 TECHNICAL CAPABILITIES:
 - Smart contracts (Solidity, Rust), tokenomics modeling, multi-chain integration (EVM, Solana, Cosmos)
