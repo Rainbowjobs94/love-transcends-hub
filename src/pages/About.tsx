@@ -49,8 +49,9 @@ const About = () => {
               <img
                 src={missionImg}
                 alt="Mission Statement"
-                className="absolute inset-0 w-full h-full object-cover opacity-15"
+                className="absolute inset-0 w-full h-full object-cover opacity-[0.06]"
               />
+              <div className="absolute inset-0 bg-card/80 backdrop-blur-sm" />
               <div className="relative z-10">
                 <Sparkles className="w-8 h-8 text-cosmic-gold mb-4" />
                 <h2 className="text-2xl font-bold text-foreground mb-4">Our Vision</h2>

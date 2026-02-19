@@ -126,8 +126,8 @@
 
   /* Glass Card Effect */
   .glass-card {
-    background: hsl(var(--card) / 0.6);
-    backdrop-filter: blur(12px);
+    background: hsl(var(--card) / 0.85);
+    backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--border) / 0.5);
   }
 
