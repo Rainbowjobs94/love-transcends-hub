@@ -34,6 +34,7 @@ import JohnStrongmanBio from "./pages/JohnStrongmanBio";
 import RainbowStrongmanBio from "./pages/RainbowStrongmanBio";
 import About from "./pages/About";
 import Governance from "./pages/Governance";
+import TokenomicsExplorer from "./pages/TokenomicsExplorer";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
 import { CosmicEffects } from "./components/CosmicEffects";
 
@@ -75,6 +76,7 @@ const AppRoutes = () => {
         <Route path="/rainbow-strongman" element={<RainbowStrongmanBio />} />
         <Route path="/about" element={<About />} />
         <Route path="/governance" element={<Governance />} />
+        <Route path="/tokenomics" element={<TokenomicsExplorer />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
