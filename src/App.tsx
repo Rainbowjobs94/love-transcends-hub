@@ -41,7 +41,7 @@ import { CosmicEffects } from "./components/CosmicEffects";
 const queryClient = new QueryClient();
 
 const AppRoutes = () => {
-  const { isAdmin } = useAuth();
+  const { user, isAdmin } = useAuth();
   return (
     <>
       <CosmicEffects />
@@ -78,7 +78,7 @@ const AppRoutes = () => {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {isAdmin && <GuardianChatBubble />}
+      {user && <GuardianChatBubble />}
     </>
   );
 };
