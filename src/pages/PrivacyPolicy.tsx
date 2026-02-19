@@ -208,7 +208,7 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-bold text-foreground">Terms of Service</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p><strong className="text-foreground">Effective Date:</strong> January 1, 2024 &nbsp;|&nbsp; <strong className="text-foreground">Last Updated:</strong> February 15, 2026</p>
+              <p><strong className="text-foreground">Effective Date:</strong> January 1, 2024 &nbsp;|&nbsp; <strong className="text-foreground">Last Updated:</strong> February 19, 2026</p>
 
               <h3 className="text-lg font-semibold text-foreground mt-6">1. Acceptance of Terms</h3>
               <p>
@@ -303,6 +303,135 @@ const PrivacyPolicy = () => {
                 We may modify these Terms at any time. Material changes will be communicated via
                 email or platform notice at least 30 days before taking effect. Continued use
                 after the effective date constitutes acceptance.
+              </p>
+            </div>
+          </section>
+
+          {/* Mining & Tokenomics Terms */}
+          <section className="glass-card rounded-2xl p-8 mb-8 border border-cosmic-gold/20">
+            <div className="flex items-center gap-3 mb-6">
+              <Database className="w-8 h-8 text-cosmic-gold" />
+              <h2 className="text-2xl font-bold text-foreground">Mining & Tokenomics Terms</h2>
+            </div>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p><strong className="text-foreground">Effective Date:</strong> February 19, 2026</p>
+              <p>
+                The following terms supplement the general Terms of Service and govern all participation in
+                MiracleCoin (MCL) mining, staking, token distribution, and related economic activities within
+                the Love Transcends Reality ecosystem.
+              </p>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">A. Mining Eligibility</h3>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Participants must be at least <strong className="text-foreground">18 years of age</strong> and hold a verified account in good standing</li>
+                <li>KYC (Know Your Customer) identity verification is <strong className="text-foreground">mandatory</strong> before any MCL token claim, withdrawal, or conversion</li>
+                <li>AML (Anti-Money Laundering) compliance screening applies to all transactions exceeding $1,000 USD equivalent</li>
+                <li>Accounts flagged for suspicious activity are subject to immediate suspension pending review</li>
+                <li>Each individual may maintain only <strong className="text-foreground">one (1) mining account</strong>; duplicate or sybil accounts will be permanently banned with all balances forfeited</li>
+                <li>Mining node operators must meet minimum hardware and uptime requirements for their selected tier (Personal, Community, or Enterprise)</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">B. Tokenomics & Supply</h3>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li><strong className="text-foreground">Hard Cap:</strong> 1,000,000,000 MCL total supply — no additional tokens will ever be minted beyond this cap</li>
+                <li><strong className="text-foreground">Minting Formula:</strong> MCL<sub>minted</sub> = base_rate × tier_multiplier × participation_score</li>
+                <li><strong className="text-foreground">Dual Payout:</strong> All mining rewards are split 50% liquid (immediately available) and 50% locked in a 3-year reserve</li>
+                <li><strong className="text-foreground">Reserve Unlock Schedule:</strong> 10% after Year 1, 30% after Year 2, 60% after Year 3</li>
+                <li><strong className="text-foreground">Staking APY:</strong> Locked reserves earn a compounding 2.5% annual yield, subject to change via DAO governance vote</li>
+                <li><strong className="text-foreground">Early Withdrawal:</strong> Withdrawing locked reserves before the scheduled unlock date incurs a 15% penalty; penalties are redistributed to the active staking pool</li>
+                <li><strong className="text-foreground">Deflationary Burn:</strong> A portion of the 7% platform transaction fee is permanently burned, reducing total supply over time</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">C. Mining Tiers & Rewards</h3>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li><strong className="text-foreground">Bronze Tier:</strong> 0.25 RC per validated block; minimum 3-second block interval; 1× base multiplier</li>
+                <li><strong className="text-foreground">Silver Tier:</strong> 0.50 RC per validated block; minimum 2-second block interval; 2× base multiplier</li>
+                <li>Mining node tier multipliers: Personal (1×), Community (3×), Enterprise (10×)</li>
+                <li>Reward rates are enforced server-side via atomic RPC and are not adjustable client-side</li>
+                <li>Block progression is validated sequentially — blocks cannot be skipped, duplicated, or replayed</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">D. Fee Structure</h3>
+              <div className="bg-background/40 rounded-xl p-4 border border-border/30">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="text-foreground font-semibold">7% Platform Fee</p>
+                    <p>Applied to all payouts and conversions</p>
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">Fee Allocation</p>
+                    <ul className="list-disc list-inside ml-2 space-y-0.5">
+                      <li>40% — Development Fund</li>
+                      <li>20% — Security & Audits</li>
+                      <li>20% — Community Grants</li>
+                      <li>15% — Deflationary Burn</li>
+                      <li>5% — Viewer Bonus Pool</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">15% Early Withdrawal Penalty</p>
+                    <p>On locked reserves withdrawn before scheduled unlock</p>
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">Zero Gas Fees</p>
+                    <p>Shift Coin Protocol auto-selects lowest-cost network</p>
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">E. Risk Disclosures</h3>
+              <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-4">
+                <p className="text-foreground font-semibold mb-2">⚠ Important — Please Read Carefully</p>
+                <ul className="list-disc list-inside space-y-2 ml-2">
+                  <li><strong className="text-foreground">No Guaranteed Value:</strong> MiracleCoin (MCL) and Reality Coin (RC) are digital assets whose value may fluctuate significantly. Love Transcends Reality Network does not guarantee any specific price, exchange rate, or return on mining activity.</li>
+                  <li><strong className="text-foreground">Not Securities:</strong> MCL tokens are utility tokens within the LT ecosystem. They are not securities, investment contracts, or financial instruments. This offering has not been registered with the SEC or any state securities regulator.</li>
+                  <li><strong className="text-foreground">No Investment Advice:</strong> Nothing on our platforms constitutes financial, investment, tax, or legal advice. You should consult qualified professionals before making financial decisions related to digital assets.</li>
+                  <li><strong className="text-foreground">Technology Risk:</strong> Mining and blockchain systems are subject to technical failures, network congestion, software bugs, and cybersecurity threats. While we employ post-quantum cryptography (Kyber-768) and AES-256-GCM encryption, no system is immune to all risks.</li>
+                  <li><strong className="text-foreground">Regulatory Risk:</strong> Cryptocurrency regulation varies by jurisdiction and is subject to change. Users are solely responsible for compliance with their local laws regarding digital asset ownership, mining, and taxation.</li>
+                  <li><strong className="text-foreground">Loss of Access:</strong> Loss of account credentials, KYC failure, or violation of these terms may result in permanent loss of access to mined tokens. Love Transcends Reality Network is not responsible for tokens lost due to user negligence.</li>
+                  <li><strong className="text-foreground">Forfeiture:</strong> Accounts terminated for fraud, sybil attacks, or Terms violations will have all balances — liquid and reserved — permanently forfeited with no right of recovery.</li>
+                </ul>
+              </div>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">F. Limitation of Liability — Mining & Tokenomics</h3>
+              <p>
+                TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LOVE TRANSCENDS REALITY NETWORK, LLC,
+                ITS FOUNDERS, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE
+                FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES ARISING
+                FROM OR RELATED TO:
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Fluctuations in the value of MCL, RC, or any digital asset</li>
+                <li>Loss of mining rewards due to network downtime, bugs, or force majeure events</li>
+                <li>Penalties incurred from early reserve withdrawal</li>
+                <li>Account suspension or termination due to policy violations</li>
+                <li>Regulatory actions, seizures, or restrictions by governmental authorities</li>
+                <li>Losses resulting from unauthorized access to your account due to your failure to secure credentials</li>
+                <li>Changes to mining rates, tier structures, fee schedules, or tokenomics approved through DAO governance</li>
+              </ul>
+              <p className="mt-2">
+                IN NO EVENT SHALL THE AGGREGATE LIABILITY OF LOVE TRANSCENDS REALITY NETWORK, LLC EXCEED
+                THE TOTAL AMOUNT OF PLATFORM FEES PAID BY YOU DURING THE TWELVE (12) MONTHS PRECEDING
+                THE EVENT GIVING RISE TO THE CLAIM.
+              </p>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">G. Indemnification</h3>
+              <p>
+                You agree to indemnify, defend, and hold harmless Love Transcends Reality Network, LLC and
+                its founders, officers, directors, employees, and agents from any claims, damages, losses,
+                liabilities, and expenses (including reasonable attorney fees) arising from your use of
+                mining services, violation of these terms, or infringement of any third-party rights.
+              </p>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6">H. Governance & Amendments</h3>
+              <p>
+                Tokenomics parameters — including mining rates, fee allocations, burn schedules, and staking yields —
+                are subject to modification through the DAO governance process as outlined on the{' '}
+                <Link to="/governance" className="text-accent hover:underline">Governance page</Link>.
+                During the 7-year Founder Control Period (2025–2032), the founding team retains veto
+                authority over protocol changes that could compromise platform security or mission alignment.
+                Material changes to these Mining & Tokenomics Terms will be communicated at least 30 days
+                in advance via email and platform notification.
               </p>
             </div>
           </section>
