@@ -14,97 +14,149 @@ import {
 
 const SentinelLiveCard = () => {
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState({ total: 0, success: 0, failed: 0, lastLogin: null as string | null });
+  const [stats, setStats] = useState({ total: 0, success: 0, failed: 0, failsafe: 0, lastLogin: null as string | null });
   const [recentLogs, setRecentLogs] = useState<{ id: string; event_type: string; email: string | null; created_at: string }[]>([]);
 
-  useEffect(() => {
-    const fetch24hStats = async () => {
-      setLoading(true);
-      const { data } = await supabase
-        .from('admin_audit_log')
-        .select('id, event_type, email, created_at')
-        .order('created_at', { ascending: false })
-        .limit(50);
+  const fetchData = async () => {
+    setLoading(true);
+    const { data } = await supabase
+      .from('admin_audit_log')
+      .select('id, event_type, email, created_at')
+      .order('created_at', { ascending: false })
+      .limit(50);
 
-      const logs = data || [];
-      const now = Date.now();
-      const recent = logs.filter(l => now - new Date(l.created_at).getTime() < 86400000);
-      setStats({
-        total: recent.length,
-        success: recent.filter(l => l.event_type === 'login_success').length,
-        failed: recent.filter(l => l.event_type === 'login_failure').length,
-        lastLogin: logs.find(l => l.event_type === 'login_success')?.created_at || null,
-      });
-      setRecentLogs(logs.slice(0, 5));
-      setLoading(false);
-    };
-    fetch24hStats();
+    const logs = data || [];
+    const now = Date.now();
+    const recent = logs.filter(l => now - new Date(l.created_at).getTime() < 86400000);
+    setStats({
+      total: recent.length,
+      success: recent.filter(l => l.event_type === 'login_success').length,
+      failed: recent.filter(l => l.event_type === 'login_failure').length,
+      failsafe: recent.filter(l => l.event_type === 'failsafe_used').length,
+      lastLogin: logs.find(l => l.event_type === 'login_success')?.created_at || null,
+    });
+    setRecentLogs(logs.slice(0, 6));
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 30000); // auto-refresh every 30s
+    return () => clearInterval(interval);
   }, []);
 
   const threatLevel = stats.failed >= 10 ? 'critical' : stats.failed >= 5 ? 'elevated' : stats.failed >= 2 ? 'moderate' : 'normal';
   const threatConfig = {
-    critical: { color: 'text-destructive', bg: 'bg-destructive/10', Icon: XCircle },
-    elevated: { color: 'text-rainbow-orange', bg: 'bg-rainbow-orange/10', Icon: AlertTriangle },
-    moderate: { color: 'text-cosmic-gold', bg: 'bg-cosmic-gold/10', Icon: AlertTriangle },
-    normal: { color: 'text-rainbow-green', bg: 'bg-rainbow-green/10', Icon: CheckCircle },
+    critical: { color: 'text-destructive', bg: 'bg-destructive/15', border: 'border-destructive/40', pulse: 'animate-pulse', Icon: XCircle, label: 'Critical' },
+    elevated: { color: 'text-rainbow-orange', bg: 'bg-rainbow-orange/15', border: 'border-rainbow-orange/40', pulse: 'animate-pulse', Icon: AlertTriangle, label: 'Elevated' },
+    moderate: { color: 'text-cosmic-gold', bg: 'bg-cosmic-gold/15', border: 'border-cosmic-gold/40', pulse: '', Icon: AlertTriangle, label: 'Moderate' },
+    normal: { color: 'text-rainbow-green', bg: 'bg-rainbow-green/15', border: 'border-rainbow-green/40', pulse: '', Icon: CheckCircle, label: 'Normal' },
   }[threatLevel];
 
   const eventLabel = (t: string) => {
     if (t === 'login_success') return { label: '✓ Login', color: 'text-rainbow-green' };
     if (t === 'login_failure') return { label: '✗ Failed', color: 'text-destructive' };
     if (t === 'failsafe_used') return { label: '⚡ Failsafe', color: 'text-rainbow-orange' };
+    if (t === 'password_reset') return { label: '🔑 Reset', color: 'text-cosmic-purple' };
     return { label: t, color: 'text-muted-foreground' };
   };
 
+  const timeSince = (dateStr: string) => {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    return `${Math.floor(hrs / 24)}d ago`;
+  };
+
   return (
-    <Card className="glass-card border-border/30 col-span-full">
-      <CardHeader className="pb-2 flex flex-row items-center justify-between">
-        <CardTitle className="text-base flex items-center gap-2">
-          <Activity className="w-5 h-5 text-primary" /> Sentinel Monitor — Live 24h
-        </CardTitle>
-        <Link to="/admin/sentinel">
-          <Button variant="ghost" size="sm" className="text-xs">Full View →</Button>
-        </Link>
+    <Card className={`glass-card ${threatConfig.border} border col-span-full`}>
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <CardTitle className="text-base flex items-center gap-2">
+            <Activity className="w-5 h-5 text-primary" />
+            Sentinel Monitor
+            <span className="text-[10px] font-normal text-muted-foreground ml-1">auto-refresh 30s</span>
+          </CardTitle>
+          <div className="flex items-center gap-2">
+            {/* Threat Level Badge */}
+            <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border ${threatConfig.bg} ${threatConfig.border} ${threatConfig.pulse}`}>
+              <threatConfig.Icon className={`w-4 h-4 ${threatConfig.color}`} />
+              <span className={`text-xs font-bold ${threatConfig.color} uppercase tracking-wider`}>
+                {threatConfig.label}
+              </span>
+              {stats.failed > 0 && (
+                <span className={`text-[10px] font-semibold ${threatConfig.color} ml-0.5`}>
+                  ({stats.failed} threat{stats.failed !== 1 ? 's' : ''})
+                </span>
+              )}
+            </div>
+            <Link to="/admin/sentinel">
+              <Button variant="outline" size="sm" className="text-xs gap-1 border-primary/30 hover:bg-primary/10">
+                <Eye className="w-3.5 h-3.5" /> Full Sentinel View
+              </Button>
+            </Link>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         {loading ? (
           <div className="flex justify-center py-6"><Loader2 className="w-5 h-5 animate-spin text-muted-foreground" /></div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
+          <div className="space-y-4">
             {/* Stats Row */}
-            <div className="flex flex-wrap gap-3">
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${threatConfig.bg}`}>
-                <threatConfig.Icon className={`w-4 h-4 ${threatConfig.color}`} />
-                <span className={`text-xs font-semibold ${threatConfig.color} capitalize`}>{threatLevel}</span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="flex flex-col items-center p-3 rounded-lg bg-secondary/20 border border-border/20">
+                <Eye className="w-4 h-4 text-primary mb-1" />
+                <span className="text-xl font-bold text-foreground tabular-nums">{stats.total}</span>
+                <span className="text-[10px] text-muted-foreground">Events (24h)</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary/30">
-                <Eye className="w-3.5 h-3.5 text-primary" />
-                <span className="text-xs text-foreground">{stats.total} events</span>
+              <div className="flex flex-col items-center p-3 rounded-lg bg-secondary/20 border border-border/20">
+                <CheckCircle className="w-4 h-4 text-rainbow-green mb-1" />
+                <span className="text-xl font-bold text-foreground tabular-nums">{stats.success}</span>
+                <span className="text-[10px] text-muted-foreground">Logins</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary/30">
-                <CheckCircle className="w-3.5 h-3.5 text-rainbow-green" />
-                <span className="text-xs text-foreground">{stats.success} logins</span>
+              <div className="flex flex-col items-center p-3 rounded-lg bg-secondary/20 border border-border/20">
+                <XCircle className="w-4 h-4 text-destructive mb-1" />
+                <span className="text-xl font-bold text-foreground tabular-nums">{stats.failed}</span>
+                <span className="text-[10px] text-muted-foreground">Failed</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary/30">
-                <XCircle className="w-3.5 h-3.5 text-destructive" />
-                <span className="text-xs text-foreground">{stats.failed} failed</span>
+              <div className="flex flex-col items-center p-3 rounded-lg bg-secondary/20 border border-border/20">
+                <AlertTriangle className="w-4 h-4 text-rainbow-orange mb-1" />
+                <span className="text-xl font-bold text-foreground tabular-nums">{stats.failsafe}</span>
+                <span className="text-[10px] text-muted-foreground">Failsafe</span>
               </div>
             </div>
+
             {/* Recent Feed */}
-            <div className="space-y-1.5">
+            <div>
+              <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Recent Activity</p>
               {recentLogs.length === 0 ? (
-                <p className="text-xs text-muted-foreground">No recent events.</p>
-              ) : recentLogs.map(log => {
-                const { label, color } = eventLabel(log.event_type);
-                return (
-                  <div key={log.id} className="flex items-center gap-2 text-xs">
-                    <span className={`font-medium ${color} w-20 shrink-0`}>{label}</span>
-                    <span className="text-foreground/70 truncate flex-1">{log.email || '—'}</span>
-                    <span className="text-muted-foreground whitespace-nowrap">{new Date(log.created_at).toLocaleTimeString()}</span>
-                  </div>
-                );
-              })}
+                <p className="text-xs text-muted-foreground text-center py-3">No recent events.</p>
+              ) : (
+                <div className="space-y-1">
+                  {recentLogs.map(log => {
+                    const { label, color } = eventLabel(log.event_type);
+                    return (
+                      <div key={log.id} className="flex items-center gap-2 text-xs py-1.5 px-2 rounded-md hover:bg-secondary/20 transition-colors">
+                        <span className={`font-semibold ${color} w-20 shrink-0`}>{label}</span>
+                        <span className="text-foreground/70 truncate flex-1">{log.email || '—'}</span>
+                        <span className="text-muted-foreground whitespace-nowrap tabular-nums">{timeSince(log.created_at)}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
+
+            {/* Last successful login */}
+            {stats.lastLogin && (
+              <p className="text-[10px] text-muted-foreground text-right">
+                Last admin login: {new Date(stats.lastLogin).toLocaleString()}
+              </p>
+            )}
           </div>
         )}
       </CardContent>
