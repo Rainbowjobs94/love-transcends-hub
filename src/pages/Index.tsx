@@ -12,6 +12,7 @@ import { DonationButton } from '@/components/DonationButton';
 import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
 import { WelcomeGuardianDialog } from '@/components/WelcomeGuardianDialog';
+import { PrivacyPolicyBanner } from '@/components/PrivacyPolicyBanner';
 
 
 const Index = () => {
@@ -49,6 +50,7 @@ const Index = () => {
       <Footer />
       <DonationButton />
       <WelcomeGuardianDialog />
+      <PrivacyPolicyBanner />
     </div>
   );
 };
