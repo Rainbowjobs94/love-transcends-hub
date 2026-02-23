@@ -11,45 +11,45 @@ export const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/30">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 gap-2">
           {/* Left: Media Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <MediaControls />
           </div>
 
           {/* Center: Logo */}
-          <Link to="/" className="flex items-center gap-3 group absolute left-1/2 transform -translate-x-[55%]">
+          <Link to="/" className="flex items-center gap-2 group shrink min-w-0">
             <img
               src={miracleLogo}
               alt="Love Transcends Reality"
-              className="w-10 h-10 rounded-full cosmic-glow transition-transform group-hover:scale-110"
+              className="w-8 h-8 rounded-full cosmic-glow transition-transform group-hover:scale-110 shrink-0"
             />
-            <span className="font-bold text-lg rainbow-text hidden md:block">
+            <span className="font-bold text-sm rainbow-text hidden lg:block truncate">
               Love Transcends Reality
             </span>
           </Link>
 
           {/* Right: Auth-aware buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             <a
               href="https://ltsocial.net"
               target="_blank"
               rel="noopener noreferrer"
-              className="v3-launch-btn inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              className="v3-launch-btn inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300"
             >
-              🚀 V3 Beta
+              🚀 V3
             </a>
-            <Button asChild size="sm" variant="outline" className="hidden md:inline-flex border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10">
+            <Button asChild size="sm" variant="outline" className="hidden lg:inline-flex border-cosmic-teal/50 text-cosmic-teal hover:bg-cosmic-teal/10 h-8 px-2.5 text-xs">
               <a href="https://ltreality.net" target="_blank" rel="noopener noreferrer">
-                <Globe className="w-4 h-4 mr-1" /> LTR
+                <Globe className="w-3.5 h-3.5 mr-1" /> LTR
               </a>
             </Button>
-            <Button asChild size="sm" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-semibold">
+            <Button asChild size="sm" className="bg-cosmic-gold hover:bg-cosmic-gold/90 text-black font-semibold h-8 px-2.5 text-xs">
               <a href="https://www.gofundme.com/f/Ltsanp" target="_blank" rel="noopener noreferrer">
-                <Heart className="w-4 h-4 mr-1" /> Donate
+                <Heart className="w-3.5 h-3.5 mr-1" /> Donate
               </a>
             </Button>
-            <Button asChild size="sm" className="bg-[hsl(210,80%,50%)] hover:bg-[hsl(210,80%,40%)] text-white font-semibold hidden md:inline-flex">
+            <Button asChild size="sm" className="bg-[hsl(210,80%,50%)] hover:bg-[hsl(210,80%,40%)] text-white font-semibold hidden lg:inline-flex h-8 px-2.5 text-xs">
               <a href="https://paypal.me/jstrongman47" target="_blank" rel="noopener noreferrer">
                 PayPal
               </a>

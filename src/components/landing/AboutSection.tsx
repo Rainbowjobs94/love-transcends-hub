@@ -71,11 +71,11 @@ export const AboutSection = () => {
                 <Sparkles className="w-6 h-6 text-cosmic-teal" />
                 <h3 className="text-lg font-bold text-foreground">Core Values</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {coreValues.map((value) => (
                   <span 
                     key={value}
-                    className="text-xs px-3 py-1 rounded-full bg-cosmic-purple/20 text-cosmic-purple border border-cosmic-purple/30"
+                    className="text-sm font-medium px-4 py-1.5 rounded-full bg-cosmic-purple/15 text-foreground border border-cosmic-purple/40 hover:bg-cosmic-purple/25 hover:border-cosmic-purple/60 transition-colors"
                   >
                     {value}
                   </span>
