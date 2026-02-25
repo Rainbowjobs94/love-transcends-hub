@@ -35,6 +35,8 @@ import RainbowStrongmanBio from "./pages/RainbowStrongmanBio";
 import About from "./pages/About";
 import Governance from "./pages/Governance";
 import TokenomicsExplorer from "./pages/TokenomicsExplorer";
+import KEMWatermark from "./pages/KEMWatermark";
+import RSNXProtocol from "./pages/RSNXProtocol";
 import { GuardianChatBubble } from "./components/GuardianChatBubble";
 import { CosmicEffects } from "./components/CosmicEffects";
 
@@ -77,6 +79,8 @@ const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/governance" element={<Governance />} />
         <Route path="/tokenomics" element={<TokenomicsExplorer />} />
+        <Route path="/kem-watermark" element={<KEMWatermark />} />
+        <Route path="/rsnx-protocol" element={<RSNXProtocol />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
