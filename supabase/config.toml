@@ -1,10 +1,1 @@
-project_id = "jdyiuctjlchjwtylvsda"
-
-[functions.admin-failsafe]
-verify_jwt = false
-
-[functions.genetic-chat]
-verify_jwt = false
-
-[functions.create-donation]
-verify_jwt = false
+project_id = "olfjxyfbienuvnhcxjmf"
