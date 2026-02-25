@@ -309,6 +309,52 @@ const TokenomicsExplorer = () => {
             </div>
           </div>
         </section>
+
+        {/* RSNX Bonding Curve + KEM Mining Tiers */}
+        <section className="container mx-auto px-4 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="glass-card rounded-xl p-6 space-y-4">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-cosmic-gold" />
+                <h2 className="text-lg font-bold text-foreground">RSNX Bonding Curve</h2>
+              </div>
+              {[
+                ['Reserve Ratio', '50%'],
+                ['Protocol Fee', '1%'],
+                ['Founder Fee', '0%'],
+                ['Graduation Threshold', '50,000 MATIC'],
+                ['MCL Conversion', '1,000 KEM = 1 MCL (~$1)'],
+                ['Vest Unlock', 'Dec 31, 2030'],
+              ].map(([k, v], i) => (
+                <div key={i} className="flex justify-between text-sm border-b border-border/30 pb-2">
+                  <span className="text-muted-foreground">{k}</span>
+                  <span className="font-semibold text-foreground">{v}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="glass-card rounded-xl p-6 space-y-4">
+              <div className="flex items-center gap-2">
+                <Gem className="w-5 h-5 text-cosmic-teal" />
+                <h2 className="text-lg font-bold text-foreground">KEM Mining Tiers</h2>
+              </div>
+              {[
+                ['🥉 Bronze', '1 RC / 1,000 KEM', '1× multiplier'],
+                ['🥈 Silver', '5 RC / 1,000 KEM', '5× multiplier'],
+                ['🥇 Gold', '10 RC / 1,000 KEM', '10× multiplier'],
+              ].map(([tier, rate, mult], i) => (
+                <div key={i} className="flex items-center justify-between text-sm border-b border-border/30 pb-2">
+                  <span className="font-semibold text-foreground">{tier}</span>
+                  <span className="text-muted-foreground text-xs">{rate}</span>
+                  <span className="text-cosmic-gold font-bold">{mult}</span>
+                </div>
+              ))}
+              <p className="text-xs text-muted-foreground mt-2">
+                Daily claim limit: 5 per user · Early withdrawal penalty: 15%
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

@@ -6,6 +6,7 @@ import { LeftPanel } from '@/components/LeftPanel';
 import { RightPanel } from '@/components/RightPanel';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { TrendingUp, Users, DollarSign, Target, Globe, ExternalLink, Heart, Rocket, Shield } from 'lucide-react';
 
 const BURST_COLORS = [
@@ -183,6 +184,83 @@ const Investors = () => {
             <p className="text-center text-xs text-muted-foreground mt-4">
               🛡️ 7-year founder control over product development regardless of equity structure
             </p>
+          </div>
+        </section>
+
+        {/* Comparable Landscape */}
+        <section className="py-10">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold text-center mb-6 text-foreground">Comparable Company Landscape</h2>
+            <div className="glass-card rounded-2xl p-6 max-w-4xl mx-auto overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Company</TableHead>
+                    <TableHead>Valuation</TableHead>
+                    <TableHead>What LT Adds</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[
+                    ['OpenSea', '$13.3B', 'KEM watermark IP protection + floor guarantee'],
+                    ['Patreon', '$4B', '75/25 creator split + crypto payments'],
+                    ['OnlyFans', '$8B', 'Family-safe tiers + mining rewards'],
+                    ['Discord', '$7B', 'Token-gated communities + on-chain identity'],
+                    ['Farcaster', '$1B', 'Full social graph + NFT marketplace'],
+                  ].map(([co, val, adds], i) => (
+                    <TableRow key={i}>
+                      <TableCell className="font-bold text-foreground">{co}</TableCell>
+                      <TableCell className="text-cosmic-gold font-semibold">{val}</TableCell>
+                      <TableCell className="text-sm text-muted-foreground">{adds}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <p className="text-xs text-muted-foreground mt-3 text-center">
+                Creator economy TAM: $250B · NFT market: $40B → $200B by 2030
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Revenue Streams */}
+        <section className="py-10">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold text-center mb-6 text-cosmic-gold">Revenue Engines — $152M Year 3</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {[
+                { label: 'NFT Marketplace', value: '$50M', pct: '33%' },
+                { label: 'Creator Subscriptions', value: '$60M', pct: '39%' },
+                { label: 'Mining Network', value: '$12M', pct: '8%' },
+                { label: 'Premium Social', value: '$30M', pct: '20%' },
+              ].map((r, i) => (
+                <div key={i} className="investor-card text-center p-4">
+                  <p className="text-2xl font-bold text-cosmic-gold">{r.value}</p>
+                  <p className="text-xs text-muted-foreground">{r.label}</p>
+                  <p className="text-xs text-muted-foreground/60">{r.pct} of total</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Technical Moat */}
+        <section className="py-10">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold text-center mb-6 text-foreground">Technical Moat</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {[
+                { icon: Shield, title: 'KEM Watermarking', desc: '5-year head start on post-quantum IP protection (FIPS 203)' },
+                { icon: TrendingUp, title: 'Floor Enforcement', desc: 'Novel USD floor via Chainlink oracles — no other marketplace has this' },
+                { icon: Globe, title: 'Network Effects', desc: '4-platform ecosystem (Social, Mining, NFT, Creator) with shared token' },
+              ].map(({ icon: Icon, title, desc }, i) => (
+                <div key={i} className="glass-card rounded-xl p-5">
+                  <Icon className="w-6 h-6 text-cosmic-teal mb-2" />
+                  <h3 className="font-bold text-foreground text-sm mb-1">{title}</h3>
+                  <p className="text-xs text-muted-foreground">{desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

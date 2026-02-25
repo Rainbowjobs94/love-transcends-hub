@@ -288,10 +288,40 @@ const ShiftCoin = () => {
           </div>
         </section>
 
+        {/* NFT Marketplace */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8 text-cosmic-gold">NFT Marketplace</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="glass-card rounded-xl p-6 border border-cosmic-gold/30">
+                <Shield className="w-8 h-8 text-cosmic-gold mb-3" />
+                <h3 className="font-bold text-foreground mb-2">Floor Price Guarantee</h3>
+                <p className="text-sm text-muted-foreground">USD floor enforced via Chainlink oracles on Polygon — creators never sell below cost.</p>
+              </div>
+              <div className="glass-card rounded-xl p-6 border border-cosmic-teal/30">
+                <Fingerprint className="w-8 h-8 text-cosmic-teal mb-3" />
+                <h3 className="font-bold text-foreground mb-2">KEM IP Protection</h3>
+                <p className="text-sm text-muted-foreground">Post-quantum watermarking embeds tamper-proof provenance into every NFT.</p>
+                <Button asChild variant="link" size="sm" className="px-0 mt-2 text-cosmic-teal">
+                  <Link to="/kem-watermark">Learn More →</Link>
+                </Button>
+              </div>
+              <div className="glass-card rounded-xl p-6 border border-cosmic-purple/30">
+                <Globe className="w-8 h-8 text-cosmic-purple mb-3" />
+                <h3 className="font-bold text-foreground mb-2">Cross-Network Portability</h3>
+                <p className="text-sm text-muted-foreground">Polygon primary with bridge support to Ethereum and all EVM-compatible chains.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-16">
           <div className="container mx-auto px-4 text-center">
             <div className="flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="cosmic-button text-white font-semibold">
+                <Link to="/rsnx-protocol">Explore RSNX Protocol</Link>
+              </Button>
               <Button asChild size="lg" className="cosmic-button text-white font-semibold">
                 <Link to="/investors">View Investment Opportunities</Link>
               </Button>
