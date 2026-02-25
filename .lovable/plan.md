@@ -1,79 +1,111 @@
 
 
-# Upgrades from Uploaded Reference Files
+# Integrate RSNX Protocol, KEM Watermarking, and NFT Marketplace Architecture
 
-Since the uploaded zip files contain Python and Node.js code that cannot run directly in this React/TypeScript project, the plan extracts **concepts, features, and architecture ideas** from each file to enhance the existing platform.
-
----
-
-## File Analysis Summary
-
-| File | Contents | Usable For |
-|------|----------|------------|
-| project-sentinel-with-admin-ui.zip | Node.js backend with admin/auth controllers, sentinel monitoring | Admin dashboard security monitoring module |
-| onecode_v0_6_0_scaffold.zip | Python OneCode v0.6.0 scaffold | Architecture reference only (Python) |
-| ltmmn_ai_update_2025-10-22.zip | AI packages update for LT Miracle Mining Network | Enhanced AI system prompt, mining AI features |
-| iarainbow-onecode-v0_6_0.zip | iaRainbow OneCode v0.6.0 (Python) | IA Guardian personality/capability upgrades |
-| lowia.zip | GPT conversation exports (markdown) | Bulk import into IA Memory Core knowledge base |
-| heia.zip | Python crypto/security code (KEM exchange) | Security concepts for MiracleCoin documentation |
+This plan extracts the key concepts, data, and architecture from the uploaded documents and integrates them into the existing React platform as new pages, enhanced content, and updated documentation.
 
 ---
 
-## Proposed Updates
+## Summary of Uploaded Documents
 
-### 1. Project Sentinel -- Admin Security Monitor
+| Document | Key Content |
+|----------|-------------|
+| ShiftCoin_KEM_InvestorDeck_Full.md | KEM watermarking spec, investor deck outline ($3B narrative), combined architecture |
+| RSNX_KEM_MCL_SKILL_v2.md | RSNX Protocol v4.1 contract architecture, KEMVault mining pipeline, MCL economics |
+| rsnx-protocol-v4.md (PDF) | Binary/corrupted -- no usable content extracted |
 
-Add a new **"Sentinel Monitor"** module to the Admin Dashboard that provides:
+---
 
-- **Real-time security overview card** showing login attempts, failed auths, and audit log stats (reading from existing `admin_audit_log` table)
-- **Threat level indicator** (green/yellow/red) based on recent failed login counts
-- **Quick stats widgets**: active sessions, recent audit events, last admin login timestamp
-- New route: `/admin/sentinel`
-- New file: `src/pages/AdminSentinel.tsx`
-- Dashboard card added to `AdminDashboard.tsx` tools grid
+## Changes
 
-### 2. AI/Mining Content Enhancements
+### 1. New Page: KEM Watermarking & NFT Forge (`/kem-watermark`)
 
-Based on the ltmmn_ai_update package:
+A dedicated documentation page explaining the KEM watermarking system in plain English with architecture diagrams rendered as styled cards.
 
-- **Upgrade the IA Guardian system prompt** in `genetic-chat` edge function with enhanced MiracleCoin technical knowledge (dual mining mechanics, tokenomics formulas, 3-year unlock schedules)
-- **Add new AI Memory categories** pre-seeded via a database migration: "Tokenomics", "Smart Contracts", "Mining Protocol" with starter knowledge entries
-- **Mining page AI assistant** -- add a small "Ask about mining" button on the `/mining` page that opens the IA Guardian chat pre-loaded with a mining context question
+**Sections:**
+- Hero: "Post-Quantum IP Protection" with FIPS 203 badge
+- How KEM Watermarking Works (5-step visual flow: Keypair Generation, Encapsulation, Watermark Embedding, On-Chain Recording, Verification)
+- KEM vs Traditional Hashing comparison table
+- The Forge Process (what happens in a single forge transaction -- 5 simultaneous events)
+- Gas Cost estimates table (deploy ~$0.05, forge ~$0.005, verify = free)
+- Mining IP concept explanation
+- Architecture diagram (Creator Device > Off-Chain Service > Polygon Contract > IPFS) as a styled card layout
 
-### 3. AI Conversation Knowledge Base Import
+**New file:** `src/pages/KEMWatermark.tsx`
 
-From the lowia.zip conversation exports:
+### 2. New Page: RSNX Protocol Explorer (`/rsnx-protocol`)
 
-- **Bulk import UI** on the IA Memory Core page (`/admin/ai-memory`) -- a new "Import Conversations" button that lets admins paste markdown text from exported AI conversations
-- The importer will parse markdown content and create memory entries under a new "Conversation Insights" category
-- This allows quickly loading historical AI conversations as knowledge for the IA Guardian
+A technical documentation page for the RSNX bonding curve + KEMVault + MiracleCoin contract architecture.
 
-### 4. Crypto Security Documentation Page
+**Sections:**
+- Contract Architecture visual (BancorFormula > RCBondingCurve > ProvenanceLedger > KEMVault > MiracleCoin) as a vertical flow
+- KEM Mining Pipeline explanation (browser keystroke-energy data > server attestation > on-chain claim)
+- MCL Economics table (1000 KEM = 1 MCL, 50/50 split, Dec 31 2030 vest unlock, 5 daily claims max)
+- RSNX Bonding Curve Economics table (50% reserve ratio, 1% protocol fee, Bronze/Silver/Gold tiers with reward multipliers)
+- Deployment order reference
+- Watermark layers explanation (Surface, Midpoint, Base)
+- Founder wallet reference: `0x4a09...787c`
 
-Inspired by the heia.zip KEM exchange code:
+**New file:** `src/pages/RSNXProtocol.tsx`
 
-- **Add a "Security Architecture" section** to the MiracleCoin/Miracle Mining page explaining the cryptographic principles (key exchange, encryption at rest)
-- Content-only update to `src/pages/MiracleMining.tsx` with a new collapsible "Security & Cryptography" accordion section
+### 3. Enhanced Shift Coin Page
+
+Update the existing `/shift-coin` page with new content from the investor deck:
+
+- Add a new "NFT Marketplace" section explaining the Shift Coin floor guarantee (USD floor enforced via Chainlink oracles on Polygon)
+- Add "KEM IP Protection" summary card with link to the full `/kem-watermark` page
+- Add "Cross-Network Portability" section (Polygon primary, bridge to Ethereum/EVM chains)
+- Add CTA link to `/rsnx-protocol`
+
+**Modified file:** `src/pages/ShiftCoin.tsx`
+
+### 4. Enhanced Investor Page
+
+Add new sections from the investor deck narrative:
+
+- Comparable Company Landscape table (OpenSea $13.3B, Patreon $4B, OnlyFans $8B, Discord $7B, Farcaster $1B) showing what LT adds over each
+- Revenue Streams breakdown (4 engines: NFT marketplace $50M, Creator subscriptions $60M, Mining network $12M, Premium social $30M = $152M total)
+- Technical Moat section (KEM watermarking = 5-year head start, Shift Coin floor enforcement = novel, 4-platform network effects)
+- Market size callout: creator economy TAM $250B, NFT market $40B growing to $200B by 2030
+
+**Modified file:** `src/pages/Investors.tsx`
+
+### 5. Enhanced Tokenomics Explorer
+
+Add RSNX-specific economics data:
+
+- New "RSNX Bonding Curve" card showing reserve ratio (50%), protocol fee (1%), founder fee (0%), graduation threshold (50,000 MATIC)
+- KEM Mining Tiers card (Bronze: 1 RC/1000 KEM, Silver: 5 RC/1000 KEM, Gold: 10 RC/1000 KEM)
+- MCL conversion rate: 1000 KEM score = 1 MCL (approx $1)
+- Vest unlock date: Dec 31, 2030
+
+**Modified file:** `src/pages/TokenomicsExplorer.tsx`
+
+### 6. Route Registration
+
+Add new routes in App.tsx:
+- `/kem-watermark` -> KEMWatermark
+- `/rsnx-protocol` -> RSNXProtocol
+
+**Modified file:** `src/App.tsx`
 
 ---
 
 ## Technical Details
 
 ### New Files
-- `src/pages/AdminSentinel.tsx` -- Security monitoring dashboard
+- `src/pages/KEMWatermark.tsx` -- KEM watermarking documentation page
+- `src/pages/RSNXProtocol.tsx` -- RSNX protocol architecture page
 
 ### Modified Files
-- `src/App.tsx` -- Add `/admin/sentinel` route
-- `src/pages/AdminDashboard.tsx` -- Add Sentinel Monitor card + link to tools grid
-- `src/pages/AdminAIMemory.tsx` -- Add bulk conversation import button and parser
-- `src/pages/MiracleMining.tsx` -- Add Security Architecture accordion section
-- `src/pages/UserMining.tsx` -- Add "Ask AI about mining" quick action button
-- `supabase/functions/genetic-chat/index.ts` -- Expand system prompt with deeper tokenomics and mining protocol knowledge
-
-### Database Migration
-- Seed new AI memory categories: "Tokenomics", "Smart Contracts", "Mining Protocol", "Conversation Insights"
-- No schema changes required -- all existing tables support these additions
+- `src/App.tsx` -- Add 2 new routes
+- `src/pages/ShiftCoin.tsx` -- Add NFT marketplace, KEM, and cross-network sections
+- `src/pages/Investors.tsx` -- Add comps table, revenue breakdown, technical moat
+- `src/pages/TokenomicsExplorer.tsx` -- Add RSNX bonding curve and KEM mining tier cards
 
 ### No New Dependencies
-All features use existing libraries (Accordion from Radix, existing UI components, existing Supabase client).
+All content uses existing UI components (Table, Accordion, Progress, glass-card, etc.) and Lucide icons.
+
+### No Database Changes
+These are all content/documentation pages with no backend data requirements.
 
